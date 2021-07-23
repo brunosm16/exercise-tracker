@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import Card from '../UI/Card';
 import ExerciseForm from './ExerciseForm';
 import './NewExercise.css';
 
@@ -19,7 +20,7 @@ const NewExercise = ({ onAddExercise }) => {
 	};
 
 	return (
-		<div className="new-exercise">
+		<Card cssClass="new-exercise">
 			{isAdd && (
 				<ExerciseForm
 					onCancelAddExercise={handleCancel}
@@ -32,7 +33,7 @@ const NewExercise = ({ onAddExercise }) => {
 					Add Exercise
 				</button>
 			)}
-		</div>
+		</Card>
 	);
 };
 
