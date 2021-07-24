@@ -1,0 +1,19 @@
+.exercises {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    margin: 1rem auto;
+    max-width: 90%;
+    width: 30rem;
+    background-color: #02182B;
+}
+
+
+
+@media screen and (min-width: 768px) {
+    .exercises {
+        width: 50rem;
+    }
+}

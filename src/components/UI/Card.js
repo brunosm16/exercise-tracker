@@ -9,12 +9,12 @@ const Card = ({ cssClass, children }) => {
 
 Card.defaultProps = {
 	cssClass: '',
-	children: PropTypes.object,
+	children: {},
 };
 
 Card.propTypes = {
 	cssClass: PropTypes.string,
-	children: PropTypes.objectOf(PropTypes.object),
+	children: PropTypes.node,
 };
 
 export default Card;

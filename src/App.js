@@ -1,5 +1,6 @@
 import './App.css';
 import NewExercise from './components/NewExercise/NewExercise';
+import Exercises from './components/Exercises/Exercises';
 
 const App = () => {
 	// todo
@@ -10,7 +11,7 @@ const App = () => {
 	return (
 		<div className="App">
 			<NewExercise onAddExercise={handleAddExercise} />
-			<h1>Exercise Tracker | App.js</h1>
+			<Exercises />
 		</div>
 	);
 };

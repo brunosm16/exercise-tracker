@@ -1,0 +1,21 @@
+.exercises-filter {
+    width: 100%;
+}
+
+.exercises-filter__control label {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.exercises-filter__control label p {
+    color: #fff;
+    font-weight: bold;
+}
+
+.exercises-filter select {
+    border-radius: 12px;
+    padding: 0.25rem 0.5rem;
+    outline:none;
+}

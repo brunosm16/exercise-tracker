@@ -2,13 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 85%;
     width: 25rem;
+    max-width: 85%;
     margin: 2rem auto;
     padding: 1.25rem;
     background-color: #2D2D2D;
     color: #FCDE67;
-    transition: all 0.3s ease-in-out;
 }
 
 .new-exercise button {
@@ -32,6 +31,6 @@
 
 @media screen and (min-width: 768px) {
     .new-exercise {
-        width: 50rem;
+        width: 45rem;
     }
 }
