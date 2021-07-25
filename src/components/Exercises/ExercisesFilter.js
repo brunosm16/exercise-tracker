@@ -18,8 +18,9 @@ const ExercisesFilter = ({ onSelectedFilter, select }) => {
 							selected={select}
 						>
 							<option value="Easy">Easy</option>
-							<option value="Medium">Medium</option>
+							<option value="Normal">Normal</option>
 							<option value="Hard">Hard</option>
+							<option value="Advanced">Advanced</option>
 						</select>
 					</label>
 				</div>

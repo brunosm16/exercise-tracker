@@ -45,7 +45,7 @@ const App = () => {
 	const [exercises, setExercises] = useState(INIT_EXERCISES);
 
 	const handleAddExercise = (data) => {
-		setExercises((previousData) => [...previousData, data]);
+		setExercises((previousData) => [data, ...previousData]);
 	};
 
 	return (

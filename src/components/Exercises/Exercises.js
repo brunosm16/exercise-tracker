@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import ExercisesFilter from './ExercisesFilter';
+import ExercisesList from './ExercisesList';
 import Card from '../UI/Card';
 import './Exercises.css';
 
 const Exercises = ({ items }) => {
 	const [filteredLevel, setFilteredLevel] = useState('Easy');
 
-	const filteredByLevel = items.filter(
+	const itemsByLevel = items.filter(
 		(exercise) => exercise.level === filteredLevel
 	);
 
 	const handleSelectedFilter = (filter) => {
 		setFilteredLevel(filter);
-		console.log(filteredByLevel);
 	};
 
 	return (
@@ -22,6 +22,8 @@ const Exercises = ({ items }) => {
 				onSelectedFilter={handleSelectedFilter}
 				select={filteredLevel}
 			/>
+
+			<ExercisesList exercises={itemsByLevel} level={filteredLevel} />
 		</Card>
 	);
 };
