@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import ExercisesFilter from './ExercisesFilter';
 import ExercisesList from './ExercisesList';
+import ExercisesChart from './ExercisesChart';
 import Card from '../UI/Card';
 import './Exercises.css';
 
@@ -22,6 +23,8 @@ const Exercises = ({ items }) => {
 				onSelectedFilter={handleSelectedFilter}
 				select={filteredLevel}
 			/>
+
+			<ExercisesChart exercises={itemsByLevel} />
 
 			<ExercisesList exercises={itemsByLevel} level={filteredLevel} />
 		</Card>
