@@ -53,7 +53,7 @@ Foi utilizado na aplicação o Style Guide do AirBnb. Também foi usado Husky pa
 
   
 
-## ⚒️ Recursos que faltam ser implementados no projeto
+## ⚒️ Recursos que faltam serem implementados no projeto
 
   
 
