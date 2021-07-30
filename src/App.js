@@ -29,19 +29,19 @@ const INIT_EXERCISES = [
 		date: new Date(2021, 3, 10),
 	},
 	{
-		id: 4,
+		id: 5,
 		name: 'Speed +1',
 		level: 'Normal',
 		date: new Date(2021, 5, 8),
 	},
 	{
-		id: 5,
+		id: 6,
 		name: 'Warform',
 		level: 'Hard',
 		date: new Date(2021, 5, 7),
 	},
 	{
-		id: 6,
+		id: 7,
 		name: 'Power Boost ',
 		level: 'Hard',
 		date: new Date(2021, 3, 7),

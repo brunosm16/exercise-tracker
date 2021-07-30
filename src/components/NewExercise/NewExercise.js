@@ -6,6 +6,7 @@ import './NewExercise.css';
 
 const NewExercise = ({ onAddExercise }) => {
 	const [isAdd, setIsAdd] = useState(false);
+
 	// save inserted data on ExerciseForm
 	const saveExerciseDataHandler = (exercise) => {
 		onAddExercise(exercise);
@@ -18,6 +19,7 @@ const NewExercise = ({ onAddExercise }) => {
 	const handleClickAddExercise = () => {
 		setIsAdd(true);
 	};
+
 
 	return (
 		<Card cssClass="new-exercise">

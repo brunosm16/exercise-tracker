@@ -15,7 +15,7 @@ const ExercisesList = ({ exercises, level }) => {
 		<ul className="exercises-list">
 			{exercises.map((exercise) => (
 				<ExerciseItem
-					key={exercise.name}
+					key={exercise.id}
 					name={exercise.name}
 					level={exercise.level}
 					date={exercise.date}

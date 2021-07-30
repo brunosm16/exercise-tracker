@@ -14,19 +14,24 @@
     width: 9.375rem;
     padding: 0.5rem 1.25rem;
     font-size: 1rem;
-    outline:none;
+    outline: none;
     border-radius: 5px;
     border-color: transparent;
     background-color: #FCDE67;
-    color:#2D2D2D;
+    color: #2D2D2D;
     font-weight: bold;
     transition: 0.3s all ease-in-out;
 }
 
 .new-exercise button:hover {
     cursor: pointer;
-    color: #2d2d2d;;
+    color: #2d2d2d;
     background: #fff;
+}
+
+.invalid-input {
+    border: 3px #CC2936 solid;
+    box-shadow: 2px 8px 15px rgba(204, 41, 54, 0.8);
 }
 
 @media screen and (min-width: 768px) {
