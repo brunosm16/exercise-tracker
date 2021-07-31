@@ -1,5 +1,27 @@
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import './ExercisesFilter.css'
+
+const ExercisesFilterDiv = styled.div`
+	width: 100%;
+`;
+
+const Label = styled.label`
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	gap: 1rem;
+
+	p {
+		color: #fff;
+		font-weight: bold;
+	}
+
+	select {
+		border-radius: 12px;
+		padding: 0.25rem 0.5rem;
+		outline: none;
+	}
+`;
 
 const ExercisesFilter = ({ onSelectedFilter, select }) => {
 	const handleDropdownChange = (event) => {
@@ -7,10 +29,10 @@ const ExercisesFilter = ({ onSelectedFilter, select }) => {
 	};
 
 	return (
-		<div className="exercises-filter">
-			<div className="exercises-filter__controls">
-				<div className="exercises-filter__control">
-					<label htmlFor="level">
+		<ExercisesFilterDiv>
+			<div>
+				<div>
+					<Label htmlFor="level">
 						<p>Filter By Level</p>
 						<select
 							id="level"
@@ -22,10 +44,10 @@ const ExercisesFilter = ({ onSelectedFilter, select }) => {
 							<option value="Hard">Hard</option>
 							<option value="Advanced">Advanced</option>
 						</select>
-					</label>
+					</Label>
 				</div>
 			</div>
-		</div>
+		</ExercisesFilterDiv>
 	);
 };
 

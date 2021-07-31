@@ -1,6 +1,22 @@
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import './ExercisesChart.css';
 import Chart from '../Chart/Chart';
+
+const ExercisesChartDiv = styled.div`
+	background-color: #0f8b8d;
+	color: #fff;
+	font-weight: bold;
+	width: 90%;
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1rem;
+
+	@media screen and (min-width: 768px) {
+		height: 15rem;
+	}
+`;
 
 const ExercisesChart = ({ exercises }) => {
 	const dataPoints = [
@@ -66,9 +82,9 @@ const ExercisesChart = ({ exercises }) => {
 	const max = Math.max(...values);
 
 	return (
-		<div className="exercises-chart">
+		<ExercisesChartDiv>
 			<Chart dataPoints={dataPoints} maxValue={max} />
-		</div>
+		</ExercisesChartDiv>
 	);
 };
 

@@ -1,6 +1,68 @@
+import styled from 'styled-components';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import './ExerciseForm.css';
+
+const Form = styled.form`
+	width: 100%;
+`;
+
+const Controls = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1rem;
+
+	@media screen and (min-width: 578px) {
+		padding: 0.25rem 0.75rem;
+		justify-content: space-between;
+	}
+`;
+
+const Label = styled.label`
+	p {
+		font-weight: bold;
+		font-size: 1.2rem;
+	}
+
+	@media screen and (min-width: 578px) {
+		p {
+			font-size: 1rem;
+		}
+	}
+`;
+
+const Input = styled.input`
+	width: 20rem;
+	border-radius: 15px;
+	border-color: transparent;
+	outline: none;
+	padding: 0.25rem 0.5rem;
+	border: ${(props) =>
+		props.nameInvalid || props.levelInvalid ? `2px #CC2936 solid` : ''};
+	box-shadow: ${(props) =>
+		props.nameInvalid || props.levelInvalid
+			? `2px 8px 15px rgba(204, 41, 54, 0.8)`
+			: `0 2px 5px 8px rgba(255, 255, 255, 0.083)`};
+
+	transition: all 0.3s ease-in-out;
+
+	&:hover {
+		box-shadow: 0 2px 5px 8px rgba(255, 255, 255, 0);
+	}
+`;
+
+const FormActionsDiv = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-top: 2rem;
+	margin-bottom: 0.75rem;
+	gap: 1rem;
+`;
+
+// const Label = styled.label`
+
+// `
 
 const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 	const [enteredName, setEnteredName] = useState('');
@@ -83,72 +145,50 @@ const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 	};
 
 	return (
-		<form className="exercise-form" onSubmit={submitHandler}>
-			<div className="exercise-form__controls">
-				<div className="exercise-form__control">
-					<label htmlFor="name">
-						<p
-							style={nameInvalid ? { color: '#CC2936' } : { color: '#FCDE67' }}
-						>
-							Name:
-						</p>
-						<input
+		<Form onSubmit={submitHandler}>
+			<Controls>
+				<div>
+					<Label htmlFor="name">
+						<p>Name:</p>
+						<Input
 							id="name"
 							type="text"
 							onChange={nameChangeHandler}
 							value={enteredName}
-							style={
-								nameInvalid
-									? {
-											border: '2px #CC2936 solid',
-											boxShadow: '2px 8px 15px rgba(204, 41, 54, 0.8)',
-									  }
-									: { borderColor: 'transparent' }
-							}
+							nameInvalid={nameInvalid}
 						/>
-					</label>
+					</Label>
 				</div>
 
-				<div className="exercise-form__control">
-					<label htmlFor="level">
-						<p
-							style={levelInvalid ? { color: '#CC2936' } : { color: '#FCDE67' }}
-						>
-							Level:
-						</p>
-						<input
+				<div>
+					<Label htmlFor="level">
+						<p>Level:</p>
+						<Input
 							id="level"
 							type="text"
 							value={enteredLevel}
 							onChange={levelChangeHandler}
-							style={
-								levelInvalid
-									? {
-											border: '2px #CC2936 solid',
-											boxShadow: '2px 8px 15px rgba(204, 41, 54, 0.8)',
-									  }
-									: { borderColor: 'transparent' }
-							}
+							levelInvalid={levelInvalid}
 						/>
-					</label>
+					</Label>
 				</div>
 
-				<div className="exercise-form__control">
-					<label htmlFor="date">
+				<div>
+					<Label htmlFor="date">
 						<p>Date:</p>
-						<input
+						<Input
 							type="date"
 							value={enteredDate || '2021-01-01'}
 							min="2021-01-01"
 							max="2025-12-12"
 							onChange={dateChangeHandler}
 						/>
-					</label>
+					</Label>
 				</div>
-			</div>
+			</Controls>
 
-			<div className="exercise-form__actions">
-				<div className="exercise-form__action">
+			<FormActionsDiv>
+				<div>
 					<button type="button" onClick={cancelHandler}>
 						Cancel
 					</button>
@@ -156,8 +196,8 @@ const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 				<div className="exercise-form__action">
 					<button type="submit">Add Exercise</button>
 				</div>
-			</div>
-		</form>
+			</FormActionsDiv>
+		</Form>
 	);
 };
 

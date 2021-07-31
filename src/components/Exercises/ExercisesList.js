@@ -1,18 +1,31 @@
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ExerciseItem from './ExerciseItem';
-import './ExercisesList.css';
+
+const List = styled.ul`
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 100%;
+`;
+
+const WarningMsg = styled.p`
+	color: #68c5db;
+	padding: 1rem;
+	font-size: 1.5rem;
+`;
 
 const ExercisesList = ({ exercises, level }) => {
 	if (exercises.length === 0) {
 		return (
-			<p className="empty-list-msg">
+			<WarningMsg>
 				No exercises was found with level <strong>{level}</strong>
-			</p>
+			</WarningMsg>
 		);
 	}
 
 	return (
-		<ul className="exercises-list">
+		<List>
 			{exercises.map((exercise) => (
 				<ExerciseItem
 					key={exercise.id}
@@ -21,7 +34,7 @@ const ExercisesList = ({ exercises, level }) => {
 					date={exercise.date}
 				/>
 			))}
-		</ul>
+		</List>
 	);
 };
 

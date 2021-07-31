@@ -1,9 +1,24 @@
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ChartBar from './ChartBar';
-import './Chart.css';
+
+const ChartDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin: 1rem;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+
+	@media screen and (min-width: 768px) {
+		display: flex;
+		flex-direction: row;
+		margin: 2rem;
+	}
+`;
 
 const Chart = ({ dataPoints, maxValue }) => (
-	<div className="chart">
+	<ChartDiv>
 		{dataPoints.map((dataPoint) => (
 			<ChartBar
 				key={dataPoint.label}
@@ -12,7 +27,7 @@ const Chart = ({ dataPoints, maxValue }) => (
 				maxValue={maxValue}
 			/>
 		))}
-	</div>
+	</ChartDiv>
 );
 
 Chart.defaultProps = {
