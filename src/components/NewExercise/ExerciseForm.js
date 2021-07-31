@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import './ExerciseForm.css';
+import styles from './ExerciseForm.module.css';
 
 const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 	const [enteredName, setEnteredName] = useState('');
@@ -83,57 +83,41 @@ const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 	};
 
 	return (
-		<form className="exercise-form" onSubmit={submitHandler}>
-			<div className="exercise-form__controls">
-				<div className="exercise-form__control">
+		<form className={styles['exercise-form']} onSubmit={submitHandler}>
+			<div className={styles['exercise-form__controls']}>
+				<div
+					className={`${styles['exercise-form__control']} ${
+						nameInvalid && styles.invalid
+					}`}
+				>
 					<label htmlFor="name">
-						<p
-							style={nameInvalid ? { color: '#CC2936' } : { color: '#FCDE67' }}
-						>
-							Name:
-						</p>
+						<p>Name:</p>
 						<input
 							id="name"
 							type="text"
 							onChange={nameChangeHandler}
 							value={enteredName}
-							style={
-								nameInvalid
-									? {
-											border: '2px #CC2936 solid',
-											boxShadow: '2px 8px 15px rgba(204, 41, 54, 0.8)',
-									  }
-									: { borderColor: 'transparent' }
-							}
 						/>
 					</label>
 				</div>
 
-				<div className="exercise-form__control">
+				<div
+					className={`${styles['exercise-form__control']} ${
+						levelInvalid && styles.invalid
+					}`}
+				>
 					<label htmlFor="level">
-						<p
-							style={levelInvalid ? { color: '#CC2936' } : { color: '#FCDE67' }}
-						>
-							Level:
-						</p>
+						<p>Level:</p>
 						<input
 							id="level"
 							type="text"
 							value={enteredLevel}
 							onChange={levelChangeHandler}
-							style={
-								levelInvalid
-									? {
-											border: '2px #CC2936 solid',
-											boxShadow: '2px 8px 15px rgba(204, 41, 54, 0.8)',
-									  }
-									: { borderColor: 'transparent' }
-							}
 						/>
 					</label>
 				</div>
 
-				<div className="exercise-form__control">
+				<div className={styles['exercise-form__control']}>
 					<label htmlFor="date">
 						<p>Date:</p>
 						<input
@@ -147,13 +131,13 @@ const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 				</div>
 			</div>
 
-			<div className="exercise-form__actions">
-				<div className="exercise-form__action">
+			<div className={styles['exercise-form__actions']}>
+				<div className={styles['exercise-form__action']}>
 					<button type="button" onClick={cancelHandler}>
 						Cancel
 					</button>
 				</div>
-				<div className="exercise-form__action">
+				<div className={styles['exercise-form__action']}>
 					<button type="submit">Add Exercise</button>
 				</div>
 			</div>

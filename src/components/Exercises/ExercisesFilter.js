@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './ExercisesFilter.css'
+import styles from './ExercisesFilter.module.css';
 
 const ExercisesFilter = ({ onSelectedFilter, select }) => {
 	const handleDropdownChange = (event) => {
@@ -7,9 +7,9 @@ const ExercisesFilter = ({ onSelectedFilter, select }) => {
 	};
 
 	return (
-		<div className="exercises-filter">
-			<div className="exercises-filter__controls">
-				<div className="exercises-filter__control">
+		<div className={styles['exercises-filter']}>
+			<div className={styles['exercises-filter__controls']}>
+				<div className={styles['exercises-filter__control']}>
 					<label htmlFor="level">
 						<p>Filter By Level</p>
 						<select

@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
 import ExerciseItem from './ExerciseItem';
-import './ExercisesList.css';
+import styles from './ExercisesList.module.css';
 
 const ExercisesList = ({ exercises, level }) => {
 	if (exercises.length === 0) {
 		return (
-			<p className="empty-list-msg">
+			<p className={styles['empty-list-msg']}>
 				No exercises was found with level <strong>{level}</strong>
 			</p>
 		);
 	}
 
 	return (
-		<ul className="exercises-list">
+		<ul className={styles['exercises-list']}>
 			{exercises.map((exercise) => (
 				<ExerciseItem
 					key={exercise.id}

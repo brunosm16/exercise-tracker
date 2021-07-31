@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './ChartBar.css';
+import styles from './ChartBar.module.css';
 
 const ChartBar = ({ label, value, maxValue }) => {
 	let heightToFill = '0%';
@@ -9,12 +9,15 @@ const ChartBar = ({ label, value, maxValue }) => {
 	}
 
 	return (
-		<div className="chart-bar">
-			<div className="chart-bar__bar">
-				<div className="chart-bar__toFill" style={{ height: heightToFill }} />
+		<div className={styles['chart-bar']}>
+			<div className={styles['chart-bar__bar']}>
+				<div
+					className={styles['chart-bar__toFill']}
+					style={{ height: heightToFill }}
+				/>
 			</div>
 
-			<div className="chart-bar__label">
+			<div className={styles['chart-bar__label']}>
 				<p>{label}</p>
 			</div>
 		</div>

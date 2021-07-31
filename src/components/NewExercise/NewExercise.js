@@ -20,7 +20,6 @@ const NewExercise = ({ onAddExercise }) => {
 		setIsAdd(true);
 	};
 
-
 	return (
 		<Card cssClass="new-exercise">
 			{isAdd && (

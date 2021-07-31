@@ -9,6 +9,15 @@
     gap: 1rem;
 }
 
+.exercise-form__control.invalid {
+    color: #CC2936;
+}
+
+.exercise-form__control.invalid input {
+    border: 2px #CC2936 solid;
+    box-shadow: 2px 8px 15px rgba(204, 41, 54, 0.8);
+}
+
 .exercise-form__control label p {
     font-weight: bold;
     font-size: 1.2rem;

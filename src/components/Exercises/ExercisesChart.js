@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import './ExercisesChart.css';
 import Chart from '../Chart/Chart';
+import styles from './ExercisesChart.module.css';
 
 const ExercisesChart = ({ exercises }) => {
 	const dataPoints = [
@@ -66,7 +66,7 @@ const ExercisesChart = ({ exercises }) => {
 	const max = Math.max(...values);
 
 	return (
-		<div className="exercises-chart">
+		<div className={styles['exercises-chart']}>
 			<Chart dataPoints={dataPoints} maxValue={max} />
 		</div>
 	);

@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import ExerciseDate from './ExerciseDate';
-import './ExerciseItem.css';
+import styles from './ExerciseItem.module.css';
 
 const ExerciseItem = ({ name, level, date }) => (
-	<li className="exercise-item">
-		<div className="exercise-item__info">
-			<div className="exercise-item__name">
+	<li className={styles['exercise-item']}>
+		<div className={styles['exercise-item__info']}>
+			<div className={styles['exercise-item__name']}>
 				<p>{name}</p>
 			</div>
 
-			<div className="exercise-item__level">
+			<div className={styles['exercise-item__level']}>
 				<p>{level}</p>
 			</div>
 		</div>
