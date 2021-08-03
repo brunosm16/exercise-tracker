@@ -4,7 +4,7 @@ import ExercisesFilter from './ExercisesFilter';
 import ExercisesList from './ExercisesList';
 import ExercisesChart from './ExercisesChart';
 import Card from '../UI/Card';
-import './Exercises.css';
+import styles from './Exercises.module.css';
 
 const Exercises = ({ items }) => {
 	const [filteredLevel, setFilteredLevel] = useState('Easy');
@@ -18,7 +18,7 @@ const Exercises = ({ items }) => {
 	};
 
 	return (
-		<Card cssClass="exercises">
+		<Card cssClass={styles.exercises}>
 			<ExercisesFilter
 				onSelectedFilter={handleSelectedFilter}
 				select={filteredLevel}

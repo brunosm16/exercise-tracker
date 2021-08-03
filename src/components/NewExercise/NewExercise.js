@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Card from '../UI/Card';
 import ExerciseForm from './ExerciseForm';
-import './NewExercise.css';
+import styles from './NewExercise.module.css';
 
 const NewExercise = ({ onAddExercise }) => {
 	const [isAdd, setIsAdd] = useState(false);
@@ -21,7 +21,7 @@ const NewExercise = ({ onAddExercise }) => {
 	};
 
 	return (
-		<Card cssClass="new-exercise">
+		<Card cssClass={styles['new-exercise']}>
 			{isAdd && (
 				<ExerciseForm
 					onCancelAddExercise={handleCancel}

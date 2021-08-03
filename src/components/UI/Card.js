@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 
-import './Card.css';
+import styles from './Card.module.css';
 
-const Card = ({ cssClass, children }) => {
-	const classes = `card ${cssClass}`;
-	return <div className={classes}>{children}</div>;
-};
+const Card = ({ cssClass, children }) => (
+	<div className={`${styles.card} ${cssClass}`}>
+		{children}
+	</div>
+);
 
 Card.defaultProps = {
 	cssClass: '',

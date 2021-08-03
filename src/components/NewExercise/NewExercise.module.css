@@ -29,11 +29,6 @@
     background: #fff;
 }
 
-.invalid-input {
-    border: 3px #CC2936 solid;
-    box-shadow: 2px 8px 15px rgba(204, 41, 54, 0.8);
-}
-
 @media screen and (min-width: 768px) {
     .new-exercise {
         width: 45rem;
