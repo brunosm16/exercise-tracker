@@ -10,24 +10,6 @@
     color: #FCDE67;
 }
 
-.new-exercise button {
-    width: 9.375rem;
-    padding: 0.5rem 1.25rem;
-    font-size: 1rem;
-    outline: none;
-    border-radius: 5px;
-    border-color: transparent;
-    background-color: #FCDE67;
-    color: #2D2D2D;
-    font-weight: bold;
-    transition: 0.3s all ease-in-out;
-}
-
-.new-exercise button:hover {
-    cursor: pointer;
-    color: #2d2d2d;
-    background: #fff;
-}
 
 @media screen and (min-width: 768px) {
     .new-exercise {

@@ -1,0 +1,20 @@
+.button {
+	width: 9.375rem;
+	outline: none;
+	padding: 0.5rem 1.5rem;
+	font-size: 1rem;
+	text-transform: capitalize;
+	border-radius: 20px;
+	border: transparent;
+	cursor: pointer;
+	color: #2d2d2d;
+    font-weight: 500;
+	background: #FCDE67;
+	border-radius: 20px;
+	transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+	background-color: #cecece;
+	color: #000;
+}

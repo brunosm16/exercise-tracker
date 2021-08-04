@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ExercisesFilter from './ExercisesFilter';
 import ExercisesList from './ExercisesList';
 import ExercisesChart from './ExercisesChart';
-import Card from '../UI/Card';
+import Card from '../UI/Card/Card';
 import styles from './Exercises.module.css';
 
 const Exercises = ({ items }) => {

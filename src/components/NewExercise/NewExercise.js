@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import Card from '../UI/Card';
-import ExerciseForm from './ExerciseForm';
+import Card from '../UI/Card/Card';
+import Button from '../UI/Button/Button';
+import ExerciseForm from './ExerciseForm'; 
 import styles from './NewExercise.module.css';
 
 const NewExercise = ({ onAddExercise }) => {
@@ -30,9 +31,9 @@ const NewExercise = ({ onAddExercise }) => {
 			)}
 
 			{!isAdd && (
-				<button type="button" onClick={handleClickAddExercise}>
+				<Button isSubmit={false} onClick={handleClickAddExercise}>
 					Add Exercise
-				</button>
+				</Button>
 			)}
 		</Card>
 	);

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ExerciseForm.module.css';
+import Button from '../UI/Button/Button';
 
 const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 	const [enteredName, setEnteredName] = useState('');
@@ -133,12 +134,12 @@ const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 
 			<div className={styles['exercise-form__actions']}>
 				<div className={styles['exercise-form__action']}>
-					<button type="button" onClick={cancelHandler}>
+					<Button isSubmit={false} onClick={cancelHandler}>
 						Cancel
-					</button>
+					</Button>
 				</div>
 				<div className={styles['exercise-form__action']}>
-					<button type="submit">Add Exercise</button>
+					<Button isSubmit>Add Exercise</Button>
 				</div>
 			</div>
 		</form>
