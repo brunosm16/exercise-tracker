@@ -2,6 +2,9 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ExerciseForm.module.css';
 import Button from '../UI/Button/Button';
+import FormControl from '../UI/Form/FormControl';
+import Input from '../UI/Input/Input';
+import Label from '../UI/Label/Label';
 
 const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 	const [enteredName, setEnteredName] = useState('');
@@ -86,50 +89,42 @@ const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 	return (
 		<form className={styles['exercise-form']} onSubmit={submitHandler}>
 			<div className={styles['exercise-form__controls']}>
-				<div
-					className={`${styles['exercise-form__control']} ${
-						nameInvalid && styles.invalid
-					}`}
-				>
-					<label htmlFor="name">
+				<FormControl isInvalid={nameInvalid}>
+					<Label htmlFor="name">
 						<p>Name:</p>
-						<input
-							id="name"
-							type="text"
-							onChange={nameChangeHandler}
-							value={enteredName}
-						/>
-					</label>
-				</div>
+					</Label>
+					<Input
+						id="name"
+						type="text"
+						onChange={nameChangeHandler}
+						value={enteredName}
+					/>
+				</FormControl>
 
-				<div
-					className={`${styles['exercise-form__control']} ${
-						levelInvalid && styles.invalid
-					}`}
-				>
-					<label htmlFor="level">
+				<FormControl isInvalid={levelInvalid}>
+					<Label htmlFor="level">
 						<p>Level:</p>
-						<input
-							id="level"
-							type="text"
-							value={enteredLevel}
-							onChange={levelChangeHandler}
-						/>
-					</label>
-				</div>
+					</Label>
+					<Input
+						id="level"
+						type="text"
+						value={enteredLevel}
+						onChange={levelChangeHandler}
+					/>
+				</FormControl>
 
-				<div className={styles['exercise-form__control']}>
-					<label htmlFor="date">
+				<FormControl>
+					<Label htmlFor="date">
 						<p>Date:</p>
-						<input
-							type="date"
-							value={enteredDate || '2021-01-01'}
-							min="2021-01-01"
-							max="2025-12-12"
-							onChange={dateChangeHandler}
-						/>
-					</label>
-				</div>
+					</Label>
+					<Input
+						type="date"
+						value={enteredDate || '2021-01-01'}
+						min="2021-01-01"
+						max="2025-12-12"
+						onChange={dateChangeHandler}
+					/>
+				</FormControl>
 			</div>
 
 			<div className={styles['exercise-form__actions']}>

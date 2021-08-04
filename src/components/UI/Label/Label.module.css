@@ -1,0 +1,10 @@
+.label {
+	color: #fcde67;
+	font-size: 1rem;
+}
+
+@media screen and (min-width: 578px) {
+	.label {
+		font-size: 1rem;
+	}
+}

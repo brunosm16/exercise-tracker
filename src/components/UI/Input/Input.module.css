@@ -1,0 +1,13 @@
+.input {
+	width: 15rem;
+	border-radius: 15px;
+	border-color: transparent;
+	outline: none;
+	padding: 0.25rem 0.5rem;
+	box-shadow: 0 2px 5px 6px rgba(0, 0, 0, 0.5);
+	transition: all 0.3s ease-in-out;
+}
+
+input:hover {
+	box-shadow: 0 2px 5px 6px rgba(0, 0, 0, 0.8);
+}
