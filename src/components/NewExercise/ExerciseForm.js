@@ -69,7 +69,7 @@ const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 				id: Math.random(),
 				name: enteredName,
 				level: enteredLevel,
-				date: formatDate(enteredDate),
+				date: formatDate(enteredDate || '2021-01-01'),
 			};
 
 			// pass input data to be saved

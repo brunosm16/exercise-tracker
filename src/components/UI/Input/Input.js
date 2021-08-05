@@ -24,7 +24,7 @@ const Input = ({
 Input.defaultProps = {
 	id: '',
 	type: '',
-	minLength: 6,
+	minLength: 3,
 	maxLength: 256,
 	onChange: () => {},
 	value: '',
