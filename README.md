@@ -71,7 +71,7 @@ Lista de recursos a serem implementados
 
  3. Mudar a avaliação dos Exercícios para "Star Rating".
 
- 4. Organizar o CSS da aplicação para evitar propriedades sendo repetidas.
+ 4. Utilizar SASS para melhorar a organização do CSS da aplicação. 
 
  5. Deploy da Aplicação.
 
