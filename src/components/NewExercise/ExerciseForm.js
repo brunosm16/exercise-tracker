@@ -2,27 +2,22 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ExerciseForm.module.css';
 import Button from '../UI/Button/Button';
-import FormControl from '../UI/Form/FormControl';
 import Input from '../UI/Input/Input';
-import Label from '../UI/Label/Label';
+import Select from '../UI/Select/Select';
 
-const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
+const ExerciseForm = ({ onSaveExercise, onStopEditing }) => {
+	const defaultDate = '2021-01-01';
+	const defaultLevel = 'Easy';
+
+	// entered states
 	const [enteredName, setEnteredName] = useState('');
-	const [enteredLevel, setEnteredLevel] = useState('');
-	const [enteredDate, setEnteredDate] = useState('2021-01-01');
-	const [levelInvalid, setLevelInvalid] = useState(false);
-	const [nameInvalid, setNameInvalid] = useState(false);
+	const [enteredLevel, setEnteredLevel] = useState('Easy');
+	const [enteredDate, setEnteredDate] = useState('');
 
-	const levelIsInvalid = (level) =>
-		level.trim().length === 0 ||
-		!(
-			level.toUpperCase() === 'EASY' ||
-			level.toUpperCase() === 'NORMAL' ||
-			level.toUpperCase() === 'HARD' ||
-			level.toUpperCase() === 'ADVANCED'
-		);
+	// validation states
+	const [nameValid, setNameValid] = useState(true);
 
-	const nameIsInvalid = (name) => name.trim().length === 0;
+	const isEmptyStr = (str) => str.trim().length === 0;
 
 	const formatDate = (strDate) => {
 		const dateSplit = strDate.split('-');
@@ -32,6 +27,10 @@ const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 
 		return new Date(year, month, day);
 	};
+
+	const getCurrentDate = () => enteredDate || defaultDate;
+
+	const getCurrentLevel = () => enteredLevel || defaultLevel;
 
 	const nameChangeHandler = (event) => {
 		setEnteredName(event.target.value);
@@ -45,35 +44,28 @@ const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 		setEnteredDate(event.target.value);
 	};
 
+	const formValid = () => {
+		const isNameValid = !isEmptyStr(enteredName);
+
+		// update states
+		setNameValid(isNameValid);
+
+		return isNameValid;
+	};
+
 	const submitHandler = (event) => {
 		event.preventDefault();
 
-		const inputNameInvalid = nameIsInvalid(enteredName);
-		const inputLevelInvalid = levelIsInvalid(enteredLevel);
-
-		if (inputNameInvalid) {
-			setNameInvalid(true);
-		} else {
-			setNameInvalid(false);
-		}
-
-		if (inputLevelInvalid) {
-			setLevelInvalid(true);
-		} else {
-			setLevelInvalid(false);
-		}
-
-		if (!inputNameInvalid && !inputLevelInvalid) {
+		if (formValid()) {
 			// assign data to be saved
 			const exerciseData = {
 				id: Math.random(),
 				name: enteredName,
-				level: enteredLevel,
-				date: formatDate(enteredDate || '2021-01-01'),
+				level: getCurrentLevel(),
+				date: formatDate(getCurrentDate()),
 			};
 
-			// pass input data to be saved
-			onSaveDataExerciseData(exerciseData);
+			onSaveExercise(exerciseData);
 
 			// reset form values
 			setEnteredName('');
@@ -83,57 +75,51 @@ const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 	};
 
 	const cancelHandler = () => {
-		onCancelAddExercise();
+		onStopEditing();
 	};
 
 	return (
-		<form className={styles['exercise-form']} onSubmit={submitHandler}>
-			<div className={styles['exercise-form__controls']}>
-				<FormControl isInvalid={nameInvalid}>
-					<Label htmlFor="name">
-						<p>Name:</p>
-					</Label>
+		<form className={styles.form} onSubmit={submitHandler}>
+			<div className={styles.controls}>
+				<div className={styles.control}>
 					<Input
 						id="name"
 						type="text"
+						label="name"
+						isValid={nameValid}
 						onChange={nameChangeHandler}
 						value={enteredName}
 					/>
-				</FormControl>
+				</div>
 
-				<FormControl isInvalid={levelInvalid}>
-					<Label htmlFor="level">
-						<p>Level:</p>
-					</Label>
-					<Input
+				<div className={styles.control}>
+					<Select
 						id="level"
-						type="text"
-						value={enteredLevel}
+						label="level"
+						options={['Easy', 'Normal', 'Hard', 'Advanced']}
 						onChange={levelChangeHandler}
 					/>
-				</FormControl>
+				</div>
 
-				<FormControl>
-					<Label htmlFor="date">
-						<p>Date:</p>
-					</Label>
+				<div className={styles.control}>
 					<Input
 						type="date"
-						value={enteredDate || '2021-01-01'}
+						label="date"
+						value={getCurrentDate()}
 						min="2021-01-01"
 						max="2025-12-12"
 						onChange={dateChangeHandler}
 					/>
-				</FormControl>
+				</div>
 			</div>
 
-			<div className={styles['exercise-form__actions']}>
-				<div className={styles['exercise-form__action']}>
+			<div className={styles.actions}>
+				<div className={styles.action}>
 					<Button isSubmit={false} onClick={cancelHandler}>
 						Cancel
 					</Button>
 				</div>
-				<div className={styles['exercise-form__action']}>
+				<div className={styles.action}>
 					<Button isSubmit>Add Exercise</Button>
 				</div>
 			</div>
@@ -142,13 +128,13 @@ const ExerciseForm = ({ onSaveDataExerciseData, onCancelAddExercise }) => {
 };
 
 ExerciseForm.defaultProps = {
-	onSaveDataExerciseData: () => {},
-	onCancelAddExercise: () => {},
+	onSaveExercise: () => {},
+	onStopEditing: () => {},
 };
 
 ExerciseForm.propTypes = {
-	onSaveDataExerciseData: PropTypes.func,
-	onCancelAddExercise: PropTypes.func,
+	onSaveExercise: PropTypes.func,
+	onStopEditing: PropTypes.func,
 };
 
 export default ExerciseForm;

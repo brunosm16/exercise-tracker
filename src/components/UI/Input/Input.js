@@ -3,6 +3,8 @@ import styles from './Input.module.css';
 
 const Input = ({
 	id,
+	label,
+	isValid,
 	type,
 	minLength,
 	maxLength,
@@ -10,21 +12,29 @@ const Input = ({
 	value,
 	cssClass,
 }) => (
-	<input
-		className={`${styles.input} ${cssClass}`}
-		id={id}
-		type={type}
-		minLength={minLength}
-		maxLength={maxLength}
-		onChange={onChange}
-		value={value}
-	/>
+	<div
+		className={`${styles['input-container']} ${cssClass} ${
+			!isValid && styles.invalid
+		}`}
+	>
+		<label className={styles.label} htmlFor="id">{label}</label>
+		<input
+			id={id}
+			type={type}
+			minLength={minLength}
+			maxLength={maxLength}
+			onChange={onChange}
+			value={value}
+		/>
+	</div>
 );
 
 Input.defaultProps = {
 	id: '',
+	label: '',
+	isValid: true,
 	type: '',
-	minLength: 3,
+	minLength: 1,
 	maxLength: 256,
 	onChange: () => {},
 	value: '',
@@ -33,6 +43,8 @@ Input.defaultProps = {
 
 Input.propTypes = {
 	id: PropTypes.string,
+	label: PropTypes.string,
+	isValid: PropTypes.bool,
 	type: PropTypes.string,
 	minLength: PropTypes.number,
 	maxLength: PropTypes.number,

@@ -7,14 +7,14 @@
 	border-radius: 20px;
 	border: transparent;
 	cursor: pointer;
-	color: #2d2d2d;
-    font-weight: 500;
-	background: #FCDE67;
-	border-radius: 20px;
+	color: #fff;
+    font-weight: 700;
+	background: #2c3e50;
 	transition: all 0.3s ease-in-out;
 }
 
 .button:hover {
-	background-color: #cecece;
-	color: #000;
+	background-color: #E4E5E6;
+	color: #1c1c1c;
+	cursor:pointer;
 }

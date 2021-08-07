@@ -1,17 +1,14 @@
-.exercise-form {
-    width: 100%;
+.control {
+    padding: 1.25rem;
 }
 
-.exercise-form__controls {
+.controls {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
-.exercise-form__control.invalid {
-    color: #CC2936;
-}
-
-.exercise-form__actions {
+.actions {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -19,11 +16,7 @@
 }
 
 @media screen and (min-width: 578px) {
-    .exercise-form__controls {
+    .controls {
         justify-content: space-between;
-    }
-
-    .exercise-form__control label p {
-        font-size: 1rem;
     }
 }

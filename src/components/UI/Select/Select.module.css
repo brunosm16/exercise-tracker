@@ -1,18 +1,19 @@
-.input-container {
+.container {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	gap: 1rem;
 }
 
-.label {
+.container label {
 	color: #1c1c1c;
 	font-weight: 700;
 	font-size: 1.2rem;
 	text-transform: capitalize;
 }
 
-.input-container input {
-	width: 13rem;
+.container select {
+	width: 7rem;
 	border-radius: 15px;
 	border-color: transparent;
 	outline: none;
@@ -22,20 +23,9 @@
 	background-color: #cecece;
 }
 
-input:hover {
-	box-shadow: 0px 8px 24px rgba(149, 157, 165, 0.5);
-}
-
-.input-container.invalid input {
-	box-shadow: 0 2px 3px 3px rgba(195, 20, 50, 0.5);
-}
-
-.input-container.invalid label {
-	color: #df0d30;
-}
 
 @media screen and (min-width: 578px) {
-	.label {
+	.container label {
 		font-size: 1rem;
 	}
 }

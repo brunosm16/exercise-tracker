@@ -1,18 +1,10 @@
 .new-exercise {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25rem;
-    max-width: 85%;
-    margin: 2rem auto;
-    padding: 1.25rem;
-    background-color: #2D2D2D;
-    color: #FCDE67;
-}
-
-
-@media screen and (min-width: 768px) {
-    .new-exercise {
-        width: 45rem;
-    }
+	justify-content: center;
+	align-items: center;
+	width: 30rem;
+	max-width: 85%;
+	margin: 8rem 1rem;
+	padding: 1.25rem;
+	background: #bdc3c7;
 }

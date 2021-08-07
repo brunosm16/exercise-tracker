@@ -2,36 +2,36 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Card from '../UI/Card/Card';
 import Button from '../UI/Button/Button';
-import ExerciseForm from './ExerciseForm'; 
+import ExerciseForm from './ExerciseForm';
 import styles from './NewExercise.module.css';
 
 const NewExercise = ({ onAddExercise }) => {
-	const [isAdd, setIsAdd] = useState(false);
+	const [isEdit, setIsEdit] = useState(false);
 
 	// save inserted data on ExerciseForm
-	const saveExerciseDataHandler = (exercise) => {
+	const handleSaveExercise = (exercise) => {
 		onAddExercise(exercise);
 	};
 
 	const handleCancel = () => {
-		setIsAdd(false);
+		setIsEdit(false);
 	};
 
-	const handleClickAddExercise = () => {
-		setIsAdd(true);
+	const handleIsEdit = () => {
+		setIsEdit(true);
 	};
 
 	return (
 		<Card cssClass={styles['new-exercise']}>
-			{isAdd && (
+			{isEdit && (
 				<ExerciseForm
-					onCancelAddExercise={handleCancel}
-					onSaveDataExerciseData={saveExerciseDataHandler}
+					onStopEditing={handleCancel}
+					onSaveExercise={handleSaveExercise}
 				/>
 			)}
 
-			{!isAdd && (
-				<Button isSubmit={false} onClick={handleClickAddExercise}>
+			{!isEdit && (
+				<Button isSubmit={false} onClick={handleIsEdit}>
 					Add Exercise
 				</Button>
 			)}
