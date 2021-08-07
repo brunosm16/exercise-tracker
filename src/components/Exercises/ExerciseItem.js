@@ -3,15 +3,10 @@ import ExerciseDate from './ExerciseDate';
 import styles from './ExerciseItem.module.css';
 
 const ExerciseItem = ({ name, level, date }) => (
-	<li className={styles['exercise-item']}>
-		<div className={styles['exercise-item__info']}>
-			<div className={styles['exercise-item__name']}>
-				<p>{name}</p>
-			</div>
-
-			<div className={styles['exercise-item__level']}>
-				<p>{level}</p>
-			</div>
+	<li className={styles.item}>
+		<div className={styles.info}>
+			<p>{name}</p>
+			<p>{level}</p>
 		</div>
 
 		<ExerciseDate date={date} />
@@ -21,7 +16,7 @@ const ExerciseItem = ({ name, level, date }) => (
 ExerciseItem.defaultProps = {
 	name: '',
 	level: '',
-	date: new Date(),
+	date: '',
 };
 
 ExerciseItem.propTypes = {

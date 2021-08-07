@@ -1,19 +1,17 @@
 import PropTypes from 'prop-types';
+import List from '../UI/List/List';
 import ExerciseItem from './ExerciseItem';
 import styles from './ExercisesList.module.css';
 
-const ExercisesList = ({ exercises, level }) => {
-	if (exercises.length === 0) {
-		return (
+const ExercisesList = ({ exercises, level }) => (
+	<List cssClass={styles.list}>
+		{exercises.length === 0 && (
 			<p className={styles['empty-list-msg']}>
 				No exercises was found with level <strong>{level}</strong>
 			</p>
-		);
-	}
-
-	return (
-		<ul className={styles['exercises-list']}>
-			{exercises.map((exercise) => (
+		)}
+		{exercises.length !== 0 &&
+			exercises.map((exercise) => (
 				<ExerciseItem
 					key={exercise.id}
 					name={exercise.name}
@@ -21,9 +19,8 @@ const ExercisesList = ({ exercises, level }) => {
 					date={exercise.date}
 				/>
 			))}
-		</ul>
-	);
-};
+	</List>
+);
 
 ExercisesList.defaultProps = {
 	exercises: [],

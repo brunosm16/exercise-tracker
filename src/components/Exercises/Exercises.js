@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ExercisesFilter from './ExercisesFilter';
 import ExercisesList from './ExercisesList';
 import ExercisesChart from './ExercisesChart';
-import Card from '../UI/Card/Card';
 import styles from './Exercises.module.css';
 
 const Exercises = ({ items }) => {
@@ -18,7 +17,7 @@ const Exercises = ({ items }) => {
 	};
 
 	return (
-		<Card cssClass={styles.exercises}>
+		<div className={styles.exercises}>
 			<ExercisesFilter
 				onSelectedFilter={handleSelectedFilter}
 				select={filteredLevel}
@@ -27,7 +26,7 @@ const Exercises = ({ items }) => {
 			<ExercisesChart exercises={itemsByLevel} />
 
 			<ExercisesList exercises={itemsByLevel} level={filteredLevel} />
-		</Card>
+		</div>
 	);
 };
 

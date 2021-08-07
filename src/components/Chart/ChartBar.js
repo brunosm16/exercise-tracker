@@ -10,14 +10,11 @@ const ChartBar = ({ label, value, maxValue }) => {
 
 	return (
 		<div className={styles['chart-bar']}>
-			<div className={styles['chart-bar__bar']}>
-				<div
-					className={styles['chart-bar__toFill']}
-					style={{ height: heightToFill }}
-				/>
+			<div className={styles.bar}>
+				<div className={styles.toFill} style={{ height: heightToFill }} />
 			</div>
 
-			<div className={styles['chart-bar__label']}>
+			<div className={styles.label}>
 				<p>{label}</p>
 			</div>
 		</div>

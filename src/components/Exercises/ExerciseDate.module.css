@@ -1,7 +1,18 @@
-.exercise-date {
-    background-color: #448FA3;
-    width: 7rem;
-    border-radius: 15px;
-    text-align: center;
-    margin-bottom:1rem;
+.date {
+	width: 85%;
+	border: 2px #fff solid;
+    padding: 0 0.75rem;
+	color: #143642;
+	border-radius: 15px;
+	text-align: center;
+	border-color: #bbd2c5;
+	background: #bbd2c5;
+	display: flex;
+	justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+	.date {
+		width: 8rem;
+	}
 }

@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-.chart-bar__bar {
+.bar {
     display: flex;
     flex-direction: column-reverse;
     width: 95%;
@@ -13,7 +13,7 @@
     border-radius: 8px;
 }
 
-.chart-bar__toFill {
+.toFill {
     background-color: #BBD2C5;
     border-radius: 8px;
 }
@@ -23,7 +23,7 @@
         flex-direction: column;
         width: 100%;
     }
-    .chart-bar__bar {
+    .bar {
         width: 50%;
         height: 10rem;
     }

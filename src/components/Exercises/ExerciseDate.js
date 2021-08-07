@@ -6,10 +6,10 @@ const ExerciseDate = ({ date }) => {
 	const month = date.toLocaleString('en-US', { month: 'long' });
 	const day = date.toLocaleString('en-US', { day: '2-digit' });
 	return (
-		<div className={styles['exercise-date']}>
-			<p className={styles['exercise-date__year']}>{year}</p>
-			<p className={styles['exercise-date__month']}>{month}</p>
-			<p className={styles['exercise-date__day']}>{day}</p>
+		<div className={styles.date}>
+			<p>{year}</p>
+			<p>{month}</p>
+			<p>{day}</p>
 		</div>
 	);
 };
