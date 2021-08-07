@@ -48,6 +48,8 @@ const INIT_EXERCISES = [
 	},
 ];
 
+const levels = ['Easy', 'Normal', 'Hard', 'Advanced'];
+
 const App = () => {
 	const [exercises, setExercises] = useState(INIT_EXERCISES);
 
@@ -57,7 +59,7 @@ const App = () => {
 
 	return (
 		<div className="App">
-			<NewExercise onAddExercise={handleAddExercise} />
+			<NewExercise onAddExercise={handleAddExercise} levelOptions={levels} />
 			<Exercises items={exercises} />
 		</div>
 	);

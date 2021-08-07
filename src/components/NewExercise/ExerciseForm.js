@@ -5,7 +5,7 @@ import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import Select from '../UI/Select/Select';
 
-const ExerciseForm = ({ onSaveExercise, onStopEditing }) => {
+const ExerciseForm = ({ onSaveExercise, onStopEditing, levels }) => {
 	const defaultDate = '2021-01-01';
 	const defaultLevel = 'Easy';
 
@@ -96,8 +96,9 @@ const ExerciseForm = ({ onSaveExercise, onStopEditing }) => {
 					<Select
 						id="level"
 						label="level"
-						options={['Easy', 'Normal', 'Hard', 'Advanced']}
+						options={levels}
 						onChange={levelChangeHandler}
+						selected={enteredLevel}
 					/>
 				</div>
 
@@ -130,11 +131,13 @@ const ExerciseForm = ({ onSaveExercise, onStopEditing }) => {
 ExerciseForm.defaultProps = {
 	onSaveExercise: () => {},
 	onStopEditing: () => {},
+	levels: [],
 };
 
 ExerciseForm.propTypes = {
 	onSaveExercise: PropTypes.func,
 	onStopEditing: PropTypes.func,
+	levels: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default ExerciseForm;

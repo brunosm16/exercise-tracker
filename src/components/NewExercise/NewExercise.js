@@ -5,7 +5,7 @@ import Button from '../UI/Button/Button';
 import ExerciseForm from './ExerciseForm';
 import styles from './NewExercise.module.css';
 
-const NewExercise = ({ onAddExercise }) => {
+const NewExercise = ({ onAddExercise, levelOptions }) => {
 	const [isEdit, setIsEdit] = useState(false);
 
 	// save inserted data on ExerciseForm
@@ -27,6 +27,7 @@ const NewExercise = ({ onAddExercise }) => {
 				<ExerciseForm
 					onStopEditing={handleCancel}
 					onSaveExercise={handleSaveExercise}
+					levels={levelOptions}
 				/>
 			)}
 
@@ -41,10 +42,12 @@ const NewExercise = ({ onAddExercise }) => {
 
 NewExercise.defaultProps = {
 	onAddExercise: () => {},
+	levelOptions: [],
 };
 
 NewExercise.propTypes = {
 	onAddExercise: PropTypes.func,
+	levelOptions: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default NewExercise;

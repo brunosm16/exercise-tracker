@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import styles from './Select.module.css';
 
-const Select = ({ id, label, options, onChange }) => (
-	<div className={styles.container}>
+const Select = ({ id, label, options, onChange, selected, cssClass }) => (
+	<div className={`${styles.container} ${cssClass}`}>
 		<label htmlFor={id}>{label}</label>
-		<select id={id} name={id} onChange={onChange}>
+		<select id={id} name={id} onChange={onChange} select={selected}>
 			{options.map((option) => (
-				<option key={option} value={option}>{option}</option>
+				<option key={option} value={option}>
+					{option}
+				</option>
 			))}
 		</select>
 	</div>
@@ -17,6 +19,8 @@ Select.defaultProps = {
 	label: '',
 	options: [],
 	onChange: () => {},
+	selected: '',
+	cssClass: '',
 };
 
 Select.propTypes = {
@@ -24,6 +28,8 @@ Select.propTypes = {
 	label: PropTypes.string,
 	options: PropTypes.arrayOf(PropTypes.string),
 	onChange: PropTypes.func,
+	selected: PropTypes.string,
+	cssClass: PropTypes.string,
 };
 
 export default Select;

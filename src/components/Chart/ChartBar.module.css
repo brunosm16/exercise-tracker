@@ -1,9 +1,7 @@
 .chart-bar {
     display: flex;
     flex-direction: column-reverse;
-    justify-content: center;
     align-items: center;
-    width: 100%;
 }
 
 .chart-bar__bar {
@@ -16,13 +14,14 @@
 }
 
 .chart-bar__toFill {
-    background-color: #B9FAF8;
+    background-color: #BBD2C5;
     border-radius: 8px;
 }
 
 @media screen and (min-width:768px) {
     .chart-bar {
         flex-direction: column;
+        width: 100%;
     }
     .chart-bar__bar {
         width: 50%;
