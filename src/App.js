@@ -57,10 +57,14 @@ const App = () => {
 		setExercises((previousData) => [data, ...previousData]);
 	};
 
+	const handleOperation = (itemId, isDelete) => {
+		console.log(itemId, isDelete);
+	};
+
 	return (
 		<div className="App">
 			<NewExercise onAddExercise={handleAddExercise} levelOptions={levels} />
-			<Exercises items={exercises} />
+			<Exercises onSelectedOperation={handleOperation} items={exercises} />
 		</div>
 	);
 };

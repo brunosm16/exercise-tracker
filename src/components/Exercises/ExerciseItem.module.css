@@ -23,6 +23,19 @@
 	width: 8rem;
 }
 
+.actions {
+	display: flex;
+	width: 5rem;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+}
+
+.actions button {
+	background-color: #bdc3c7;
+	margin-right: 0.25rem;
+}
+
 @media screen and (min-width: 768px) {
 	.item {
 		flex-direction: row;
@@ -37,5 +50,9 @@
 
 	.item p {
 		font-size: 1rem;
+	}
+
+	.actions {
+		justify-content: flex-start;
 	}
 }
