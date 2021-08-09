@@ -17,6 +17,25 @@ const INIT_EXERCISES = [
 		date: new Date(2021, 3, 21),
 	},
 	{
+		id: 10,
+		name: 'High Volume 2',
+		level: 'Normal',
+		date: new Date(2021, 3, 21),
+	},
+
+	{
+		id: 11,
+		name: 'High Volume 10',
+		level: 'Normal',
+		date: new Date(2021, 3, 21),
+	},
+	{
+		id: 12,
+		name: 'High Volume 11',
+		level: 'Normal',
+		date: new Date(2021, 3, 21),
+	},
+	{
 		id: 3,
 		name: 'Level Up Abs',
 		level: 'Hard',
