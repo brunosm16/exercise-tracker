@@ -12,7 +12,8 @@ const ExerciseItem = ({ id, name, level, date, onItemClick }) => {
 		<li className={styles.item}>
 			<div className={styles.info}>
 				<p>{name}</p>
-				<p>{level}</p>
+				<span className={styles.divider}/>
+				<p className={styles.level}>{level}</p>
 			</div>
 
 			<ExerciseDate date={date} />
