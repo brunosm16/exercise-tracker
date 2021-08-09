@@ -1,5 +1,4 @@
 .date {
-	width: 85%;
 	border: 2px #fff solid;
     padding: 0 0.75rem;
 	color: #143642;
@@ -9,10 +8,6 @@
 	background: #bbd2c5;
 	display: flex;
 	justify-content: space-between;
+	width: 15rem;
 }
 
-@media screen and (min-width: 768px) {
-	.date {
-		width: 15rem;
-	}
-}
