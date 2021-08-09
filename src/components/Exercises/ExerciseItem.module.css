@@ -7,16 +7,16 @@
 	color: #fff;
 	gap: 1rem;
 	border: 2px #2196f3 solid;
-	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border-top: none;
 	border-left: none;
 	border-right: none;
-	transition: all 0.3s ease-in-out;
+	transition: all 0.1s ease-in-out;
 }
 
 .item:hover {
-	border: 5px #2196f3 solid;
+	border: 3px #2196f3 solid;
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
 	border-top: none;
