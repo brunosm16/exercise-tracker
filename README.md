@@ -79,4 +79,4 @@ Lista de recursos a serem implementados
  [](https://emojipedia.org/camera-with-flash/)
 
 ## 📸 Screenshots
-![enter image description here](https://i.ibb.co/JF6GV35/Exercise-Tracker.png" )
+![enter image description here](https://i.ibb.co/Q8GNM9F/Exercise-Tracker.png)
