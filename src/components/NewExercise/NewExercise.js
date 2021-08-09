@@ -5,8 +5,12 @@ import Button from '../UI/Button/Button';
 import ExerciseForm from './ExerciseForm';
 import styles from './NewExercise.module.css';
 
-const NewExercise = ({ onAddExercise, levelOptions }) => {
+const NewExercise = ({ onAddExercise, levelOptions, editExercise }) => {
 	const [isEdit, setIsEdit] = useState(false);
+
+	const editId = editExercise ? editExercise.id : undefined;
+	const editName = editExercise ? editExercise.name : undefined;
+	const editLevel = editExercise ? editExercise.level : undefined;
 
 	// save inserted data on ExerciseForm
 	const handleSaveExercise = (exercise) => {
@@ -23,15 +27,18 @@ const NewExercise = ({ onAddExercise, levelOptions }) => {
 
 	return (
 		<Card cssClass={styles['new-exercise']}>
-			{isEdit && (
+			{(isEdit || editId) && (
 				<ExerciseForm
 					onStopEditing={handleCancel}
 					onSaveExercise={handleSaveExercise}
 					levels={levelOptions}
+					exerciseId={editId}
+					exerciseName={editName}
+					exerciseLevel={editLevel}
 				/>
 			)}
 
-			{!isEdit && (
+			{(!isEdit && !editId) && (
 				<Button isSubmit={false} onClick={handleIsEdit}>
 					Add Exercise
 				</Button>
@@ -43,11 +50,13 @@ const NewExercise = ({ onAddExercise, levelOptions }) => {
 NewExercise.defaultProps = {
 	onAddExercise: () => {},
 	levelOptions: [],
+	editExercise: {},
 };
 
 NewExercise.propTypes = {
 	onAddExercise: PropTypes.func,
 	levelOptions: PropTypes.arrayOf(PropTypes.string),
+	editExercise: PropTypes.objectOf(PropTypes.object),
 };
 
 export default NewExercise;

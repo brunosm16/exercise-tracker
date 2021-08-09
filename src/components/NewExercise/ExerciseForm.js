@@ -1,18 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ExerciseForm.module.css';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import Select from '../UI/Select/Select';
 
-const ExerciseForm = ({ onSaveExercise, onStopEditing, levels }) => {
+const ExerciseForm = ({
+	onSaveExercise,
+	onStopEditing,
+	levels,
+	exerciseId,
+	exerciseName,
+	exerciseLevel,
+}) => {
 	const defaultDate = '2021-01-01';
 	const defaultLevel = 'Easy';
 
 	// entered states
 	const [enteredName, setEnteredName] = useState('');
-	const [enteredLevel, setEnteredLevel] = useState('Easy');
-	const [enteredDate, setEnteredDate] = useState('');
+	const [enteredLevel, setEnteredLevel] = useState(defaultLevel);
+	const [enteredDate, setEnteredDate] = useState(defaultDate);
+
+	const currentName = exerciseName || enteredName;
+	const currentLevel = exerciseLevel || enteredLevel;
+
+	// update states in case of editing exercise
+	useEffect(() => {
+		setEnteredName(currentName);
+	}, [currentName]);
+
+	useEffect(() => {
+		setEnteredLevel(currentLevel);
+	}, [currentLevel]);
 
 	// validation states
 	const [nameValid, setNameValid] = useState(true);
@@ -53,24 +72,27 @@ const ExerciseForm = ({ onSaveExercise, onStopEditing, levels }) => {
 		return isNameValid;
 	};
 
+	const resetStates = () => {
+		// reset form values
+		setEnteredName('');
+		setEnteredLevel('');
+		setEnteredDate('');
+	};
+
 	const submitHandler = (event) => {
 		event.preventDefault();
 
 		if (formValid()) {
 			// assign data to be saved
 			const exerciseData = {
-				id: Math.random(),
+				id: exerciseId || Math.random(),
 				name: enteredName,
 				level: getCurrentLevel(),
 				date: formatDate(getCurrentDate()),
 			};
 
 			onSaveExercise(exerciseData);
-
-			// reset form values
-			setEnteredName('');
-			setEnteredLevel('');
-			setEnteredDate('');
+			resetStates();
 		}
 	};
 
@@ -132,12 +154,18 @@ ExerciseForm.defaultProps = {
 	onSaveExercise: () => {},
 	onStopEditing: () => {},
 	levels: [],
+	exerciseId: undefined,
+	exerciseName: undefined,
+	exerciseLevel: undefined,
 };
 
 ExerciseForm.propTypes = {
 	onSaveExercise: PropTypes.func,
 	onStopEditing: PropTypes.func,
 	levels: PropTypes.arrayOf(PropTypes.string),
+	exerciseId: PropTypes.number,
+	exerciseName: PropTypes.string,
+	exerciseLevel: PropTypes.string,
 };
 
 export default ExerciseForm;

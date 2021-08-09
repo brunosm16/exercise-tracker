@@ -52,9 +52,35 @@ const levels = ['Easy', 'Normal', 'Hard', 'Advanced'];
 
 const App = () => {
 	const [exercises, setExercises] = useState(INIT_EXERCISES);
+	const [editId, setEditId] = useState();
+
+	const updateExercises = (newExercise) =>
+		exercises.map((exercise) => {
+			let tempExercise = exercise;
+
+			if (tempExercise.id === newExercise.id) {
+				tempExercise = newExercise;
+			}
+
+			return tempExercise;
+		});
+
+	const getExerciseById = (id) =>
+		exercises.filter((exercise) => exercise.id === id)[0];
+
+	const getEditUser = () => (editId ? getExerciseById(editId) : undefined);
 
 	const handleAddExercise = (data) => {
-		setExercises((previousData) => [data, ...previousData]);
+		// edit operation
+		if (editId) {
+			// reset editId value
+			setEditId(null);
+
+			return setExercises(updateExercises(data));
+		}
+
+		// add operation
+		return setExercises((previousData) => [data, ...previousData]);
 	};
 
 	const deleteExercise = (id) => {
@@ -63,12 +89,20 @@ const App = () => {
 		);
 	};
 
+	const editOperation = (id) => {
+		setEditId(id);
+	};
+
 	const handleOperation = (itemId, isDelete) =>
-		isDelete ? deleteExercise(itemId) : console.log('operation insert');
+		isDelete ? deleteExercise(itemId) : editOperation(itemId);
 
 	return (
 		<div className="App">
-			<NewExercise onAddExercise={handleAddExercise} levelOptions={levels} />
+			<NewExercise
+				onAddExercise={handleAddExercise}
+				levelOptions={levels}
+				editExercise={getEditUser()}
+			/>
 			<Exercises onSelectedOperation={handleOperation} items={exercises} />
 		</div>
 	);
