@@ -7,8 +7,6 @@ const levels = ['Easy', 'Normal', 'Hard', 'Advanced'];
 
 const App = () => {
 	const [exercises, setExercises] = useState([]);
-
-	// state that tells if Exercise is going to be updated
 	const [editId, setEditId] = useState();
 
 	const updateExercises = (newExercise) =>

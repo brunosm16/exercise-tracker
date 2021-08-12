@@ -9,6 +9,7 @@ const Input = ({
 	minLength,
 	maxLength,
 	onChange,
+	onBlur,
 	value,
 	cssClass,
 }) => (
@@ -17,13 +18,16 @@ const Input = ({
 			!isValid && styles.invalid
 		}`}
 	>
-		<label className={styles.label} htmlFor="id">{label}</label>
+		<label className={styles.label} htmlFor="id">
+			{label}
+		</label>
 		<input
 			id={id}
 			type={type}
 			minLength={minLength}
 			maxLength={maxLength}
 			onChange={onChange}
+			onBlur={onBlur}
 			value={value}
 		/>
 	</div>
@@ -37,6 +41,7 @@ Input.defaultProps = {
 	minLength: 1,
 	maxLength: 256,
 	onChange: () => {},
+	onBlur: () => {},
 	value: '',
 	cssClass: '',
 };
@@ -49,6 +54,7 @@ Input.propTypes = {
 	minLength: PropTypes.number,
 	maxLength: PropTypes.number,
 	onChange: PropTypes.func,
+	onBlur: PropTypes.func,
 	value: PropTypes.string,
 	cssClass: PropTypes.string,
 };

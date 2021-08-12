@@ -13,6 +13,7 @@ const ExerciseForm = ({
 	exerciseName,
 	exerciseLevel,
 }) => {
+	// constants
 	const defaultDate = '2021-01-01';
 	const defaultLevel = 'Easy';
 
@@ -21,10 +22,17 @@ const ExerciseForm = ({
 	const [enteredLevel, setEnteredLevel] = useState(defaultLevel);
 	const [enteredDate, setEnteredDate] = useState(defaultDate);
 
+	// validation states
+	const [nameValid, setNameValid] = useState(true);
+	const [formIsValid, setFormIsValid] = useState(true);
+
+	// edit operation values
 	const currentName = exerciseName || enteredName;
 	const currentLevel = exerciseLevel || enteredLevel;
 
-	// update states in case of editing exercise
+	const validateName = (str) => str.trim().length >= 4;
+
+	// set edit values to enteredStates
 	useEffect(() => {
 		setEnteredName(currentName);
 	}, [currentName]);
@@ -33,10 +41,17 @@ const ExerciseForm = ({
 		setEnteredLevel(currentLevel);
 	}, [currentLevel]);
 
-	// validation states
-	const [nameValid, setNameValid] = useState(true);
+	// validate form when input change
+	useEffect(() => {
+		setFormIsValid(validateName(enteredName));
+	}, [enteredName]);
 
-	const isEmptyStr = (str) => str.trim().length === 0;
+	const resetStates = () => {
+		// reset form values
+		setEnteredName('');
+		setEnteredLevel('');
+		setEnteredDate('');
+	};
 
 	const formatDate = (strDate) => {
 		const dateSplit = strDate.split('-');
@@ -51,8 +66,25 @@ const ExerciseForm = ({
 
 	const getCurrentLevel = () => enteredLevel || defaultLevel;
 
+	const saveData = () => {
+		// assign data to be saved
+		const exerciseData = {
+			id: exerciseId || Math.random(),
+			name: enteredName,
+			level: getCurrentLevel(),
+			date: formatDate(getCurrentDate()),
+		};
+
+		onSaveExercise(exerciseData);
+		resetStates();
+	};
+
 	const nameChangeHandler = (event) => {
 		setEnteredName(event.target.value);
+	};
+
+	const nameValidateHandler = (event) => {
+		setNameValid(validateName(event.target.value));
 	};
 
 	const levelChangeHandler = (event) => {
@@ -63,41 +95,16 @@ const ExerciseForm = ({
 		setEnteredDate(event.target.value);
 	};
 
-	const formValid = () => {
-		const isNameValid = !isEmptyStr(enteredName);
-
-		// update states
-		setNameValid(isNameValid);
-
-		return isNameValid;
-	};
-
-	const resetStates = () => {
-		// reset form values
-		setEnteredName('');
-		setEnteredLevel('');
-		setEnteredDate('');
+	const cancelHandler = () => {
+		onStopEditing();
 	};
 
 	const submitHandler = (event) => {
 		event.preventDefault();
 
-		if (formValid()) {
-			// assign data to be saved
-			const exerciseData = {
-				id: exerciseId || Math.random(),
-				name: enteredName,
-				level: getCurrentLevel(),
-				date: formatDate(getCurrentDate()),
-			};
-
-			onSaveExercise(exerciseData);
-			resetStates();
+		if (formIsValid) {
+			saveData();
 		}
-	};
-
-	const cancelHandler = () => {
-		onStopEditing();
 	};
 
 	return (
@@ -110,6 +117,7 @@ const ExerciseForm = ({
 						label="name"
 						isValid={nameValid}
 						onChange={nameChangeHandler}
+						onBlur={nameValidateHandler}
 						value={enteredName}
 					/>
 				</div>
