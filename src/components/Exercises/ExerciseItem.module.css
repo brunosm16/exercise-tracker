@@ -6,9 +6,9 @@
 	padding: 1rem;
 	color: #fff;
 	gap: 1rem;
-	border: 2px #2196f3 solid;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border: 2px #BBD2C5 solid;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 	border-top: none;
 	border-left: none;
 	border-right: none;
@@ -16,9 +16,9 @@
 }
 
 .item:hover {
-	border: 3px #2196f3 solid;
-	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;
+	border: 3px #BBD2C5 solid;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 	border-top: none;
 	border-left: none;
 	border-right: none;
@@ -41,13 +41,13 @@
 }
 
 .level {
-	color: #00d2ff;
+	color: #BBD2C5;
 }
 
 .divider {
 	width: 8rem;
 	height: 2px;
-	background-color: #4ca1af;
+	background-color: #BBD2C5;
 }
 
 .actions {

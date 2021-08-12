@@ -52,7 +52,8 @@ const MOCK_EXERCISES = [
 const App = () => {
 	const [exercises, setExercises] = useState(MOCK_EXERCISES);
 
-	// id of exercise to be edited. if null isn't edit operation
+	// ID of Exercise to be edited,
+	// if NULL, operation is not edit
 	const [editId, setEditId] = useState();
 
 	const updateExercises = (updated) =>
@@ -69,17 +70,15 @@ const App = () => {
 	const getExerciseById = (id) =>
 		exercises.filter((exercise) => exercise.id === id)[0];
 
-	const getEditExercise = () => (editId ? getExerciseById(editId) : undefined);
-
 	const handleAddExercise = (data) => {
-		// edit operation
+		// Edit operation
 		if (editId) {
-			// reset editId
+			// Reset editId
 			setEditId(null);
 			return setExercises(updateExercises(data));
 		}
 
-		// add operation
+		// Insert operation
 		return setExercises((previousData) => [data, ...previousData]);
 	};
 
@@ -97,7 +96,10 @@ const App = () => {
 			<NewExercise
 				onAddExercise={handleAddExercise}
 				levels={LEVELS}
-				editExercise={getEditExercise()}
+				editId={editId}
+				editName={getExerciseById(editId) && getExerciseById(editId).name}
+				editLevel={getExerciseById(editId) && getExerciseById(editId).level}
+				editDate={getExerciseById(editId) && getExerciseById(editId).date}
 			/>
 			<Exercises
 				onSelectOperation={handleOperation}

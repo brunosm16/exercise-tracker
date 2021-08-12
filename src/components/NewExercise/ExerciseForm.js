@@ -5,31 +5,13 @@ import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import Select from '../UI/Select/Select';
 
-/*
- * constants
- */
-const defaultDate = '2021-01-01';
-const defaultLevel = 'Easy';
-const validateName = (name) => name.trim().length >= 4;
-
-// formats a HTML Input date to a JavaScript Date.
-const formatDate = (inputDate) => {
+// Formats a date from HTML input to a JavaScript Date.
+const dateToJs = (inputDate) => {
 	const dateSplit = inputDate.split('-');
 	return new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
 };
 
-// formats a JavaScript Date in HTML date | yyyy-mm-dd
-const dateToHtml = (date) => {
-	const day = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`;
-	const monthInt = parseInt(date.getMonth(), 10) + 1;
-	const monthStr = monthInt < 10 ? `0${monthInt}` : `${monthInt}`;
-
-	return `${date.getFullYear()}-${day}-${monthStr}`;
-};
-
-/*
- * reducers
- */
+const validateName = (name) => name.trim().length >= 4;
 
 const nameReducer = (state, action) => {
 	if (action.type === 'INPUT_USER') {
@@ -57,28 +39,10 @@ const ExerciseForm = ({
 		isValid: null,
 	});
 
-	const [enteredLevel, setEnteredLevel] = useState(defaultLevel);
-	const [enteredDate, setEnteredDate] = useState(defaultDate);
+	// Use editLevel & editDate default values as initialState.
+	const [enteredLevel, setEnteredLevel] = useState(editLevel);
+	const [enteredDate, setEnteredDate] = useState(editDate);
 	const [formIsValid, setFormIsValid] = useState(true);
-
-	const resetInputStates = () => {
-		// reset form values
-		dispatchName({ type: 'INPUT_USER', value: '' });
-		setEnteredLevel(defaultLevel);
-		setEnteredDate(defaultDate);
-	};
-
-	const saveData = () => {
-		const exerciseData = {
-			id: editId || Math.random(),
-			name: nameState.value,
-			level: enteredLevel,
-			date: formatDate(enteredDate),
-		};
-
-		onSaveExercise(exerciseData);
-		resetInputStates();
-	};
 
 	useEffect(() => {
 		dispatchName({ type: 'INPUT_USER', val: editName || nameState.value });
@@ -89,7 +53,7 @@ const ExerciseForm = ({
 	}, [editLevel]);
 
 	useEffect(() => {
-		setEnteredDate(editDate ? dateToHtml(editDate) : enteredDate);
+		setEnteredDate(editDate || enteredDate);
 	}, [editDate]);
 
 	// validate form when input change.
@@ -102,6 +66,25 @@ const ExerciseForm = ({
 			clearTimeout(debounceId);
 		};
 	}, [nameState]);
+
+	// Reset states used in Form
+	const resetForm = () => {
+		dispatchName({ type: 'INPUT_USER', value: '' });
+		setEnteredLevel(editLevel);
+		setEnteredDate(editDate);
+	};
+
+	const saveInput = () => {
+		const inputObj = {
+			id: editId || Math.random(),
+			name: nameState.value,
+			level: enteredLevel,
+			date: dateToJs(enteredDate),
+		};
+
+		onSaveExercise(inputObj);
+		resetForm();
+	};
 
 	const nameChangeHandler = (event) => {
 		dispatchName({ type: 'INPUT_USER', val: event.target.value });
@@ -126,7 +109,7 @@ const ExerciseForm = ({
 	const submitHandler = (event) => {
 		event.preventDefault();
 
-		return formIsValid ? saveData() : '';
+		return formIsValid ? saveInput() : '';
 	};
 
 	return (
@@ -186,8 +169,8 @@ ExerciseForm.defaultProps = {
 	levels: [],
 	editId: undefined,
 	editName: undefined,
-	editLevel: undefined,
-	editDate: undefined,
+	editLevel: 'Easy',
+	editDate: '2021-01-01',
 };
 
 ExerciseForm.propTypes = {
@@ -197,7 +180,7 @@ ExerciseForm.propTypes = {
 	editId: PropTypes.number,
 	editName: PropTypes.string,
 	editLevel: PropTypes.string,
-	editDate: PropTypes.objectOf(PropTypes.object),
+	editDate: PropTypes.string,
 };
 
 export default ExerciseForm;

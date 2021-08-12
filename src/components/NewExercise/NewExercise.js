@@ -5,15 +5,30 @@ import Button from '../UI/Button/Button';
 import ExerciseForm from './ExerciseForm';
 import styles from './NewExercise.module.css';
 
-const NewExercise = ({ onAddExercise, levels, editExercise }) => {
+const NewExercise = ({
+	onAddExercise,
+	levels,
+	editId,
+	editName,
+	editLevel,
+	editDate,
+}) => {
 	const [isEdit, setIsEdit] = useState(false);
 
-	const [editId, editName, editLevel, editDate] = [
-		editExercise.id,
-		editExercise.name,
-		editExercise.level,
-		editExercise.date,
-	];
+	// Converts a JavaScript Date to a date acceptable
+	// on HTML input value.
+	const toHTMLDate = (jsDate) => {
+		const day =
+			jsDate.getDate() < 10 ? `0${jsDate.getDate()}` : `${jsDate.getDate()}`;
+
+		// JavaScript Date month starts as 0 (January)
+		let month = jsDate.getMonth() + 1;
+		month = month < 10 ? `0${month}` : `${month}`;
+
+		const year = jsDate.getFullYear();
+
+		return `${year}-${month}-${day}`;
+	};
 
 	const handleSaveExercise = (exercise) => {
 		onAddExercise(exercise);
@@ -37,7 +52,7 @@ const NewExercise = ({ onAddExercise, levels, editExercise }) => {
 					editId={editId}
 					editName={editName}
 					editLevel={editLevel}
-					editDate={editDate}
+					editDate={editDate && toHTMLDate(editDate)}
 				/>
 			)}
 
@@ -53,18 +68,19 @@ const NewExercise = ({ onAddExercise, levels, editExercise }) => {
 NewExercise.defaultProps = {
 	onAddExercise: () => {},
 	levels: [],
-	editExercise: {
-		editId: undefined,
-		editName: undefined,
-		editLevel: undefined,
-		editDate: undefined,
-	},
+	editId: undefined,
+	editName: undefined,
+	editLevel: undefined,
+	editDate: undefined,
 };
 
 NewExercise.propTypes = {
 	onAddExercise: PropTypes.func,
 	levels: PropTypes.arrayOf(PropTypes.string),
-	editExercise: PropTypes.objectOf(PropTypes.object),
+	editId: PropTypes.number,
+	editName: PropTypes.string,
+	editLevel: PropTypes.string,
+	editDate: PropTypes.objectOf(PropTypes.object),
 };
 
 export default NewExercise;

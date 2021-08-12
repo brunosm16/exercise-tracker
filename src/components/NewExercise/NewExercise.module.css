@@ -8,3 +8,9 @@
 	padding: 1.25rem;
 	background: #bdc3c7;
 }
+
+@media screen and (max-width:1000px) {
+	.new-exercise {
+		margin: 1rem;
+	}
+}
