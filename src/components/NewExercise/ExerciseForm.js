@@ -43,7 +43,14 @@ const ExerciseForm = ({
 
 	// validate form when input change
 	useEffect(() => {
-		setFormIsValid(validateName(enteredName));
+		const debounceId = setTimeout(() => {
+			setFormIsValid(validateName(enteredName));
+		}, 500);
+
+		// clean-up function
+		return () => {
+			clearTimeout(debounceId);
+		};
 	}, [enteredName]);
 
 	const resetStates = () => {
