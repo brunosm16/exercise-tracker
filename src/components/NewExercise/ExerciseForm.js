@@ -1,97 +1,114 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ExerciseForm.module.css';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import Select from '../UI/Select/Select';
 
+/*
+ * constants
+ */
+const defaultDate = '2021-01-01';
+const defaultLevel = 'Easy';
+const validateName = (name) => name.trim().length >= 4;
+
+// formats a HTML Input date to a JavaScript Date.
+const formatDate = (inputDate) => {
+	const dateSplit = inputDate.split('-');
+	return new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
+};
+
+// formats a JavaScript Date in HTML date | yyyy-mm-dd
+const dateToHtml = (date) => {
+	const day = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`;
+	const monthInt = parseInt(date.getMonth(), 10) + 1;
+	const monthStr = monthInt < 10 ? `0${monthInt}` : `${monthInt}`;
+
+	return `${date.getFullYear()}-${day}-${monthStr}`;
+};
+
+/*
+ * reducers
+ */
+
+const nameReducer = (state, action) => {
+	if (action.type === 'INPUT_USER') {
+		return { value: action.val, isValid: validateName(action.val || '') };
+	}
+
+	if (action.type === 'INPUT_BLUR') {
+		return { value: state.value, isValid: validateName(state.value) };
+	}
+
+	return { value: '', isValid: true };
+};
+
 const ExerciseForm = ({
 	onSaveExercise,
-	onStopEditing,
+	onStopEdit,
 	levels,
-	exerciseId,
-	exerciseName,
-	exerciseLevel,
+	editId,
+	editName,
+	editLevel,
+	editDate,
 }) => {
-	// constants
-	const defaultDate = '2021-01-01';
-	const defaultLevel = 'Easy';
+	const [nameState, dispatchName] = useReducer(nameReducer, {
+		value: '',
+		isValid: null,
+	});
 
-	// entered states
-	const [enteredName, setEnteredName] = useState('');
 	const [enteredLevel, setEnteredLevel] = useState(defaultLevel);
 	const [enteredDate, setEnteredDate] = useState(defaultDate);
-
-	// validation states
-	const [nameValid, setNameValid] = useState(true);
 	const [formIsValid, setFormIsValid] = useState(true);
 
-	// edit operation values
-	const currentName = exerciseName || enteredName;
-	const currentLevel = exerciseLevel || enteredLevel;
-
-	const validateName = (str) => str.trim().length >= 4;
-
-	// set edit values to enteredStates
-	useEffect(() => {
-		setEnteredName(currentName);
-	}, [currentName]);
-
-	useEffect(() => {
-		setEnteredLevel(currentLevel);
-	}, [currentLevel]);
-
-	// validate form when input change
-	useEffect(() => {
-		const debounceId = setTimeout(() => {
-			setFormIsValid(validateName(enteredName));
-		}, 500);
-
-		// clean-up function
-		return () => {
-			clearTimeout(debounceId);
-		};
-	}, [enteredName]);
-
-	const resetStates = () => {
+	const resetInputStates = () => {
 		// reset form values
-		setEnteredName('');
-		setEnteredLevel('');
-		setEnteredDate('');
+		dispatchName({ type: 'INPUT_USER', value: '' });
+		setEnteredLevel(defaultLevel);
+		setEnteredDate(defaultDate);
 	};
-
-	const formatDate = (strDate) => {
-		const dateSplit = strDate.split('-');
-		const year = dateSplit[0];
-		const month = dateSplit[1] - 1;
-		const day = dateSplit[2];
-
-		return new Date(year, month, day);
-	};
-
-	const getCurrentDate = () => enteredDate || defaultDate;
-
-	const getCurrentLevel = () => enteredLevel || defaultLevel;
 
 	const saveData = () => {
-		// assign data to be saved
 		const exerciseData = {
-			id: exerciseId || Math.random(),
-			name: enteredName,
-			level: getCurrentLevel(),
-			date: formatDate(getCurrentDate()),
+			id: editId || Math.random(),
+			name: nameState.value,
+			level: enteredLevel,
+			date: formatDate(enteredDate),
 		};
 
 		onSaveExercise(exerciseData);
-		resetStates();
+		resetInputStates();
 	};
+
+	useEffect(() => {
+		dispatchName({ type: 'INPUT_USER', val: editName || nameState.value });
+	}, [editName]);
+
+	useEffect(() => {
+		setEnteredLevel(editLevel || enteredLevel);
+	}, [editLevel]);
+
+	useEffect(() => {
+		setEnteredDate(editDate ? dateToHtml(editDate) : enteredDate);
+	}, [editDate]);
+
+	// validate form when input change.
+	useEffect(() => {
+		const debounceId = setTimeout(() => {
+			setFormIsValid(nameState.isValid);
+		}, 500);
+
+		return () => {
+			clearTimeout(debounceId);
+		};
+	}, [nameState]);
 
 	const nameChangeHandler = (event) => {
-		setEnteredName(event.target.value);
+		dispatchName({ type: 'INPUT_USER', val: event.target.value });
 	};
 
-	const nameValidateHandler = (event) => {
-		setNameValid(validateName(event.target.value));
+	const nameValidateHandler = () => {
+		dispatchName({ type: 'INPUT_BLUR' });
 	};
 
 	const levelChangeHandler = (event) => {
@@ -103,15 +120,13 @@ const ExerciseForm = ({
 	};
 
 	const cancelHandler = () => {
-		onStopEditing();
+		onStopEdit();
 	};
 
 	const submitHandler = (event) => {
 		event.preventDefault();
 
-		if (formIsValid) {
-			saveData();
-		}
+		return formIsValid ? saveData() : '';
 	};
 
 	return (
@@ -122,10 +137,10 @@ const ExerciseForm = ({
 						id="name"
 						type="text"
 						label="name"
-						isValid={nameValid}
+						isValid={nameState.isValid}
 						onChange={nameChangeHandler}
 						onBlur={nameValidateHandler}
-						value={enteredName}
+						value={nameState.value}
 					/>
 				</div>
 
@@ -143,7 +158,7 @@ const ExerciseForm = ({
 					<Input
 						type="date"
 						label="date"
-						value={getCurrentDate()}
+						value={enteredDate}
 						min="2021-01-01"
 						max="2025-12-12"
 						onChange={dateChangeHandler}
@@ -167,20 +182,22 @@ const ExerciseForm = ({
 
 ExerciseForm.defaultProps = {
 	onSaveExercise: () => {},
-	onStopEditing: () => {},
+	onStopEdit: () => {},
 	levels: [],
-	exerciseId: undefined,
-	exerciseName: undefined,
-	exerciseLevel: undefined,
+	editId: undefined,
+	editName: undefined,
+	editLevel: undefined,
+	editDate: undefined,
 };
 
 ExerciseForm.propTypes = {
 	onSaveExercise: PropTypes.func,
-	onStopEditing: PropTypes.func,
+	onStopEdit: PropTypes.func,
 	levels: PropTypes.arrayOf(PropTypes.string),
-	exerciseId: PropTypes.number,
-	exerciseName: PropTypes.string,
-	exerciseLevel: PropTypes.string,
+	editId: PropTypes.number,
+	editName: PropTypes.string,
+	editLevel: PropTypes.string,
+	editDate: PropTypes.objectOf(PropTypes.object),
 };
 
 export default ExerciseForm;

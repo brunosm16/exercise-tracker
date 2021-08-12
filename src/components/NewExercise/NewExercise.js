@@ -5,23 +5,25 @@ import Button from '../UI/Button/Button';
 import ExerciseForm from './ExerciseForm';
 import styles from './NewExercise.module.css';
 
-const NewExercise = ({ onAddExercise, levelOptions, editExercise }) => {
+const NewExercise = ({ onAddExercise, levels, editExercise }) => {
 	const [isEdit, setIsEdit] = useState(false);
 
-	const editId = editExercise ? editExercise.id : undefined;
-	const editName = editExercise ? editExercise.name : undefined;
-	const editLevel = editExercise ? editExercise.level : undefined;
+	const [editId, editName, editLevel, editDate] = [
+		editExercise.id,
+		editExercise.name,
+		editExercise.level,
+		editExercise.date,
+	];
 
-	// save inserted data on ExerciseForm
 	const handleSaveExercise = (exercise) => {
 		onAddExercise(exercise);
 	};
 
-	const handleCancel = () => {
+	const handleCloseEdit = () => {
 		setIsEdit(false);
 	};
 
-	const handleIsEdit = () => {
+	const handleOpenEdit = () => {
 		setIsEdit(true);
 	};
 
@@ -29,17 +31,18 @@ const NewExercise = ({ onAddExercise, levelOptions, editExercise }) => {
 		<Card cssClass={styles['new-exercise']}>
 			{(isEdit || editId) && (
 				<ExerciseForm
-					onStopEditing={handleCancel}
+					onStopEdit={handleCloseEdit}
 					onSaveExercise={handleSaveExercise}
-					levels={levelOptions}
-					exerciseId={editId}
-					exerciseName={editName}
-					exerciseLevel={editLevel}
+					levels={levels}
+					editId={editId}
+					editName={editName}
+					editLevel={editLevel}
+					editDate={editDate}
 				/>
 			)}
 
-			{(!isEdit && !editId) && (
-				<Button isSubmit={false} onClick={handleIsEdit}>
+			{!isEdit && !editId && (
+				<Button isSubmit={false} onClick={handleOpenEdit}>
 					Add Exercise
 				</Button>
 			)}
@@ -49,13 +52,18 @@ const NewExercise = ({ onAddExercise, levelOptions, editExercise }) => {
 
 NewExercise.defaultProps = {
 	onAddExercise: () => {},
-	levelOptions: [],
-	editExercise: {},
+	levels: [],
+	editExercise: {
+		editId: undefined,
+		editName: undefined,
+		editLevel: undefined,
+		editDate: undefined,
+	},
 };
 
 NewExercise.propTypes = {
 	onAddExercise: PropTypes.func,
-	levelOptions: PropTypes.arrayOf(PropTypes.string),
+	levels: PropTypes.arrayOf(PropTypes.string),
 	editExercise: PropTypes.objectOf(PropTypes.object),
 };
 

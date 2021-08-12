@@ -5,7 +5,7 @@ import ExercisesList from './ExercisesList';
 import ExercisesChart from './ExercisesChart';
 import styles from './Exercises.module.css';
 
-const Exercises = ({ items, levels, onSelectedOperation }) => {
+const Exercises = ({ items, levels, onSelectOperation }) => {
 	const [filteredLevel, setFilteredLevel] = useState('Easy');
 
 	const itemsByLevel = items.filter(
@@ -17,7 +17,7 @@ const Exercises = ({ items, levels, onSelectedOperation }) => {
 	};
 
 	const handleOperation = (itemId, isDelete) => {
-		onSelectedOperation(itemId, isDelete);
+		onSelectOperation(itemId, isDelete);
 	};
 
 	return (
@@ -25,7 +25,7 @@ const Exercises = ({ items, levels, onSelectedOperation }) => {
 			<ExercisesFilter
 				onSelectedFilter={handleSelectedFilter}
 				select={filteredLevel}
-				levelOptions={levels}
+				options={levels}
 			/>
 
 			<ExercisesChart exercises={itemsByLevel} />
@@ -42,13 +42,13 @@ const Exercises = ({ items, levels, onSelectedOperation }) => {
 Exercises.defaultProps = {
 	items: [],
 	levels: [],
-	onSelectedOperation: () => {},
+	onSelectOperation: () => {},
 };
 
 Exercises.propTypes = {
 	items: PropTypes.arrayOf(PropTypes.object),
-	levels: PropTypes.arrayOf(PropTypes.array),
-	onSelectedOperation: PropTypes.func,
+	levels: PropTypes.arrayOf(PropTypes.string),
+	onSelectOperation: PropTypes.func,
 };
 
 export default Exercises;

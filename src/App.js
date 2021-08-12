@@ -3,34 +3,79 @@ import './App.css';
 import NewExercise from './components/NewExercise/NewExercise';
 import Exercises from './components/Exercises/Exercises';
 
-const levels = ['Easy', 'Normal', 'Hard', 'Advanced'];
+const LEVELS = ['Easy', 'Normal', 'Hard', 'Advanced'];
+const MOCK_EXERCISES = [
+	{
+		id: 1,
+		name: 'Wild & Free',
+		level: 'Easy',
+		date: new Date(2021, 0, 1),
+	},
+	{
+		id: 2,
+		name: 'High Volume',
+		level: 'Normal',
+		date: new Date(2021, 3, 21),
+	},
+	{
+		id: 3,
+		name: 'Level Up Abs',
+		level: 'Hard',
+		date: new Date(2021, 5, 18),
+	},
+	{
+		id: 4,
+		name: 'Instant Dungeon',
+		level: 'Normal',
+		date: new Date(2021, 3, 10),
+	},
+	{
+		id: 5,
+		name: 'Speed +1',
+		level: 'Normal',
+		date: new Date(2021, 5, 8),
+	},
+	{
+		id: 6,
+		name: 'Warform',
+		level: 'Hard',
+		date: new Date(2021, 5, 7),
+	},
+	{
+		id: 7,
+		name: 'Power Boost ',
+		level: 'Hard',
+		date: new Date(2021, 3, 7),
+	},
+];
 
 const App = () => {
-	const [exercises, setExercises] = useState([]);
+	const [exercises, setExercises] = useState(MOCK_EXERCISES);
+
+	// id of exercise to be edited. if null isn't edit operation
 	const [editId, setEditId] = useState();
 
-	const updateExercises = (newExercise) =>
-		exercises.map((exercise) => {
-			let tempExercise = exercise;
+	const updateExercises = (updated) =>
+		exercises.map((e) => {
+			let current = e;
 
-			if (tempExercise.id === newExercise.id) {
-				tempExercise = newExercise;
+			if (current.id === updated.id) {
+				current = updated;
 			}
 
-			return tempExercise;
+			return current;
 		});
 
 	const getExerciseById = (id) =>
 		exercises.filter((exercise) => exercise.id === id)[0];
 
-	const getEditUser = () => (editId ? getExerciseById(editId) : undefined);
+	const getEditExercise = () => (editId ? getExerciseById(editId) : undefined);
 
 	const handleAddExercise = (data) => {
 		// edit operation
 		if (editId) {
-			// reset editId value
+			// reset editId
 			setEditId(null);
-
 			return setExercises(updateExercises(data));
 		}
 
@@ -44,21 +89,21 @@ const App = () => {
 		);
 	};
 
-	const editOperation = (id) => {
-		setEditId(id);
-	};
-
 	const handleOperation = (itemId, isDelete) =>
-		isDelete ? deleteExercise(itemId) : editOperation(itemId);
+		isDelete ? deleteExercise(itemId) : setEditId(itemId);
 
 	return (
 		<div className="App">
 			<NewExercise
 				onAddExercise={handleAddExercise}
-				levelOptions={levels}
-				editExercise={getEditUser()}
+				levels={LEVELS}
+				editExercise={getEditExercise()}
 			/>
-			<Exercises onSelectedOperation={handleOperation} items={exercises} levels={levels}/>
+			<Exercises
+				onSelectOperation={handleOperation}
+				items={exercises}
+				levels={LEVELS}
+			/>
 		</div>
 	);
 };
