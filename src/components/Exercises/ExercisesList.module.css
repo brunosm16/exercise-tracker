@@ -1,5 +1,5 @@
 .list {
-	width: 90%;
+	width: 100%;
 	background: #2c3e50;
 	border-radius: 15px;
 	max-height: 25rem;
@@ -13,4 +13,10 @@
 	width: 90%;
 	padding: 1rem;
 	font-size: 1.3rem;
+}
+
+@media screen and (min-width: 1000px) {
+	.list {
+		width: 90%;
+	}
 }

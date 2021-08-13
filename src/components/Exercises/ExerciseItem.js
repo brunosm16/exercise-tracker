@@ -12,7 +12,7 @@ const ExerciseItem = ({ id, name, level, date, onItemClick }) => {
 		<li className={styles.item}>
 			<div className={styles.info}>
 				<p>{name}</p>
-				<span className={styles.divider}/>
+				<span className={styles.divider} />
 				<p className={styles.level}>{level}</p>
 			</div>
 
@@ -20,11 +20,11 @@ const ExerciseItem = ({ id, name, level, date, onItemClick }) => {
 
 			<div className={styles.actions}>
 				<Button isSubmit onClick={() => handleClick(true)}>
-					❌
+					✖
 				</Button>
 
 				<Button isSubmit onClick={() => handleClick(false)}>
-					✏️
+					✎
 				</Button>
 			</div>
 		</li>
