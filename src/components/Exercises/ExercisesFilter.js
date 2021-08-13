@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import styles from './ExercisesFilter.module.css';
 import Select from '../UI/Select/Select';
+import ExercisesContext from '../../context/exercises-context';
 
-const ExercisesFilter = ({ onSelectedFilter, select, options }) => {
+const ExercisesFilter = ({ onSelectedFilter, select }) => {
+	const exerciseCtx = useContext(ExercisesContext);
+
 	const handleDropdownChange = (event) => {
 		onSelectedFilter(event.target.value);
 	};
@@ -13,7 +17,7 @@ const ExercisesFilter = ({ onSelectedFilter, select, options }) => {
 			label="filter by level"
 			onChange={handleDropdownChange}
 			selected={select}
-			options={options}
+			options={exerciseCtx.options}
 			cssClass={styles['filter-select']}
 		/>
 	);
@@ -22,13 +26,11 @@ const ExercisesFilter = ({ onSelectedFilter, select, options }) => {
 ExercisesFilter.defaultProps = {
 	onSelectedFilter: () => {},
 	select: '',
-	options: [],
 };
 
 ExercisesFilter.propTypes = {
 	onSelectedFilter: PropTypes.func,
 	select: PropTypes.string,
-	options: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default ExercisesFilter;

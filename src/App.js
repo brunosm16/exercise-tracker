@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import NewExercise from './components/NewExercise/NewExercise';
 import Exercises from './components/Exercises/Exercises';
+import ExercisesContext from './context/exercises-context';
 
 const LEVELS = ['Easy', 'Normal', 'Hard', 'Advanced'];
 const MOCK_EXERCISES = [
@@ -67,9 +68,6 @@ const App = () => {
 			return current;
 		});
 
-	const getExerciseById = (id) =>
-		exercises.filter((exercise) => exercise.id === id)[0];
-
 	const handleAddExercise = (data) => {
 		// Edit operation
 		if (editId) {
@@ -92,21 +90,21 @@ const App = () => {
 		isDelete ? deleteExercise(itemId) : setEditId(itemId);
 
 	return (
-		<div className="App">
-			<NewExercise
-				onAddExercise={handleAddExercise}
-				levels={LEVELS}
-				editId={editId}
-				editName={getExerciseById(editId) && getExerciseById(editId).name}
-				editLevel={getExerciseById(editId) && getExerciseById(editId).level}
-				editDate={getExerciseById(editId) && getExerciseById(editId).date}
-			/>
-			<Exercises
-				onSelectOperation={handleOperation}
-				items={exercises}
-				levels={LEVELS}
-			/>
-		</div>
+		<ExercisesContext.Provider
+			value={{
+				editId,
+				exercises,
+				options: LEVELS,
+			}}
+		>
+			<div className="App">
+				<NewExercise onAddExercise={handleAddExercise}/>
+				<Exercises
+					onSelectOperation={handleOperation}
+					items={exercises}
+				/>
+			</div>
+		</ExercisesContext.Provider>
 	);
 };
 

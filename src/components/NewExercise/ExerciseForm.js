@@ -1,14 +1,33 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useContext, useEffect, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ExerciseForm.module.css';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import Select from '../UI/Select/Select';
+import ExercisesContext from '../../context/exercises-context';
+
+const initialDate = '2021-01-01';
+const initialLevel = 'Easy';
 
 // Formats a date from HTML input to a JavaScript Date.
 const dateToJs = (inputDate) => {
 	const dateSplit = inputDate.split('-');
 	return new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
+};
+
+// Converts a JavaScript Date to a date acceptable
+// on HTML input value.
+const toHTMLDate = (jsDate) => {
+	const day =
+		jsDate.getDate() < 10 ? `0${jsDate.getDate()}` : `${jsDate.getDate()}`;
+
+	// JavaScript Date month starts as 0 (January)
+	let month = jsDate.getMonth() + 1;
+	month = month < 10 ? `0${month}` : `${month}`;
+
+	const year = jsDate.getFullYear();
+
+	return `${year}-${month}-${day}`;
 };
 
 const validateName = (name) => name.trim().length >= 4;
@@ -25,23 +44,34 @@ const nameReducer = (state, action) => {
 	return { value: '', isValid: true };
 };
 
-const ExerciseForm = ({
-	onSaveExercise,
-	onStopEdit,
-	levels,
-	editId,
-	editName,
-	editLevel,
-	editDate,
-}) => {
+const ExerciseForm = ({ onSaveExercise, onStopEdit }) => {
+	// Used to fetch the Exercise to be edited
+	const exerciseCtx = useContext(ExercisesContext);
+	const [editId, exercises, options] = [
+		exerciseCtx.editId,
+		exerciseCtx.exercises,
+		exerciseCtx.options,
+	];
+
+	const editExercise = () => {
+		if (exercises) {
+			return exerciseCtx.exercises.filter(
+				(exercise) => exercise.id === editId
+			)[0];
+		}
+
+		return undefined;
+	};
+	const editName = editExercise() ? editExercise().name : undefined;
+	const editLevel = editExercise() ? editExercise().level : undefined;
+	const editDate = editExercise() ? toHTMLDate(editExercise().date) : undefined;
+
 	const [nameState, dispatchName] = useReducer(nameReducer, {
 		value: '',
 		isValid: null,
 	});
-
-	// Use editLevel & editDate default values as initialState.
-	const [enteredLevel, setEnteredLevel] = useState(editLevel);
-	const [enteredDate, setEnteredDate] = useState(editDate);
+	const [enteredLevel, setEnteredLevel] = useState(initialLevel);
+	const [enteredDate, setEnteredDate] = useState(initialDate);
 	const [formIsValid, setFormIsValid] = useState(true);
 
 	useEffect(() => {
@@ -70,8 +100,8 @@ const ExerciseForm = ({
 	// Reset states used in Form
 	const resetForm = () => {
 		dispatchName({ type: 'INPUT_USER', value: '' });
-		setEnteredLevel(editLevel);
-		setEnteredDate(editDate);
+		setEnteredLevel(initialLevel);
+		setEnteredDate(initialDate);
 	};
 
 	const saveInput = () => {
@@ -131,7 +161,7 @@ const ExerciseForm = ({
 					<Select
 						id="level"
 						label="level"
-						options={levels}
+						options={options}
 						onChange={levelChangeHandler}
 						selected={enteredLevel}
 					/>
@@ -166,21 +196,11 @@ const ExerciseForm = ({
 ExerciseForm.defaultProps = {
 	onSaveExercise: () => {},
 	onStopEdit: () => {},
-	levels: [],
-	editId: undefined,
-	editName: undefined,
-	editLevel: 'Easy',
-	editDate: '2021-01-01',
 };
 
 ExerciseForm.propTypes = {
 	onSaveExercise: PropTypes.func,
 	onStopEdit: PropTypes.func,
-	levels: PropTypes.arrayOf(PropTypes.string),
-	editId: PropTypes.number,
-	editName: PropTypes.string,
-	editLevel: PropTypes.string,
-	editDate: PropTypes.string,
 };
 
 export default ExerciseForm;
