@@ -5,9 +5,10 @@
 	flex-direction: column;
 	gap: 2rem;
 	padding: 1.25rem;
-	margin: 1rem;
+	margin: 1rem auto;
 	border-radius: 15px;
 	background: #d7d2cc;
+	width: 20rem;
 }
 
 .info {
@@ -67,8 +68,8 @@
 @media screen and (min-width: 1000px) {
 	.item {
 		flex-direction: row;
-		margin: 1rem;
 		padding: 1.25rem;
+		width: 90%;
 	}
 
 	.actions {

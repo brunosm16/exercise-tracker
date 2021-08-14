@@ -1,4 +1,4 @@
-import { useContext, useEffect, useReducer, useState } from 'react';
+import { useContext, useEffect, useReducer, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ExerciseForm.module.css';
 import Button from '../UI/Button/Button';
@@ -41,7 +41,7 @@ const nameReducer = (state, action) => {
 		return { value: state.value, isValid: validateName(state.value) };
 	}
 
-	return { value: '', isValid: true };
+	return { value: '', isValid: false };
 };
 
 const ExerciseForm = ({ onSaveExercise, onStopEdit }) => {
@@ -70,6 +70,9 @@ const ExerciseForm = ({ onSaveExercise, onStopEdit }) => {
 		value: '',
 		isValid: null,
 	});
+
+	const nameRef = useRef();
+
 	const [enteredLevel, setEnteredLevel] = useState(initialLevel);
 	const [enteredDate, setEnteredDate] = useState(initialDate);
 	const [formIsValid, setFormIsValid] = useState(true);
@@ -139,7 +142,7 @@ const ExerciseForm = ({ onSaveExercise, onStopEdit }) => {
 	const submitHandler = (event) => {
 		event.preventDefault();
 
-		return formIsValid ? saveInput() : '';
+		return formIsValid ? saveInput() : nameRef.current.focus();
 	};
 
 	return (
@@ -154,6 +157,7 @@ const ExerciseForm = ({ onSaveExercise, onStopEdit }) => {
 						onChange={nameChangeHandler}
 						onBlur={nameValidateHandler}
 						value={nameState.value}
+						ref={nameRef}
 					/>
 				</div>
 

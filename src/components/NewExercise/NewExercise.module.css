@@ -4,13 +4,13 @@
 	align-items: center;
 	width: 30rem;
 	max-width: 85%;
-	margin: 8rem 1rem;
+	margin: 1rem;
 	padding: 1.25rem;
 	background: #bdc3c7;
 }
 
-@media screen and (max-width:1000px) {
+@media screen and (min-width: 1200px) {
 	.new-exercise {
-		margin: 1rem;
+		margin: 8rem 1rem;
 	}
 }

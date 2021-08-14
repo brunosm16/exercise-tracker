@@ -17,6 +17,18 @@
 
 @media screen and (min-width: 1000px) {
 	.list {
-		width: 90%;
+		width: 43rem;
+	}
+}
+
+@media screen and (max-width: 999px) {
+	.list {
+		width: 30rem;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.list {
+		width: 25rem;
 	}
 }

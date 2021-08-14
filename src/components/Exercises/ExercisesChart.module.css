@@ -7,3 +7,15 @@
 	display: flex;
 	margin: 1rem;
 }
+
+@media screen and (max-width: 999px) {
+	.exercises-chart {
+		width: 30rem;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.exercises-chart {
+		width: 25rem;
+	}
+}
