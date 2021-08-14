@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState, useContext } from 'react';
 import ExercisesFilter from './ExercisesFilter';
 import ExercisesList from './ExercisesList';
 import ExercisesChart from './ExercisesChart';
 import styles from './Exercises.module.css';
+import ExercisesContext from '../../context/exercises-context';
 
-const Exercises = ({ items, onSelectOperation }) => {
+const Exercises = () => {
 	const [filteredLevel, setFilteredLevel] = useState('Easy');
 
-	const itemsByLevel = items.filter(
+	const exercisesCtx = useContext(ExercisesContext);
+
+
+	const itemsByLevel = exercisesCtx.exercises.filter(
 		(exercise) => exercise.level === filteredLevel
 	);
 
+
 	const handleSelectedFilter = (filter) => {
 		setFilteredLevel(filter);
-	};
-
-	const handleOperation = (itemId, isDelete) => {
-		onSelectOperation(itemId, isDelete);
 	};
 
 	return (
@@ -29,23 +29,9 @@ const Exercises = ({ items, onSelectOperation }) => {
 
 			<ExercisesChart exercises={itemsByLevel} />
 
-			<ExercisesList
-				exercises={itemsByLevel}
-				level={filteredLevel}
-				onOperation={handleOperation}
-			/>
+			<ExercisesList exercises={itemsByLevel} level={filteredLevel} />
 		</div>
 	);
-};
-
-Exercises.defaultProps = {
-	items: [],
-	onSelectOperation: () => {},
-};
-
-Exercises.propTypes = {
-	items: PropTypes.arrayOf(PropTypes.object),
-	onSelectOperation: PropTypes.func,
 };
 
 export default Exercises;

@@ -1,11 +1,15 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import ExerciseDate from './ExerciseDate';
 import Button from '../UI/Button/Button';
 import styles from './ExerciseItem.module.css';
+import ExercisesContext from '../../context/exercises-context';
 
-const ExerciseItem = ({ id, name, level, date, onItemClick }) => {
+const ExerciseItem = ({ id, name, level, date}) => {
+	const exercisesCtx = useContext(ExercisesContext);
+
 	const handleClick = (isDelete) => {
-		onItemClick(id, isDelete);
+		exercisesCtx.onSelectOperation(id, isDelete)
 	};
 
 	return (
@@ -36,7 +40,6 @@ ExerciseItem.defaultProps = {
 	name: '',
 	level: '',
 	date: '',
-	onItemClick: () => {},
 };
 
 ExerciseItem.propTypes = {
@@ -44,7 +47,6 @@ ExerciseItem.propTypes = {
 	level: PropTypes.string,
 	date: PropTypes.objectOf(PropTypes.object),
 	id: PropTypes.number,
-	onItemClick: PropTypes.func,
 };
 
 export default ExerciseItem;

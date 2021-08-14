@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useContext, useState } from 'react';
 import Card from '../UI/Card/Card';
 import Button from '../UI/Button/Button';
@@ -6,14 +5,10 @@ import ExerciseForm from './ExerciseForm';
 import styles from './NewExercise.module.css';
 import ExercisesContext from '../../context/exercises-context';
 
-const NewExercise = ({ onAddExercise }) => {
+const NewExercise = () => {
 	const [isEdit, setIsEdit] = useState(false);
 
 	const exerciseCtx = useContext(ExercisesContext);
-
-	const handleSaveExercise = (exercise) => {
-		onAddExercise(exercise);
-	};
 
 	const handleCloseEdit = () => {
 		setIsEdit(false);
@@ -26,10 +21,7 @@ const NewExercise = ({ onAddExercise }) => {
 	return (
 		<Card cssClass={styles['new-exercise']}>
 			{(isEdit || exerciseCtx.editId) && (
-				<ExerciseForm
-					onStopEdit={handleCloseEdit}
-					onSaveExercise={handleSaveExercise}
-				/>
+				<ExerciseForm onStopEdit={handleCloseEdit} />
 			)}
 
 			{!isEdit && !exerciseCtx.editId && (
@@ -39,14 +31,6 @@ const NewExercise = ({ onAddExercise }) => {
 			)}
 		</Card>
 	);
-};
-
-NewExercise.defaultProps = {
-	onAddExercise: () => {},
-};
-
-NewExercise.propTypes = {
-	onAddExercise: PropTypes.func,
 };
 
 export default NewExercise;

@@ -44,7 +44,7 @@ const nameReducer = (state, action) => {
 	return { value: '', isValid: false };
 };
 
-const ExerciseForm = ({ onSaveExercise, onStopEdit }) => {
+const ExerciseForm = ({ onStopEdit }) => {
 	// Used to fetch the Exercise to be edited
 	const exerciseCtx = useContext(ExercisesContext);
 	const [editId, exercises, options] = [
@@ -115,7 +115,8 @@ const ExerciseForm = ({ onSaveExercise, onStopEdit }) => {
 			date: dateToJs(enteredDate),
 		};
 
-		onSaveExercise(inputObj);
+		exerciseCtx.onAddExercise(inputObj)
+		
 		resetForm();
 	};
 
@@ -198,12 +199,10 @@ const ExerciseForm = ({ onSaveExercise, onStopEdit }) => {
 };
 
 ExerciseForm.defaultProps = {
-	onSaveExercise: () => {},
 	onStopEdit: () => {},
 };
 
 ExerciseForm.propTypes = {
-	onSaveExercise: PropTypes.func,
 	onStopEdit: PropTypes.func,
 };
 

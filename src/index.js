@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ExercisesContextProvider } from './context/exercises-context';
 
 ReactDOM.render(
-	<React.StrictMode>
+	<ExercisesContextProvider>
 		<App />
-	</React.StrictMode>,
+	</ExercisesContextProvider>,
 	document.getElementById('root')
 );
 

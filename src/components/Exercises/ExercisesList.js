@@ -3,12 +3,7 @@ import List from '../UI/List/List';
 import ExerciseItem from './ExerciseItem';
 import styles from './ExercisesList.module.css';
 
-const ExercisesList = ({ exercises, level, onOperation }) => {
-	const itemClickHandle = (itemId, operation) => {
-		onOperation(itemId, operation);
-	};
-
-	return (
+const ExercisesList = ({ exercises, level }) => (
 		<List cssClass={styles.list}>
 			{exercises.length === 0 && (
 				<p className={styles['empty-list-msg']}>
@@ -23,23 +18,19 @@ const ExercisesList = ({ exercises, level, onOperation }) => {
 						name={exercise.name}
 						level={exercise.level}
 						date={exercise.date}
-						onItemClick={itemClickHandle}
 					/>
 				))}
 		</List>
 	);
-};
 
 ExercisesList.defaultProps = {
 	exercises: [],
 	level: '',
-	onOperation: () => {},
 };
 
 ExercisesList.propTypes = {
 	exercises: PropTypes.arrayOf(PropTypes.object),
 	level: PropTypes.string,
-	onOperation: PropTypes.func,
 };
 
 export default ExercisesList;
