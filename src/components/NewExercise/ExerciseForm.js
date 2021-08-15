@@ -41,7 +41,12 @@ const nameReducer = (state, action) => {
 		return { value: state.value, isValid: validateName(state.value) };
 	}
 
-	return { value: '', isValid: false };
+	// // reset to initial value
+	// if (action.type === 'RESET') {
+	// 	return { value: '', isValid: null };
+	// }
+
+	return { value: '', isValid: null };
 };
 
 const ExerciseForm = ({ onStopEdit }) => {
@@ -111,9 +116,12 @@ const ExerciseForm = ({ onStopEdit }) => {
 		};
 	}, [nameState]);
 
+	const focusOnName = () => nameRef.current.focus();
+
 	// Reset states used in Form
 	const resetForm = () => {
-		dispatchName({ type: 'INPUT_USER', value: '' });
+		dispatchName({});
+		focusOnName();
 		setEnteredLevel(initialLevel);
 		setEnteredDate(initialDate);
 	};
@@ -154,11 +162,11 @@ const ExerciseForm = ({ onStopEdit }) => {
 	const submitHandler = (event) => {
 		event.preventDefault();
 
-		// On first page load set isValid to false if 
-		// user didn't input anything 
+		// On first page load set isValid to false if
+		// user didn't input anything
 		dispatchName({ type: 'INPUT_BLUR' });
 
-		return formIsValid ? saveInput() : nameRef.current.focus();
+		return formIsValid ? saveInput() : focusOnName();
 	};
 
 	return (
