@@ -5,32 +5,15 @@ import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import Select from '../UI/Select/Select';
 import ExercisesContext from '../../context/exercises-context';
-
-const initialDate = '2021-01-01';
-const initialLevel = 'Easy';
-
-// Formats a date from HTML input to a JavaScript Date.
-const dateToJs = (inputDate) => {
-	const dateSplit = inputDate.split('-');
-	return new Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]);
-};
-
-// Converts a JavaScript Date to a date acceptable
-// on HTML input value.
-const toHTMLDate = (jsDate) => {
-	const day =
-		jsDate.getDate() < 10 ? `0${jsDate.getDate()}` : `${jsDate.getDate()}`;
-
-	// JavaScript Date month starts as 0 (January)
-	let month = jsDate.getMonth() + 1;
-	month = month < 10 ? `0${month}` : `${month}`;
-
-	const year = jsDate.getFullYear();
-
-	return `${year}-${month}-${day}`;
-};
-
-const validateName = (name) => name.trim().length >= 4;
+import {
+	dateToHTML,
+	dateToJs,
+	validateName,
+	initDate,
+	initLevel,
+	findItemById,
+	stateIsNull,
+} from '../../utils/Utils';
 
 const nameReducer = (state, action) => {
 	if (action.type === 'INPUT_USER') {
@@ -41,50 +24,37 @@ const nameReducer = (state, action) => {
 		return { value: state.value, isValid: validateName(state.value) };
 	}
 
-	// // reset to initial value
-	// if (action.type === 'RESET') {
-	// 	return { value: '', isValid: null };
-	// }
-
 	return { value: '', isValid: null };
 };
 
 const ExerciseForm = ({ onStopEdit }) => {
-	// Used to fetch the Exercise to be edited
+	const [nameState, dispatchName] = useReducer(nameReducer, {
+		value: '',
+		isValid: null,
+	});
+	const [enteredLevel, setEnteredLevel] = useState(initLevel);
+	const [enteredDate, setEnteredDate] = useState(initDate);
+	const [formIsValid, setFormIsValid] = useState(true);
+
+	// Null is the initial value of name, on first page load,
+	// input is valid because user didn't enter any input.
+	const nameIsNull = stateIsNull(nameState);
+
+	const nameRef = useRef();
+	const focusOnName = () => nameRef.current.focus();
+
 	const exerciseCtx = useContext(ExercisesContext);
 	const [editId, exercises, options] = [
 		exerciseCtx.editId,
 		exerciseCtx.exercises,
 		exerciseCtx.options,
 	];
+	const editExercise = findItemById(editId, exercises);
 
-	const getEditExercise = () => {
-		if (exercises) {
-			return exerciseCtx.exercises.filter(
-				(exercise) => exercise.id === editId
-			)[0];
-		}
-
-		return undefined;
-	};
-
-	const editExercise = getEditExercise();
-
-	const [nameState, dispatchName] = useReducer(nameReducer, {
-		value: '',
-		isValid: null,
-	});
-
-	// On first page load input doesn't load as invalid
-	const nameValid = () =>
-		nameState.isValid === null ? true : nameState.isValid;
-
-	const nameRef = useRef();
-
-	const [enteredLevel, setEnteredLevel] = useState(initialLevel);
-	const [enteredDate, setEnteredDate] = useState(initialDate);
-	const [formIsValid, setFormIsValid] = useState(true);
-
+	/**
+	 * On edit operation, a new value for editExercise is set,
+	 * and useEffect updates input states with editExercise properties.
+	 */
 	useEffect(
 		() =>
 			editExercise &&
@@ -101,11 +71,11 @@ const ExerciseForm = ({ onStopEdit }) => {
 	);
 
 	useEffect(
-		() => editExercise && setEnteredDate(toHTMLDate(editExercise.date)),
+		() => editExercise && setEnteredDate(dateToHTML(editExercise.date)),
 		[editExercise]
 	);
 
-	// Validate form when input change.
+	/** Validate form when input change. */
 	useEffect(() => {
 		const debounceId = setTimeout(() => {
 			setFormIsValid(nameState.isValid);
@@ -116,25 +86,21 @@ const ExerciseForm = ({ onStopEdit }) => {
 		};
 	}, [nameState]);
 
-	const focusOnName = () => nameRef.current.focus();
-
-	// Reset states used in Form
+	/**  Reset states used in Form */
 	const resetForm = () => {
 		dispatchName({});
 		focusOnName();
-		setEnteredLevel(initialLevel);
-		setEnteredDate(initialDate);
+		setEnteredLevel(initLevel);
+		setEnteredDate(initDate);
 	};
 
 	const saveInput = () => {
-		const inputObj = {
+		exerciseCtx.onAddExercise({
 			id: editId || Math.random(),
 			name: nameState.value,
 			level: enteredLevel,
 			date: dateToJs(enteredDate),
-		};
-
-		exerciseCtx.onAddExercise(inputObj);
+		});
 
 		resetForm();
 	};
@@ -162,8 +128,9 @@ const ExerciseForm = ({ onStopEdit }) => {
 	const submitHandler = (event) => {
 		event.preventDefault();
 
-		// On first page load set isValid to false if
-		// user didn't input anything
+		/** On first page load set isValid to false,
+		 * if user tries to input a empty value
+		 */
 		dispatchName({ type: 'INPUT_BLUR' });
 
 		return formIsValid ? saveInput() : focusOnName();
@@ -177,7 +144,7 @@ const ExerciseForm = ({ onStopEdit }) => {
 						id="name"
 						type="text"
 						label="name"
-						isValid={nameValid()}
+						isValid={nameIsNull}
 						onChange={nameChangeHandler}
 						onBlur={nameValidateHandler}
 						value={nameState.value}
