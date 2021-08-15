@@ -35,7 +35,7 @@ export const validateName = (name) => name.trim().length >= 4;
  * Search for a item with an id equals to the id passed as argument
  */
 export const findItemById = (id, items) =>
-	items ? items.map((exercise) => exercise.id === id)[0] : undefined;
+	items ? items.filter((exercise) => exercise.id === id)[0] : undefined;
 
 /**
  * State passed as argument needs to have a property isValid.

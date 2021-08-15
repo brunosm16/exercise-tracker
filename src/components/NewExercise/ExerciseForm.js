@@ -5,27 +5,15 @@ import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import Select from '../UI/Select/Select';
 import ExercisesContext from '../../context/exercises-context';
+import nameReducer from '../../context/reducers/reducers';
 import {
 	dateToHTML,
 	dateToJs,
-	validateName,
 	initDate,
 	initLevel,
 	findItemById,
 	stateIsNull,
 } from '../../utils/Utils';
-
-const nameReducer = (state, action) => {
-	if (action.type === 'INPUT_USER') {
-		return { value: action.val, isValid: validateName(action.val || '') };
-	}
-
-	if (action.type === 'INPUT_BLUR') {
-		return { value: state.value, isValid: validateName(state.value) };
-	}
-
-	return { value: '', isValid: null };
-};
 
 const ExerciseForm = ({ onStopEdit }) => {
 	const [nameState, dispatchName] = useReducer(nameReducer, {
@@ -36,12 +24,12 @@ const ExerciseForm = ({ onStopEdit }) => {
 	const [enteredDate, setEnteredDate] = useState(initDate);
 	const [formIsValid, setFormIsValid] = useState(true);
 
-	// Null is the initial value of name, on first page load,
-	// input is valid because user didn't enter any input.
+	/**
+	 * Null is the initial value of name, on first page load,
+	 * input is valid because user didn't enter any input.
+	 */
 	const nameIsNull = stateIsNull(nameState);
-
 	const nameRef = useRef();
-	const focusOnName = () => nameRef.current.focus();
 
 	const exerciseCtx = useContext(ExercisesContext);
 	const [editId, exercises, options] = [
@@ -85,6 +73,8 @@ const ExerciseForm = ({ onStopEdit }) => {
 			clearTimeout(debounceId);
 		};
 	}, [nameState]);
+
+	const focusOnName = () => nameRef.current.focus();
 
 	/**  Reset states used in Form */
 	const resetForm = () => {
