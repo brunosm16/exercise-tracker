@@ -53,7 +53,7 @@ const ExerciseForm = ({ onStopEdit }) => {
 		exerciseCtx.options,
 	];
 
-	const editExercise = () => {
+	const getEditExercise = () => {
 		if (exercises) {
 			return exerciseCtx.exercises.filter(
 				(exercise) => exercise.id === editId
@@ -62,14 +62,17 @@ const ExerciseForm = ({ onStopEdit }) => {
 
 		return undefined;
 	};
-	const editName = editExercise() ? editExercise().name : undefined;
-	const editLevel = editExercise() ? editExercise().level : undefined;
-	const editDate = editExercise() ? toHTMLDate(editExercise().date) : undefined;
+
+	const editExercise = getEditExercise();
 
 	const [nameState, dispatchName] = useReducer(nameReducer, {
 		value: '',
 		isValid: null,
 	});
+
+	// On first page load input doesn't load as invalid
+	const nameValid = () =>
+		nameState.isValid === null ? true : nameState.isValid;
 
 	const nameRef = useRef();
 
@@ -77,19 +80,27 @@ const ExerciseForm = ({ onStopEdit }) => {
 	const [enteredDate, setEnteredDate] = useState(initialDate);
 	const [formIsValid, setFormIsValid] = useState(true);
 
-	useEffect(() => {
-		dispatchName({ type: 'INPUT_USER', val: editName || nameState.value });
-	}, [editName]);
+	useEffect(
+		() =>
+			editExercise &&
+			dispatchName({
+				type: 'INPUT_USER',
+				val: editExercise.name,
+			}),
+		[editExercise]
+	);
 
-	useEffect(() => {
-		setEnteredLevel(editLevel || enteredLevel);
-	}, [editLevel]);
+	useEffect(
+		() => editExercise && setEnteredLevel(editExercise.level),
+		[editExercise]
+	);
 
-	useEffect(() => {
-		setEnteredDate(editDate || enteredDate);
-	}, [editDate]);
+	useEffect(
+		() => editExercise && setEnteredDate(toHTMLDate(editExercise.date)),
+		[editExercise]
+	);
 
-	// validate form when input change.
+	// Validate form when input change.
 	useEffect(() => {
 		const debounceId = setTimeout(() => {
 			setFormIsValid(nameState.isValid);
@@ -115,8 +126,8 @@ const ExerciseForm = ({ onStopEdit }) => {
 			date: dateToJs(enteredDate),
 		};
 
-		exerciseCtx.onAddExercise(inputObj)
-		
+		exerciseCtx.onAddExercise(inputObj);
+
 		resetForm();
 	};
 
@@ -143,6 +154,10 @@ const ExerciseForm = ({ onStopEdit }) => {
 	const submitHandler = (event) => {
 		event.preventDefault();
 
+		// On first page load set isValid to false if 
+		// user didn't input anything 
+		dispatchName({ type: 'INPUT_BLUR' });
+
 		return formIsValid ? saveInput() : nameRef.current.focus();
 	};
 
@@ -154,7 +169,7 @@ const ExerciseForm = ({ onStopEdit }) => {
 						id="name"
 						type="text"
 						label="name"
-						isValid={nameState.isValid}
+						isValid={nameValid()}
 						onChange={nameChangeHandler}
 						onBlur={nameValidateHandler}
 						value={nameState.value}
