@@ -1,14 +1,7 @@
 .input-container {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
-}
-
-.label {
-	color: #1c1c1c;
-	font-weight: 700;
-	font-size: 1.2rem;
-	text-transform: capitalize;
+	gap: 0.5rem;
 }
 
 .input-container input {
@@ -16,10 +9,18 @@
 	border-radius: 15px;
 	border-color: transparent;
 	outline: none;
-	padding: 0.25rem 0.5rem;
+	padding: 0.125rem 0.5rem;
+	background-color: #cecece;
 	transition: all 0.3s ease-in-out;
 	box-shadow: 0 2px 3px 3px rgba(36, 11, 54, 0.3);
-	background-color: #cecece;
+	font-size: 0.675rem;
+}
+
+.input-container label {
+	color: #1c1c1c;
+	font-weight: 700;
+	font-size: 0.75rem;
+	text-transform: capitalize;
 }
 
 input:hover {
@@ -34,7 +35,7 @@ input:hover {
 	color: #df0d30;
 }
 
-@media screen and (min-width: 578px) {
+@media screen and (min-width: 768px) {
 	.label {
 		font-size: 1rem;
 	}

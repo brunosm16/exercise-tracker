@@ -6,8 +6,8 @@ const Chart = ({ dataPoints, maxValue }) => (
 	<div className={styles.chart}>
 		{dataPoints.map((dataPoint) => (
 			<ChartBar
-				key={dataPoint.label}
-				label={dataPoint.label}
+				key={dataPoint.title}
+				title={dataPoint.title}
 				value={dataPoint.value}
 				maxValue={maxValue}
 			/>

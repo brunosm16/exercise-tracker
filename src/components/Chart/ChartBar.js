@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from './ChartBar.module.css';
 
-const ChartBar = ({ label, value, maxValue }) => {
+const ChartBar = ({ title, value, maxValue }) => {
 	let heightToFill = '0%';
 
 	if (maxValue > 0) {
@@ -14,21 +14,21 @@ const ChartBar = ({ label, value, maxValue }) => {
 				<div className={styles.toFill} style={{ height: heightToFill }} />
 			</div>
 
-			<div className={styles.label}>
-				<p>{label}</p>
+			<div className={styles.title}>
+				<p>{title}</p>
 			</div>
 		</div>
 	);
 };
 
 ChartBar.defaultProps = {
-	label: '',
+	title: '',
 	value: 0,
 	maxValue: 0,
 };
 
 ChartBar.propTypes = {
-	label: PropTypes.string,
+	title: PropTypes.string,
 	value: PropTypes.number,
 	maxValue: PropTypes.number,
 };

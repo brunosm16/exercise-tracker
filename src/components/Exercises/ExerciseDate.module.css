@@ -1,13 +1,14 @@
 .date {
 	display: flex;
 	justify-content: space-between;
-	width: 15rem;
+	width: 10rem;
 	padding: 0 0.75rem;
+	font-size: 0.75rem;
 	color: #fff;
 	border-radius: 15px;
 	text-align: center;
 	border-color: #bbd2c5;
-	background: #485563; /* fallback for old browsers */
+	background: #0000; /* fallback for old browsers */
 	background: -webkit-linear-gradient(
 		to right,
 		#29323c,

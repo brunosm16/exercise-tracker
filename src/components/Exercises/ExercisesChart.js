@@ -5,51 +5,51 @@ import styles from './ExercisesChart.module.css';
 const ExercisesChart = ({ exercises }) => {
 	const dataPoints = [
 		{
-			label: 'Jan',
+			title: 'Jan',
 			value: 0,
 		},
 		{
-			label: 'Feb',
+			title: 'Feb',
 			value: 0,
 		},
 		{
-			label: 'Mar',
+			title: 'Mar',
 			value: 0,
 		},
 		{
-			label: 'Apr',
+			title: 'Apr',
 			value: 0,
 		},
 		{
-			label: 'May',
+			title: 'May',
 			value: 0,
 		},
 		{
-			label: 'Jun',
+			title: 'Jun',
 			value: 0,
 		},
 		{
-			label: 'Jul',
+			title: 'Jul',
 			value: 0,
 		},
 		{
-			label: 'Aug',
+			title: 'Aug',
 			value: 0,
 		},
 		{
-			label: 'Sep',
+			title: 'Sep',
 			value: 0,
 		},
 		{
-			label: 'Oct',
+			title: 'Oct',
 			value: 0,
 		},
 		{
-			label: 'Nov',
+			title: 'Nov',
 			value: 0,
 		},
 		{
-			label: 'Dec',
+			title: 'Dec',
 			value: 0,
 		},
 	];

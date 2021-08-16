@@ -1,23 +1,16 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-	gap: 1rem;
-}
-
-.container label {
-	color: #1c1c1c;
-	font-weight: 700;
-	font-size: 1.2rem;
-	text-transform: capitalize;
+	gap: 0.5rem;
 }
 
 .container select {
-	width: 7rem;
+	width: 5rem;
 	border-radius: 15px;
 	border-color: transparent;
 	outline: none;
-	padding: 0.25rem 0.5rem;
+	padding: 0.125rem;
+	font-size: 0.675rem;
 	transition: all 0.3s ease-in-out;
 	box-shadow: 0 2px 3px 3px rgba(36, 11, 54, 0.3);
 	background-color: #cecece;
@@ -27,7 +20,15 @@
 	box-shadow: 0px 2px 3px 3px rgba(149, 157, 165, 0.5);
 }
 
-@media screen and (min-width: 578px) {
+.container label {
+	color: #1c1c1c;
+	font-weight: 700;
+	font-size: 0.675rem;
+	text-transform: capitalize;
+}
+
+/* iPad */
+@media screen and (min-width: 768px) {
 	.container label {
 		font-size: 1rem;
 	}

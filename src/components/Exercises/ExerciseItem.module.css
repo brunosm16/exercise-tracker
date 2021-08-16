@@ -1,19 +1,16 @@
 .item {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	flex-direction: column;
-	gap: 2rem;
-	padding: 1.25rem;
-	margin: 1rem auto;
+	gap: 1rem;
+	padding: 1rem;
+	margin: 1rem;
 	border-radius: 15px;
-	background: #d7d2cc;
-	width: 20rem;
+	background: #cecece52;
 }
 
 .info {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
 	flex-direction: column;
 	background: #485563; /* fallback for old browsers */
@@ -29,8 +26,8 @@
 	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	color: #fff;
 	border-radius: 15px;
-	width: 15rem;
-	padding: 0 0.75rem;
+	width: 100%;
+	font-size: 0.75rem;
 }
 
 .divider {
@@ -41,12 +38,13 @@
 
 .actions {
 	display: flex;
+	justify-content: flex-end;
 	gap: 0.25rem;
 }
 
 .actions button {
-	width: 10rem;
-	font-size: 1.5rem;
+	width: 5rem;
+	font-size: 0.75rem;
 	background: #485563; /* fallback for old browsers */
 	background: -webkit-linear-gradient(
 		to right,
@@ -63,21 +61,4 @@
 
 .actions button:hover {
 	background: #fff;
-}
-
-@media screen and (min-width: 1000px) {
-	.item {
-		flex-direction: row;
-		padding: 1.25rem;
-		width: 90%;
-	}
-
-	.actions {
-		display: flex;
-		gap: 0.25rem;
-	}
-
-	.actions button {
-		width: 5rem;
-	}
 }

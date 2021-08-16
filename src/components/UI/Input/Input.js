@@ -34,7 +34,7 @@ const Input = React.forwardRef(
 					!isValid && styles.invalid
 				}`}
 			>
-				<label className={styles.label} htmlFor="id">
+				<label htmlFor="id">
 					{label}
 				</label>
 				<input

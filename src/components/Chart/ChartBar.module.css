@@ -4,11 +4,15 @@
     align-items: center;
 }
 
+.chart-bar .title {
+    font-size: 0.675rem;
+}
+
 .bar {
     display: flex;
     flex-direction: column-reverse;
     width: 95%;
-    height: 8px;
+    height: 6px;
     background-color: #143642;
     border-radius: 8px;
 }
