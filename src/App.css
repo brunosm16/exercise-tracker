@@ -4,12 +4,3 @@
     align-items: center;   
     justify-content: center; 
 }
-
-/* iPad */
-@media screen and (min-width: 768px) {
-	.App {
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: flex-start;
-	}
-}

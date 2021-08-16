@@ -13,3 +13,10 @@
 		width: 18rem;
 	}
 }
+
+/* Pixel 2 */
+@media screen and (min-width: 411px) {
+	.new-exercise {
+		width: 20rem;
+	}
+}

@@ -18,3 +18,11 @@
 		flex-direction: column;
 	}
 }
+
+/* Pixel 2 */
+@media screen and (min-width: 411px) {
+	.filter-select {
+		width: 20rem;
+	}
+}
+

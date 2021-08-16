@@ -14,13 +14,6 @@
 	font-size: 0.675rem;
 }
 
-/* Iphone X */
-@media screen and (min-width: 375px) {
-	.list {
-		width: 22rem;
-	}
-}
-
 /* Iphone 5/SE */
 @media screen and (min-width: 320px) {
 	.list {
@@ -28,21 +21,18 @@
 	}
 }
 
-/* 
-@media screen and (min-width: 1000px) {
+/* Iphone X */
+@media screen and (min-width: 375px) {
 	.list {
-		width: 43rem;
+		width: 22rem;
 	}
 }
 
-@media screen and (max-width: 999px) {
+/* Pixel 2 */
+@media screen and (min-width: 411px) {
 	.list {
-		width: 30rem;
+		width: 23rem;
 	}
 }
 
-@media screen and (max-width: 500px) {
-	.list {
-		width: 25rem;
-	}
-} */
+

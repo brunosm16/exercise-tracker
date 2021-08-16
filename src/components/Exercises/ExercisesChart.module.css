@@ -14,3 +14,11 @@
 		width: 20rem;
 	}
 }
+
+/* Pixel 2 */
+@media screen and (min-width: 411px) {
+	.exercises-chart {
+		width: 22rem;
+	}
+}
+
