@@ -5,31 +5,33 @@ import Button from '../UI/Button/Button';
 import styles from './ExerciseItem.module.css';
 import ExercisesContext from '../../context/exercises-context';
 
-const ExerciseItem = ({ id, name, level, date}) => {
+const ExerciseItem = ({ id, name, level, date }) => {
 	const exercisesCtx = useContext(ExercisesContext);
 
 	const handleClick = (isDelete) => {
-		exercisesCtx.onSelectOperation(id, isDelete)
+		exercisesCtx.onSelectOperation(id, isDelete);
 	};
 
 	return (
 		<li className={styles.item}>
-			<div className={styles.info}>
-				<p>{name}</p>
-				<span className={styles.divider} />
-				<p className={styles.level}>{level}</p>
-			</div>
+			<div className={styles['item-container']}>
+				<div className={styles.info}>
+					<p>{name}</p>
+					<span className={styles.divider} />
+					<p className={styles.level}>{level}</p>
+				</div>
 
-			<ExerciseDate date={date} />
+				<ExerciseDate date={date} />
 
-			<div className={styles.actions}>
-				<Button isSubmit onClick={() => handleClick(true)}>
-					✖
-				</Button>
+				<div className={styles.actions}>
+					<Button isSubmit onClick={() => handleClick(true)}>
+						✖
+					</Button>
 
-				<Button isSubmit onClick={() => handleClick(false)}>
-					✎
-				</Button>
+					<Button isSubmit onClick={() => handleClick(false)}>
+						✎
+					</Button>
+				</div>
 			</div>
 		</li>
 	);

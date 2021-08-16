@@ -30,3 +30,15 @@
         margin-top: 0.75rem;
     }
 }
+
+/* iPad */
+@media screen and (min-width: 768px) {
+	.controls {
+        justify-content: space-between;
+        margin: 0 1rem;
+	}
+
+    .controls .control select {
+        margin-right: 2.25rem;
+    }
+}

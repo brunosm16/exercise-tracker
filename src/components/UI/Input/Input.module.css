@@ -62,3 +62,19 @@
 		font-size: 0.875rem;
 	}
 }
+
+/* iPad */
+@media screen and (min-width: 768px) {
+	.container {
+		gap: 0.875rem;
+	}
+
+	.container input {
+		width: 20rem;
+		font-size: 1rem;
+		padding: 0.325rem 0.5rem;
+	}
+	.container input[type=date] {
+		font-size: 1rem;
+	}
+}

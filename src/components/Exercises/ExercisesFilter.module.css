@@ -36,4 +36,11 @@
 	}
 }
 
+/* iPad */
+@media screen and (min-width: 768px) {
+	.filter-select {
+		width: 43rem;
+	}
+}
+
 
