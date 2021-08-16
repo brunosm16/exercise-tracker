@@ -20,3 +20,11 @@
 		#485563
 	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+/* Iphone 6/7/8 */
+@media screen and (min-width: 375px) {
+	.date {
+		width: 12rem;
+		font-size: 1rem;
+	}
+}

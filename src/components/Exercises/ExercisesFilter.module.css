@@ -11,25 +11,10 @@
 	color: #fff;
 }
 
-/* Iphone 5/SE */
-@media screen and (min-width: 320px) {
-	.filter-select {
-		width: 16.5rem;
-	}
-}
-
+/* Iphone 6/7/8 */
 @media screen and (min-width: 375px) {
-	.filter-select {
-		flex-direction: row;
-		width: 20rem;
-	}
-}
-
-/* Implement 411px responsive design */
-
-/* iPad */
-@media screen and (min-width: 768px) {
-	.filter-select {
-		width: 25rem;
+	.filter-select  {
+		width: 18rem;
+		flex-direction: column;
 	}
 }

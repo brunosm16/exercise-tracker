@@ -8,28 +8,9 @@
 	border-radius: 15px;
 }
 
-/* Iphone X */
+/* Iphone 6/7/8 */
 @media screen and (min-width: 375px) {
-	.exercises-chart {
-		width: 22rem;
-	}
-}
-
-/* Iphone 5/SE */
-@media screen and (min-width: 320px) {
-	.exercises-chart {
-		width: 18.5rem;
-	}
-}
-
-/* @media screen and (min-width: 680px) {
-	.exercises-chart {
-		width: 40rem;
-	}
-}
-
-@media screen and (max-width: 360px) {
 	.exercises-chart {
 		width: 20rem;
 	}
-} */
+}

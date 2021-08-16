@@ -27,8 +27,13 @@
 	text-transform: capitalize;
 }
 
-/* iPad */
-@media screen and (min-width: 768px) {
+/* Iphone 6/7/8 */
+@media screen and (min-width: 375px) {
+	.container select {
+		width: 7rem;
+		font-size: 0.875rem;
+		padding: 0.125rem 0.5rem;
+	}
 	.container label {
 		font-size: 1rem;
 	}

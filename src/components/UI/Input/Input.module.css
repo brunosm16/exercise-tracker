@@ -1,10 +1,10 @@
-.input-container {
+.container {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
 }
 
-.input-container input {
+.container input {
 	width: 13rem;
 	border-radius: 15px;
 	border-color: transparent;
@@ -16,27 +16,32 @@
 	font-size: 0.675rem;
 }
 
-.input-container label {
+.container label {
 	color: #1c1c1c;
 	font-weight: 700;
 	font-size: 0.75rem;
 	text-transform: capitalize;
 }
 
-input:hover {
+.container input:hover {
 	box-shadow: 0px 8px 24px rgba(149, 157, 165, 0.5);
 }
 
-.input-container.invalid input {
+.container.invalid input {
 	box-shadow: 0 2px 3px 3px rgba(195, 20, 50, 0.5);
 }
 
-.input-container.invalid label {
+.container.invalid label {
 	color: #df0d30;
 }
 
-@media screen and (min-width: 768px) {
-	.label {
+/* Iphone 6/7/8 */
+@media screen and (min-width: 375px) {
+	.container input {
+		font-size: 0.875rem;
+	}
+
+	.container label {
 		font-size: 1rem;
 	}
 }

@@ -38,7 +38,7 @@
 
 .actions {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 	gap: 0.25rem;
 }
 
@@ -61,4 +61,16 @@
 
 .actions button:hover {
 	background: #fff;
+}
+
+/* Iphone 6/7/8 */
+@media screen and (min-width: 375px) {
+	.info {
+		font-size: 1rem;
+	}
+
+	.actions button {
+		font-size: 1.2rem;
+		padding: 0.25rem;
+	}
 }

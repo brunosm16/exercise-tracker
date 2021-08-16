@@ -30,7 +30,7 @@ const Input = React.forwardRef(
 
 		return (
 			<div
-				className={`${styles['input-container']} ${cssClass} ${
+				className={`${styles.container} ${cssClass} ${
 					!isValid && styles.invalid
 				}`}
 			>

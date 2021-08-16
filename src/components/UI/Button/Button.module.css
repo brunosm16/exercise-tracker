@@ -18,3 +18,12 @@
 	color: #1c1c1c;
 	cursor:pointer;
 }
+
+/* Iphone 6/7/8 */
+@media screen and (min-width: 375px) {
+	.button {
+		font-size: 1rem;
+		padding: 0.675rem;
+		width: 8rem;
+	}
+}
