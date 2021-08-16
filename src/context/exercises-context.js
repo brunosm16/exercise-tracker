@@ -9,6 +9,7 @@ const ExercisesContext = React.createContext({
 	onSelectOperation: (itemId, isDelete) => {},
 	// eslint-disable-next-line no-unused-vars
 	onAddExercise: (data) => {},
+	onResetId: () => {},
 });
 
 export const ExercisesContextProvider = ({ children }) => {
@@ -75,11 +76,18 @@ export const ExercisesContextProvider = ({ children }) => {
 			return current;
 		});
 
+	/**
+	 * Set editId to null.
+	 */
+	const handleResetId = () => {
+		setEditId(null);
+	};
+
 	const handleAddExercise = (data) => {
 		// Edit operation
 		if (editId) {
 			// Reset editId
-			setEditId(null);
+			handleResetId(null);
 			return setExercises(updateExercises(data));
 		}
 
@@ -104,6 +112,7 @@ export const ExercisesContextProvider = ({ children }) => {
 				options: LEVELS,
 				onAddExercise: handleAddExercise,
 				onSelectOperation: handleOperation,
+				onResetId: handleResetId,
 			}}
 		>
 			{children}

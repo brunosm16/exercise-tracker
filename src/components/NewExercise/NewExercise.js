@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Card from '../UI/Card/Card';
 import Button from '../UI/Button/Button';
 import ExerciseForm from './ExerciseForm';
@@ -6,11 +6,22 @@ import styles from './NewExercise.module.css';
 import ExercisesContext from '../../context/exercises-context';
 
 const NewExercise = () => {
+	/* State for when user select Edit Operation */
 	const [isEdit, setIsEdit] = useState(false);
 
+	/* State to check if user is editing a Exercise */
+	const [isEditing, setIsEditing] = useState(false);
+
 	const exerciseCtx = useContext(ExercisesContext);
+	const [editId, onResetId] = [exerciseCtx.editId, exerciseCtx.onResetId];
+
+	useEffect(() => {
+		setIsEditing(editId);
+	}, [editId]);
 
 	const handleCloseEdit = () => {
+		/* Close form when Editing */
+		onResetId();
 		setIsEdit(false);
 	};
 
@@ -20,11 +31,9 @@ const NewExercise = () => {
 
 	return (
 		<Card cssClass={styles['new-exercise']}>
-			{(isEdit || exerciseCtx.editId) && (
-				<ExerciseForm onStopEdit={handleCloseEdit} />
-			)}
+			{(isEdit || isEditing) && <ExerciseForm onStopEdit={handleCloseEdit} />}
 
-			{!isEdit && !exerciseCtx.editId && (
+			{!isEdit && !isEditing && (
 				<Button isSubmit={false} onClick={handleOpenEdit}>
 					Add Exercise
 				</Button>

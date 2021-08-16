@@ -5,7 +5,7 @@ export const initDate = '2021-01-01';
 export const initLevel = 'Easy';
 
 /**
- * Format 'yyyy-mm-dd' JavaScript Date
+ * Format 'yyyy-mm-dd' to JavaScript Date
  */
 export const dateToJs = (inputDate) => {
 	const dateSplit = inputDate.split('-');
