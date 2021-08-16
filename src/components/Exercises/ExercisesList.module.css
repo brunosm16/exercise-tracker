@@ -35,4 +35,12 @@
 	}
 }
 
+/* Surface Duo */
+@media screen and (min-width: 540px) {
+	.list {
+		width: 28rem;
+	}
+}
+
+
 

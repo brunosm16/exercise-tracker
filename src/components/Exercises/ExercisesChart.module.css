@@ -22,3 +22,10 @@
 	}
 }
 
+/* Surface Duo */
+@media screen and (min-width: 540px) {
+	.exercises-chart {
+		width: 28rem;
+	}
+}
+

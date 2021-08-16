@@ -34,6 +34,13 @@
     }
 }
 
+/* Surface Duo */
+@media screen and (min-width: 540px) {
+	.chart-bar .title {
+        font-size: 1.125rem;
+	}
+}
+
 @media screen and (min-width:680px) {
     .chart-bar {
         flex-direction: column;

@@ -20,3 +20,10 @@
 		width: 20rem;
 	}
 }
+
+/* Surface Duo */
+@media screen and (min-width: 540px) {
+	.new-exercise {
+		width: 30rem;
+	}
+}

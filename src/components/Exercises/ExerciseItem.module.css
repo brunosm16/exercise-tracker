@@ -74,3 +74,16 @@
 		padding: 0.25rem;
 	}
 }
+
+/* Surface Duo */
+@media screen and (min-width: 540px) {
+	.info {
+		font-size: 1.2rem;
+	}
+
+	.actions button {
+		width: 8rem;
+		font-size: 1.5rem;
+		padding: 0.5rem;
+	}
+}

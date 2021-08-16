@@ -26,3 +26,14 @@
 	}
 }
 
+/* Surface Duo */
+@media screen and (min-width: 540px) {
+	.filter-select {
+		flex-direction: row;
+		justify-content: space-around;
+		padding: 1rem;
+		width: 30rem;
+	}
+}
+
+

@@ -38,3 +38,15 @@
 		font-size: 1rem;
 	}
 }
+
+/* Surface Duo */
+@media screen and (min-width: 540px) {
+	.container select {
+		font-size: 0.975rem;
+		padding: 0.325rem 0.5rem;
+	}
+
+	.container label {
+		font-size: 1.2rem;
+	}
+}

@@ -27,3 +27,10 @@
 		width: 8rem;
 	}
 }
+
+/* Surface Duo */
+@media screen and (min-width: 540px) {
+	.button {
+		width: 10rem;
+	}
+}
