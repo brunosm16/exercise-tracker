@@ -19,12 +19,20 @@
 	.list {
 		width: 18.5rem;
 	}
+
+	.list .empty-list-msg {
+		font-size: 0.75rem;
+	}
 }
 
 /* Iphone X */
 @media screen and (min-width: 375px) {
 	.list {
 		width: 22rem;
+	}
+
+	.list .empty-list-msg {
+		font-size: 0.875rem;
 	}
 }
 
@@ -33,12 +41,19 @@
 	.list {
 		width: 23rem;
 	}
+
+	.list .empty-list-msg {
+		font-size: 0.975rem;
+	}
 }
 
 /* Surface Duo */
 @media screen and (min-width: 540px) {
 	.list {
 		width: 28rem;
+	}
+	.list .empty-list-msg {
+		font-size: 1rem;
 	}
 }
 
@@ -47,6 +62,14 @@
 	.list {
 		width: 43rem;
 	}
+
+	.list .empty-list-msg {
+		font-size: 1.2rem;
+	}
+
+	/* .list .empty-list-msg {
+		font-size: 0.75rem;
+	} */
 }
 
 

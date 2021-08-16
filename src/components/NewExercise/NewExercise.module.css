@@ -34,3 +34,12 @@
 		width: 43rem;
 	}
 }
+
+/*
+    Laptop & Desktop
+*/
+@media screen and (min-width: 1110px) {
+    .new-exercise {
+		margin-top: 8rem;
+    }
+}

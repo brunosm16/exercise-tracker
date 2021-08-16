@@ -4,3 +4,13 @@
     align-items: center;   
     justify-content: center; 
 }
+
+/*
+    Laptop & Desktop
+*/
+@media screen and (min-width: 1110px) {
+    .App {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
