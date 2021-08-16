@@ -18,7 +18,7 @@
     border-radius: 8px;
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width:680px) {
     .chart-bar {
         flex-direction: column;
         width: 100%;
