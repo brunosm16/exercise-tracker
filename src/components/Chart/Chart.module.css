@@ -5,7 +5,7 @@
     width: 100%;
 }
 
-/* Laptop & Desktop */
+/* Tablet */
 @media screen and (min-width: 768px) {
     .chart {
         flex-direction: row;

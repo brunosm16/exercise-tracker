@@ -1,8 +1,8 @@
 .date {
 	display: flex;
 	justify-content: space-between;
-	width: 10rem;
-	padding: 0 0.75rem;
+	width: 80%;
+	padding: 0 1rem;
 	font-size: 0.75rem;
 	color: #fff;
 	border-radius: 15px;
@@ -21,16 +21,14 @@
 	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-/* Iphone 6/7/8 */
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 360px) {
 	.date {
-		width: 12rem;
 		font-size: 1rem;
 	}
 }
 
-/* Surface Duo */
-@media screen and (min-width: 540px) {
+/* Tablet */
+@media screen and (min-width: 768px) {
 	.date {
 		font-size: 1.2rem;
 	}

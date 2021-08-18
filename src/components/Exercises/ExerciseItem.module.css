@@ -2,7 +2,7 @@
 	padding: 1rem;
 	margin: 1rem;
 	border-radius: 15px;
-	background: #cecece52;
+	background: var(--clr-blue-dark);
 }
 
 .item-container {
@@ -19,92 +19,46 @@
 	border-radius: 15px;
 	width: 100%;
 	font-size: 0.75rem;
-	background: #485563; /* fallback for old browsers */
-	background: -webkit-linear-gradient(
-		to right,
-		#29323c,
-		#485563
-	); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(
-		to right,
-		#29323c,
-		#485563
-	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: var(--linear-gradient-grey);
 	color: #fff;
 }
 
 .divider {
 	height: 2px;
 	width: 90%;
-	background: #fff;
+	background: var(--clr-white);
 }
 
 .actions {
 	display: flex;
 	justify-content: center;
 	gap: 0.25rem;
+	width: 100%;
 }
 
 .actions button {
-	width: 5rem;
+	width: 30%;
 	font-size: 0.75rem;
-	background: #485563; /* fallback for old browsers */
-	background: -webkit-linear-gradient(
-		to right,
-		#29323c,
-		#485563
-	); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(
-		to right,
-		#29323c,
-		#485563
-	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-	transition: all 0.3s ease-in-out;
+	background: var(--linear-gradient-grey);
+	transition: var(--transition);
 }
 
 .actions button:hover {
-	background: #fff;
+	background: var(--clr-white);
 }
 
-/* Iphone 6/7/8 */
-@media screen and (min-width: 375px) {
-	.info {
-		font-size: 1rem;
-	}
-
+@media screen and (min-width: 360px) {
+	.info,
 	.actions button {
 		font-size: 1.2rem;
-		padding: 0.25rem;
-	}
-}
-
-/* Surface Duo */
-@media screen and (min-width: 540px) {
-	.info {
-		font-size: 1.2rem;
-	}
-
-	.actions button {
-		width: 8rem;
-		font-size: 1.5rem;
-		padding: 0.5rem;
 	}
 }
 
 /* iPad */
 @media screen and (min-width: 768px) {
-	.item {
-		flex-direction: row;
-		justify-content: space-between;
-	}
-
 	.item-container {
 		flex-direction: row;
 		justify-content: space-between;
-	}
-	
-	.info {
-		width: 10rem;
 	}
 
 	.actions button {
