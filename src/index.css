@@ -1,33 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+
 /* Variables */
 :root {
 	--clr-grey: #cecece52;
 	--clr-green-dark: #143642;
-	--clr-blue-dark: #29323c;
 	--clr-green-light: #bbd2c5;
+	--clr-blue-dark: #29323c;
 	--clr-white: #ffffff;
-	--linear-gradient-grey: linear-gradient(to right, #29323c, #485563);
+	--linear-gradient-1: linear-gradient(to right, #29323c, #485563);
+	--linear-gradient-2: linear-gradient(to right, #2c3e50, #bdc3c7);
 	--transition: all 0.3s ease-in-out;
 }
 
 body {
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-
-	/* fallback for old browsers */
-	background: #bdc3c7;
-	/* Chrome 10-25, Safari 5.1-6 */
-	background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);
-	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-	background: linear-gradient(to right, #2c3e50, #bdc3c7);
-}
-
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+	background: var(--linear-gradient-2);
+	font-family: 'Noto Sans JP', sans-serif;
 }
 
 .Wrapper {
@@ -47,7 +35,7 @@ code {
 /*
     Laptop & Desktop
 */
-@media screen and (min-width: 1110px) {
+@media screen and (min-width: 1366px) {
 	.Wrapper {
 		flex-direction: row;
 		align-items: flex-start;

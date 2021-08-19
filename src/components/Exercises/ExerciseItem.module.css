@@ -19,7 +19,7 @@
 	border-radius: 15px;
 	width: 100%;
 	font-size: 0.75rem;
-	background: var(--linear-gradient-grey);
+	background: var(--linear-gradient-1);
 	color: #fff;
 }
 
@@ -39,7 +39,7 @@
 .actions button {
 	width: 30%;
 	font-size: 0.75rem;
-	background: var(--linear-gradient-grey);
+	background: var(--linear-gradient-1);
 	transition: var(--transition);
 }
 

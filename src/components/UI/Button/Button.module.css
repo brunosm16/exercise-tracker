@@ -2,7 +2,7 @@
 	width: 7rem;
 	outline: none;
 	padding: 0.5rem;
-	font-size: 0.675rem;
+	font-size: 0.875rem;
 	text-transform: capitalize;
 	border-radius: 20px;
 	border: transparent;
@@ -19,25 +19,26 @@
 	cursor:pointer;
 }
 
-/* Iphone 6/7/8 */
-@media screen and (min-width: 375px) {
+/* Pixel 2 */
+@media screen and (min-width:411px) {
 	.button {
-		font-size: 1rem;
-		padding: 0.675rem;
 		width: 8rem;
-	}
-}
-
-/* Surface Duo */
-@media screen and (min-width: 540px) {
-	.button {
-		width: 10rem;
+		font-size: 1rem; 
 	}
 }
 
 /* iPad */
-@media screen and (min-width: 768px) {
+@media screen and (min-width:768px) {
 	.button {
-		font-size: 1.125rem;
+		width: 10rem;
+		font-size: 1.2rem;
+	}
+}
+
+/* Laptop */
+@media screen and (min-width:1366px) {
+	.button {
+		width: 12rem;
+		font-size: 1.4rem;
 	}
 }
