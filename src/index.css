@@ -2,7 +2,8 @@
 
 /* Variables */
 :root {
-	--clr-grey: #cecece52;
+	--clr-grey-1: #cecece52;
+	--clr-grey-2:#cecece;
 	--clr-green-dark: #143642;
 	--clr-green-light: #bbd2c5;
 	--clr-blue-dark: #29323c;
@@ -32,9 +33,7 @@ body {
 	}
 }
 
-/*
-    Laptop & Desktop
-*/
+/* Laptop & Desktop */
 @media screen and (min-width: 1366px) {
 	.Wrapper {
 		flex-direction: row;

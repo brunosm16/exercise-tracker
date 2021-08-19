@@ -27,7 +27,7 @@
 	}
 }
 
-/* iPad */
+/* Tablet */
 @media screen and (min-width:768px) {
 	.button {
 		width: 10rem;

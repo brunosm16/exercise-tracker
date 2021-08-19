@@ -1,45 +1,17 @@
 .new-exercise {
 	display: flex;
 	justify-content: center;
-	width: 14.25rem;
+	width: 85%;
 	margin: 1rem;
 	padding: 1rem;
-	background: #cecece;
+	background: var(--clr-grey-2);
 }
 
-/* Iphone 6/7/8 */
-@media screen and (min-width: 375px) {
+/* Laptop & Desktop */
+@media screen and (min-width: 1366px) {
 	.new-exercise {
-		width: 18rem;
-	}
-}
-
-/* Pixel 2 */
-@media screen and (min-width: 411px) {
-	.new-exercise {
-		width: 20rem;
-	}
-}
-
-/* Surface Duo */
-@media screen and (min-width: 540px) {
-	.new-exercise {
-		width: 30rem;
-	}
-}
-
-/* iPad */
-@media screen and (min-width: 768px) {
-	.new-exercise {
-		width: 43rem;
-	}
-}
-
-/*
-    Laptop & Desktop
-*/
-@media screen and (min-width: 1110px) {
-    .new-exercise {
+		width: 45%;
+		margin:0;
 		margin-top: 8rem;
-    }
+	}
 }

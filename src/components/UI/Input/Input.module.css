@@ -54,7 +54,7 @@
 	}
 }
 
-/* iPad */
+/* Tablet */
 @media screen and (min-width:768px) {
 	.container input {
 		width: 18rem;
