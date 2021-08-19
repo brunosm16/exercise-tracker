@@ -13,17 +13,17 @@
     flex-direction: column-reverse;
     width: 95%;
     height: 6px;
-    background-color: var(--clr-green-dark);
+    background-color: var(--clr-blue-light);
     border-radius: 8px;
 }
 
 .toFill {
-    background-color: var(--clr-green-light);
+    background-color: var(--clr-grey-2);
     border-radius: 8px;
 }
 
 /* Pixel 2 */
-@media screen and (min-width:411px) {
+@media screen and (min-width:375px) {
     .chart-bar .title {
         font-size: 1rem;
     }

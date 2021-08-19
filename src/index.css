@@ -3,10 +3,11 @@
 /* Variables */
 :root {
 	--clr-grey-1: #cecece52;
-	--clr-grey-2:#cecece;
+	--clr-grey-2: #cecece;
 	--clr-green-dark: #143642;
 	--clr-green-light: #bbd2c5;
 	--clr-blue-dark: #29323c;
+	--clr-blue-light: #2c3e50;
 	--clr-white: #ffffff;
 	--linear-gradient-1: linear-gradient(to right, #29323c, #485563);
 	--linear-gradient-2: linear-gradient(to right, #2c3e50, #bdc3c7);
@@ -38,5 +39,6 @@ body {
 	.Wrapper {
 		flex-direction: row;
 		align-items: flex-start;
+		gap: 1rem;
 	}
 }

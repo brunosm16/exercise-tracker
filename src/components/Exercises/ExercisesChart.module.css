@@ -1,39 +1,11 @@
 .exercises-chart {
 	display: flex;
 	margin: 1rem;
-	width: 16rem;
-	background-color: #536976;
-	color: #fff;
+	width: 95%;
+	background-color: var(--clr-blue-dark);
+	color: var(--clr-white);
 	font-weight: bold;
 	border-radius: 15px;
-}
-
-/* Iphone 6/7/8 */
-@media screen and (min-width: 375px) {
-	.exercises-chart {
-		width: 20rem;
-	}
-}
-
-/* Pixel 2 */
-@media screen and (min-width: 411px) {
-	.exercises-chart {
-		width: 22rem;
-	}
-}
-
-/* Surface Duo */
-@media screen and (min-width: 540px) {
-	.exercises-chart {
-		width: 28rem;
-	}
-}
-
-/* iPad */
-@media screen and (min-width: 768px) {
-	.exercises-chart {
-		width: 43rem;
-	}
 }
 
 

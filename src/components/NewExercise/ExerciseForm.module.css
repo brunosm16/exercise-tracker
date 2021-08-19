@@ -19,11 +19,11 @@
 /* iPad Pro */
 @media screen and (min-width:1024px) {
     .controls {
-        margin: 1rem;
         justify-content: space-between;
+        margin: 1rem;
     }
 
     .control select {
-        margin-right: 2rem;
+        margin-right: 1rem;
     }
 }

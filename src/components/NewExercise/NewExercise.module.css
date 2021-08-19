@@ -8,9 +8,16 @@
 }
 
 /* Laptop & Desktop */
+@media screen and (min-width: 1024px) {
+	.new-exercise {
+		width: 65%;
+	}
+}
+
+/* Laptop & Desktop */
 @media screen and (min-width: 1366px) {
 	.new-exercise {
-		width: 45%;
+		width: 50%;
 		margin:0;
 		margin-top: 8rem;
 	}

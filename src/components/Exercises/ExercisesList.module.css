@@ -24,7 +24,7 @@
 	}
 }
 
-/* Iphone X */
+/* Mobile II */
 @media screen and (min-width: 375px) {
 	.list {
 		width: 22rem;
@@ -63,12 +63,8 @@
 	}
 
 	.list .empty-list-msg {
-		font-size: 1.2rem;
+		font-size: 1.4rem;
 	}
-
-	/* .list .empty-list-msg {
-		font-size: 0.75rem;
-	} */
 }
 
 

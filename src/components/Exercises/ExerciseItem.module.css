@@ -20,7 +20,7 @@
 	width: 100%;
 	font-size: 0.75rem;
 	background: var(--linear-gradient-1);
-	color: #fff;
+	color: var(--clr-white);
 }
 
 .divider {
@@ -54,7 +54,7 @@
 	}
 }
 
-/* iPad */
+/* Tablet */
 @media screen and (min-width: 768px) {
 	.item-container {
 		flex-direction: row;
@@ -63,5 +63,6 @@
 
 	.actions button {
 		width: 5rem;
+		font-size: 1.5rem;
 	}
 }
