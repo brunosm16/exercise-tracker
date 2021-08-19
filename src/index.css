@@ -2,21 +2,17 @@
 
 /* Variables */
 :root {
-	--clr-grey-1: #cecece52;
-	--clr-grey-2: #cecece;
-	--clr-green-dark: #143642;
-	--clr-green-light: #bbd2c5;
-	--clr-blue-dark: #29323c;
-	--clr-blue-light: #2c3e50;
-	--clr-white: #ffffff;
-	--linear-gradient-1: linear-gradient(to right, #29323c, #485563);
-	--linear-gradient-2: linear-gradient(to right, #2c3e50, #bdc3c7);
+	--bg-color-1: #2B2D42;
+	--bg-color-2: #8D99AE;
+	--bg-color-3: #1D3557;
+	--clr-white: #EDF2F4;
+	--clr-black: #001219;
 	--transition: all 0.3s ease-in-out;
 }
 
 body {
 	margin: 0;
-	background: var(--linear-gradient-2);
+	background: var(--bg-color-1);
 	font-family: 'Noto Sans JP', sans-serif;
 }
 
@@ -27,18 +23,12 @@ body {
 	justify-content: center;
 }
 
-/* For resolutions that don't support linear-gradient */
-@media screen and (max-width: 360px) {
-	body {
-		background: #bdc3c7;
-	}
-}
-
 /* Laptop & Desktop */
 @media screen and (min-width: 1366px) {
 	.Wrapper {
 		flex-direction: row;
 		align-items: flex-start;
 		gap: 1rem;
+		padding: 1rem;
 	}
 }

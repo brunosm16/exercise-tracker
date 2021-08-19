@@ -24,7 +24,7 @@ const ExerciseItem = ({ id, name, level, date }) => {
 				<ExerciseDate date={date} />
 
 				<div className={styles.actions}>
-					<Button isSubmit onClick={() => handleClick(true)}>
+					<Button  isSubmit onClick={() => handleClick(true)}>
 						✖
 					</Button>
 

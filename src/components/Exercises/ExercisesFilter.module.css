@@ -3,7 +3,7 @@
 	align-items: center;
 	width: 85%;
 	border-radius: 15px;
-	background-color: var(--clr-blue-light);
+	background-color: var(--bg-color-3);
 	padding: 1rem;
 }
 

@@ -7,7 +7,7 @@
 	color: var(--clr-white);
 	border-radius: 15px;
 	text-align: center;
-	background: var(--linear-gradient-1);
+	background: var(--bg-color-1);
 }
 
 @media screen and (min-width: 360px) {
@@ -19,6 +19,7 @@
 /* Tablet */
 @media screen and (min-width: 768px) {
 	.date {
+		width: 100%;
 		font-size: 1.2rem;
 	}
 }

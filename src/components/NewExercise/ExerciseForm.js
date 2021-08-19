@@ -139,6 +139,7 @@ const ExerciseForm = ({ onStopEdit }) => {
 						onBlur={nameValidateHandler}
 						value={nameState.value}
 						ref={nameRef}
+						cssClass={styles.input}
 					/>
 				</div>
 
@@ -149,6 +150,7 @@ const ExerciseForm = ({ onStopEdit }) => {
 						options={options}
 						onChange={levelChangeHandler}
 						selected={enteredLevel}
+						cssClass={styles.select}
 					/>
 				</div>
 
@@ -160,18 +162,24 @@ const ExerciseForm = ({ onStopEdit }) => {
 						min="2021-01-01"
 						max="2025-12-12"
 						onChange={dateChangeHandler}
+						cssClass={styles.input}
 					/>
 				</div>
 			</div>
 
 			<div className={styles.actions}>
 				<div className={styles.action}>
-					<Button isSubmit={false} onClick={cancelHandler}>
+					<Button
+						isSubmit={false}
+						onClick={cancelHandler}
+					>
 						Cancel
 					</Button>
 				</div>
 				<div className={styles.action}>
-					<Button isSubmit>Add Exercise</Button>
+					<Button isSubmit>
+						Add Exercise
+					</Button>
 				</div>
 			</div>
 		</form>

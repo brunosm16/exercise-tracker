@@ -1,56 +1,20 @@
 .list {
-	width: 15rem;
+	width: 100%;
 	max-height: 30rem;
 	border-radius: 15px;
 }
 
 .list .empty-list-msg {
-	background: #2c3e50;
+	background: var(--bg-color-3);
 	text-align: center;
 	border-radius: 15px;
-	color: #bbd2c5;
+	color: var(--clr-white);
 	padding: 1rem;
-	font-size: 0.675rem;
-}
-
-/* Iphone 5/SE */
-@media screen and (min-width: 320px) {
-	.list {
-		width: 18.5rem;
-	}
-
-	.list .empty-list-msg {
-		font-size: 0.75rem;
-	}
-}
-
-/* Mobile II */
-@media screen and (min-width: 375px) {
-	.list {
-		width: 22rem;
-	}
-
-	.list .empty-list-msg {
-		font-size: 0.875rem;
-	}
+	font-size: 0.75rem;
 }
 
 /* Pixel 2 */
 @media screen and (min-width: 411px) {
-	.list {
-		width: 23rem;
-	}
-
-	.list .empty-list-msg {
-		font-size: 0.975rem;
-	}
-}
-
-/* Surface Duo */
-@media screen and (min-width: 540px) {
-	.list {
-		width: 28rem;
-	}
 	.list .empty-list-msg {
 		font-size: 1rem;
 	}
@@ -58,10 +22,6 @@
 
 /* iPad */
 @media screen and (min-width: 768px) {
-	.list {
-		width: 43rem;
-	}
-
 	.list .empty-list-msg {
 		font-size: 1.4rem;
 	}

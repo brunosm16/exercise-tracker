@@ -2,10 +2,8 @@
 	display: flex;
 	margin: 1rem;
 	width: 95%;
-	background-color: var(--clr-blue-dark);
+	background-color: var(--bg-color-3);
 	color: var(--clr-white);
 	font-weight: bold;
 	border-radius: 15px;
 }
-
-

@@ -1,47 +1,47 @@
 .chart-bar {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: center;
 }
 
 .chart-bar .title {
-    font-size: 0.675rem;
+	font-size: 0.675rem;
 }
 
 .bar {
-    display: flex;
-    flex-direction: column-reverse;
-    width: 95%;
-    height: 6px;
-    background-color: var(--clr-blue-light);
-    border-radius: 8px;
+	display: flex;
+	flex-direction: column-reverse;
+	width: 95%;
+	height: 6px;
+	background-color: var(--bg-color-2);
+	border-radius: 8px;
 }
 
 .toFill {
-    background-color: var(--clr-grey-2);
-    border-radius: 8px;
+	background-color: var(--clr-white);
+	border-radius: 8px;
 }
 
 /* Pixel 2 */
-@media screen and (min-width:375px) {
-    .chart-bar .title {
-        font-size: 1rem;
-    }
+@media screen and (min-width: 375px) {
+	.chart-bar .title {
+		font-size: 1rem;
+	}
 }
 
 /* Tablet */
-@media screen and (min-width:768px) {
-    .chart-bar {
-        flex-direction: column;
-        width: 100%;
-    }
+@media screen and (min-width: 768px) {
+	.chart-bar {
+		flex-direction: column;
+		width: 100%;
+	}
 
-    .chart-bar .title {
-        font-size: 1.2rem;
-    }
+	.chart-bar .title {
+		font-size: 1.2rem;
+	}
 
-    .bar {
-        width: 50%;
-        height: 10rem;
-    }
+	.bar {
+		width: 50%;
+		height: 10rem;
+	}
 }

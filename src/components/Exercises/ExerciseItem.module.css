@@ -2,7 +2,7 @@
 	padding: 1rem;
 	margin: 1rem;
 	border-radius: 15px;
-	background: var(--clr-blue-dark);
+	background: var(--bg-color-3);
 }
 
 .item-container {
@@ -19,7 +19,7 @@
 	border-radius: 15px;
 	width: 100%;
 	font-size: 0.75rem;
-	background: var(--linear-gradient-1);
+	background: var(--bg-color-1);
 	color: var(--clr-white);
 }
 
@@ -39,7 +39,7 @@
 .actions button {
 	width: 30%;
 	font-size: 0.75rem;
-	background: var(--linear-gradient-1);
+	background: var(--bg-color-1);
 	transition: var(--transition);
 }
 
@@ -51,6 +51,14 @@
 	.info,
 	.actions button {
 		font-size: 1.2rem;
+	}
+}
+
+/* Pixel 2 */
+@media screen and (min-width: 411px) {
+	.actions .button {
+		width: 8rem;
+		font-size: 1rem;
 	}
 }
 

@@ -1,4 +1,4 @@
-.chart {
+.chart-container {
     display:flex;
     flex-direction: column;
     margin: 1rem;
@@ -7,7 +7,7 @@
 
 /* Tablet */
 @media screen and (min-width: 768px) {
-    .chart {
+    .chart-container {
         flex-direction: row;
         margin: 2rem;
     }

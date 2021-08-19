@@ -3,7 +3,7 @@ import ChartBar from './ChartBar';
 import styles from './Chart.module.css';
 
 const Chart = ({ dataPoints, maxValue }) => (
-	<div className={styles.chart}>
+	<div className={styles['chart-container']}>
 		{dataPoints.map((dataPoint) => (
 			<ChartBar
 				key={dataPoint.title}
