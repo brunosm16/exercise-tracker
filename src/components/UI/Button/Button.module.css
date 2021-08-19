@@ -2,43 +2,8 @@
 	width: 7rem;
 	outline: none;
 	padding: 0.5rem;
-	font-size: 0.875rem;
 	text-transform: capitalize;
 	border-radius: 20px;
 	border: transparent;
 	cursor: pointer;
-	color: #fff;
-    font-weight: 700;
-	background: #2c3e50;
-	transition: all 0.3s ease-in-out;
-}
-
-.button:hover {
-	background-color: #E4E5E6;
-	color: #1c1c1c;
-	cursor:pointer;
-}
-
-/* Pixel 2 */
-@media screen and (min-width:411px) {
-	.button {
-		width: 8rem;
-		font-size: 1rem; 
-	}
-}
-
-/* Tablet */
-@media screen and (min-width:768px) {
-	.button {
-		width: 10rem;
-		font-size: 1.2rem;
-	}
-}
-
-/* Laptop */
-@media screen and (min-width:1366px) {
-	.button {
-		width: 12rem;
-		font-size: 1.4rem;
-	}
 }

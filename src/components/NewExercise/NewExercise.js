@@ -10,7 +10,7 @@ const NewExercise = () => {
 	const [isEdit, setIsEdit] = useState(false);
 
 	/* State to check if user is editing a Exercise */
-	const [isEditing, setIsEditing] = useState(false);
+	const [isEditing, setIsEditing] = useState();
 
 	const exerciseCtx = useContext(ExercisesContext);
 	const [editId, onResetId] = [exerciseCtx.editId, exerciseCtx.onResetId];

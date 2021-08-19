@@ -5,7 +5,7 @@
 }
 
 .chart-bar .title {
-	font-size: 0.675rem;
+	font-size: 0.75rem;
 }
 
 .bar {
@@ -13,7 +13,7 @@
 	flex-direction: column-reverse;
 	width: 95%;
 	height: 6px;
-	background-color: var(--bg-color-2);
+	background-color: var(--bg-clr-2);
 	border-radius: 8px;
 }
 
@@ -25,7 +25,7 @@
 /* Pixel 2 */
 @media screen and (min-width: 375px) {
 	.chart-bar .title {
-		font-size: 1rem;
+		font-size: 0.75rem;
 	}
 }
 

@@ -8,10 +8,6 @@ import ExercisesContext from '../../context/exercises-context';
 const ExerciseItem = ({ id, name, level, date }) => {
 	const exercisesCtx = useContext(ExercisesContext);
 
-	const handleClick = (isDelete) => {
-		exercisesCtx.onSelectOperation(id, isDelete);
-	};
-
 	return (
 		<li className={styles.item}>
 			<div className={styles['item-container']}>
@@ -24,11 +20,17 @@ const ExerciseItem = ({ id, name, level, date }) => {
 				<ExerciseDate date={date} />
 
 				<div className={styles.actions}>
-					<Button  isSubmit onClick={() => handleClick(true)}>
+					<Button
+						isSubmit
+						onClick={() => exercisesCtx.onSelectOperation(id, true)}
+					>
 						✖
 					</Button>
 
-					<Button isSubmit onClick={() => handleClick(false)}>
+					<Button
+						isSubmit
+						onClick={() => exercisesCtx.onSelectOperation(id, false)}
+					>
 						✎
 					</Button>
 				</div>

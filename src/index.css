@@ -2,17 +2,18 @@
 
 /* Variables */
 :root {
-	--bg-color-1: #2B2D42;
-	--bg-color-2: #8D99AE;
-	--bg-color-3: #1D3557;
-	--clr-white: #EDF2F4;
+	--bg-clr-1: #2b2d42;
+	--bg-clr-2: #8d99ae;
+	--bg-clr-3: #1d3557;
+	--clr-white: #edf2f4;
+	--clr-grey: #cecece;
 	--clr-black: #001219;
 	--transition: all 0.3s ease-in-out;
 }
 
 body {
 	margin: 0;
-	background: var(--bg-color-1);
+	background: var(--bg-clr-1);
 	font-family: 'Noto Sans JP', sans-serif;
 }
 

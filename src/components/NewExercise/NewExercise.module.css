@@ -4,32 +4,43 @@
 	width: 85%;
 	margin: 1rem;
 	padding: 1rem;
-	background: var(--bg-color-3);
+	background: var(--bg-clr-3);
 }
 
 .new-exercise button {
-    background-color: var(--bg-color-1);
-    color:var(--clr-white);
+	font-weight: 700;
+	color: var(--clr-white);
+	background: var(--bg-clr-1);
+	transition: var(--transition);
 }
 
 .new-exercise button:hover {
-    color: var(--clr-black);
-    background-color: var(--clr-white);
+	background: var(--bg-clr-2);
+	color: var(--clr-black);
 }
 
-
-/* Laptop & Desktop */
-@media screen and (min-width: 1024px) {
-	.new-exercise {
-		width: 85%;
+/* Pixel 2 */
+@media screen and (min-width: 411px) {
+	.new-exercise button  {
+		width: 8rem;
+		font-size: 1rem;
 	}
 }
 
-/* Laptop & Desktop */
+/* Tablet */
+@media screen and (min-width: 768px) {
+	.new-exercise button  {
+		width: 10rem;
+		font-size: 1.2rem;
+	}
+}
+
+/* Laptop */
 @media screen and (min-width: 1366px) {
 	.new-exercise {
-		width: 50%;
-		margin: 0;
-		margin-top: 8rem;
+		width: 45%;
+	}
+	.new-exercise button  {
+		width: 12rem;
 	}
 }
