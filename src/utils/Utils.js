@@ -29,6 +29,19 @@ export const dateToHTML = (jsDate) => {
 	return `${year}-${month}-${day}`;
 };
 
+/**
+ * Receives a list of items with date in JSON format and
+ * convert those items date to JS Date.
+ */
+export const convertListDateToJs = (list) =>
+	list.map((item) => {
+		const convertedItem = item;
+
+		convertedItem.date = new Date(item.date);
+
+		return convertedItem;
+	});
+
 export const validateName = (name) => name.trim().length >= 4;
 
 /**

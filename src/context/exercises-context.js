@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { convertListDateToJs } from '../utils/Utils';
 
 const ExercisesContext = React.createContext({
 	editId: null,
@@ -12,58 +13,43 @@ const ExercisesContext = React.createContext({
 	onResetId: () => {},
 });
 
-export const ExercisesContextProvider = ({ children }) => {
-	const LEVELS = ['Easy', 'Normal', 'Hard', 'Advanced'];
-	const MOCK_EXERCISES = [
-		{
-			id: 1,
-			name: 'Wild & Free',
-			level: 'Easy',
-			date: new Date(2021, 0, 1),
-		},
-		{
-			id: 2,
-			name: 'High Volume',
-			level: 'Normal',
-			date: new Date(2021, 3, 21),
-		},
-		{
-			id: 3,
-			name: 'Level Up Abs',
-			level: 'Hard',
-			date: new Date(2021, 5, 18),
-		},
-		{
-			id: 4,
-			name: 'Instant Dungeon',
-			level: 'Normal',
-			date: new Date(2021, 3, 10),
-		},
-		{
-			id: 5,
-			name: 'Speed +1',
-			level: 'Normal',
-			date: new Date(2021, 5, 8),
-		},
-		{
-			id: 6,
-			name: 'Warform',
-			level: 'Hard',
-			date: new Date(2021, 5, 7),
-		},
-		{
-			id: 7,
-			name: 'Power Boost ',
-			level: 'Hard',
-			date: new Date(2021, 3, 7),
-		},
-	];
+const URL = 'http://localhost:3000/';
 
-	const [exercises, setExercises] = useState(MOCK_EXERCISES);
+export const ExercisesContextProvider = ({ children }) => {
+	const [exercises, setExercises] = useState([]);
+	const [exercisesLevels, setExercisesLevels] = useState([]);
 
 	// ID of Exercise to be edited,
 	// if NULL, operation is not edit
 	const [editId, setEditId] = useState();
+
+	// todo - Fetch exercises from server
+	const fetchExercises = () => {
+		fetch(`${URL}exercises`)
+			.then((response) => response.json())
+			.then((data) => {
+				/* Before set exercises State, convert each data to JS */
+				const convertedExercises = convertListDateToJs(data);
+				setExercises(convertedExercises);
+			});
+	};
+
+	const fetchExercisesLevels = () => {
+		fetch(`${URL}exercises_levels`)
+			.then((response) => response.json())
+			.then((data) => {
+				/* Extract the levels from JSON */
+				const levels = data.map((currLevel) => currLevel.level);
+
+				setExercisesLevels(levels);
+			});
+	};
+
+	/* Fetch data from server on page load */
+	useEffect(() => {
+		fetchExercises();
+		fetchExercisesLevels();
+	}, []);
 
 	const updateExercises = (updated) =>
 		exercises.map((e) => {
@@ -109,7 +95,7 @@ export const ExercisesContextProvider = ({ children }) => {
 			value={{
 				editId,
 				exercises,
-				options: LEVELS,
+				options: exercisesLevels,
 				onAddExercise: handleAddExercise,
 				onSelectOperation: handleOperation,
 				onResetId: handleResetId,
