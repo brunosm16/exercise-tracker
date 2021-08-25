@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { convertListDateToJs } from '../utils/Utils';
 
 const ExercisesContext = React.createContext({
@@ -11,45 +11,76 @@ const ExercisesContext = React.createContext({
 	// eslint-disable-next-line no-unused-vars
 	onAddExercise: (data) => {},
 	onResetId: () => {},
+	isLoading: false,
+	requestError: null,
 });
 
 const URL = 'http://localhost:3000/';
+const REQUEST_ERROR_MESSAGE = 'An Error occurred while processing your request';
 
 export const ExercisesContextProvider = ({ children }) => {
 	const [exercises, setExercises] = useState([]);
 	const [exercisesLevels, setExercisesLevels] = useState([]);
+	const [requestError, setRequestError] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 
 	// ID of Exercise to be edited,
 	// if NULL, operation is not edit
 	const [editId, setEditId] = useState();
 
-	// todo - Fetch exercises from server
-	const fetchExercises = () => {
-		fetch(`${URL}exercises`)
-			.then((response) => response.json())
-			.then((data) => {
-				/* Before set exercises State, convert each data to JS */
-				const convertedExercises = convertListDateToJs(data);
-				setExercises(convertedExercises);
-			});
-	};
+	const fetchExercises = useCallback(async () => {
+		/* Clear any previous errors */
+		setRequestError(null);
+		setIsLoading(false);
 
-	const fetchExercisesLevels = () => {
-		fetch(`${URL}exercises_levels`)
-			.then((response) => response.json())
-			.then((data) => {
-				/* Extract the levels from JSON */
-				const levels = data.map((currLevel) => currLevel.level);
+		console.log('executing');
 
-				setExercisesLevels(levels);
-			});
-	};
+		try {
+			setIsLoading(true);
+			const response = await fetch(`${URL}exercises`);
+
+			// Error occurred
+			if (!response.ok) {
+				throw new Error(REQUEST_ERROR_MESSAGE);
+			}
+
+			const data = await response.json();
+
+			/* Before set exercises State, convert each data to JS */
+			const convertedExercises = convertListDateToJs(data);
+			setExercises(convertedExercises);
+		} catch (err) {
+			setRequestError(err.message);
+		}
+		setIsLoading(false);
+	}, []);
+
+	const fetchExercisesLevels = useCallback(async () => {
+		/* Clear any previous errors */
+		setRequestError(null);
+		setIsLoading(false);
+
+		try {
+			setIsLoading(true);
+
+			const response = await fetch(`${URL}exercises_levels`);
+			const data = await response.json();
+			/* Extract the levels from JSON */
+			const levels = data.map((currLevel) => currLevel.level);
+
+			setExercisesLevels(levels);
+		} catch (err) {
+			setRequestError(err.message);
+		}
+
+		setIsLoading(false);
+	}, []);
 
 	/* Fetch data from server on page load */
 	useEffect(() => {
 		fetchExercises();
 		fetchExercisesLevels();
-	}, []);
+	}, [fetchExercises, fetchExercisesLevels]);
 
 	const updateExercises = (updated) =>
 		exercises.map((e) => {
@@ -99,6 +130,8 @@ export const ExercisesContextProvider = ({ children }) => {
 				onAddExercise: handleAddExercise,
 				onSelectOperation: handleOperation,
 				onResetId: handleResetId,
+				isLoading,
+				requestError,
 			}}
 		>
 			{children}

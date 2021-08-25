@@ -6,6 +6,17 @@
     width: 95%;
 }
 
+.msg {
+    padding: 1rem;
+    margin: 1rem;
+    background-color: var(--bg-clr-3);
+    color: var(--white);
+}
+
+.error-msg {
+    color: var(--clr-red);
+}
+
 /* iPad Pro */
 @media screen and (min-width: 1366px) {
     .exercises {

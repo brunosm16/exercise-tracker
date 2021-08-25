@@ -19,12 +19,6 @@
 	}
 }
 
-@media screen and (min-width: 375px) {
-	.filter-select label {
-		/* font-size: 1rem; */
-	}
-}
-
 /* Pixel 2 */
 @media screen and (min-width: 411px) {
 	.filter-select {
