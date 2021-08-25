@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ExercisesContextProvider } from './context/exercises-context';
+import ExercisesContextProvider from './context/ExercisesContextProvider';
 
 ReactDOM.render(
 	<ExercisesContextProvider>

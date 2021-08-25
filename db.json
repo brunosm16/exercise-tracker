@@ -17,6 +17,12 @@
       "level": "Easy",
       "date": "2021-02-11T03:00:00.000Z",
       "id": 4
+    },
+    {
+      "name": "Wild & Free Version 2",
+      "level": "Advanced",
+      "date": "2021-01-29T03:00:00.000Z",
+      "id": 5
     }
   ],
   "exercises_levels": [
