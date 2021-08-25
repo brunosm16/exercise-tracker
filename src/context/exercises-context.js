@@ -117,7 +117,7 @@ export const ExercisesContextProvider = ({ children }) => {
 	async function deleteExercise(id) {
 		const response = await fetch(
 			`${URL}/exercises/${id}`,
-			getRequestObj('DELETE', CONTENT_TYPE)
+			getRequestObj('DELETE', {}, CONTENT_TYPE)
 		);
 		const data = response.json();
 
