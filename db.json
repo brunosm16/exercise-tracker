@@ -1,64 +1,40 @@
 {
-	"exercises": [
-		{
-			"id": 1,
-			"name": "Wild & Free",
-			"level": "Easy",
-			"date": "2021-01-01T03:00:00.000Z"
-		},
-		{
-			"id": 2,
-			"name": "High Volume",
-			"level": "Normal",
-			"date": "2021-04-21T03:00:00.000Z"
-		},
-		{
-			"id": 3,
-			"name": "Level Up Abs",
-			"level": "Hard",
-			"date": "2021-06-18T03:00:00.000Z"
-		},
-		{
-			"id": 4,
-			"name": "Instant Dungeon",
-			"level": "Normal",
-			"date": "2021-04-10T03:00:00.000Z"
-		},
-		{
-			"id": 5,
-			"name": "Speed +1",
-			"level": "Normal",
-			"date": "2021-06-08T03:00:00.000Z"
-		},
-		{
-			"id": 6,
-			"name": "Warform",
-			"level": "Hard",
-			"date": "2021-06-07T03:00:00.000Z"
-		},
-		{
-			"id": 7,
-			"name": "Power Boost",
-			"level": "Hard",
-			"date": "2021-04-07T03:00:00.000Z"
-		}
-	],
-	"exercises_levels": [
-		{
-			"id": 1,
-			"level": "Easy"
-		},
-		{
-			"id": 2,
-			"level": "Normal"
-		},
-		{
-			"id": 3,
-			"level": "Hard"
-		},
-		{
-			"id": 4,
-			"level": "Advanced"
-		}
-	]
+  "exercises": [
+    {
+      "name": "Neck Moblity",
+      "level": "Normal",
+      "date": "2021-04-17T03:00:00.000Z",
+      "id": 2
+    },
+    {
+      "name": "Hero ",
+      "level": "Hard",
+      "date": "2021-08-28T03:00:00.000Z",
+      "id": 3
+    },
+    {
+      "name": "Daily Cardio Dose",
+      "level": "Easy",
+      "date": "2021-02-11T03:00:00.000Z",
+      "id": 4
+    }
+  ],
+  "exercises_levels": [
+    {
+      "id": 1,
+      "level": "Easy"
+    },
+    {
+      "id": 2,
+      "level": "Normal"
+    },
+    {
+      "id": 3,
+      "level": "Hard"
+    },
+    {
+      "id": 4,
+      "level": "Advanced"
+    }
+  ]
 }

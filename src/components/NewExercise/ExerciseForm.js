@@ -86,7 +86,6 @@ const ExerciseForm = ({ onStopEdit }) => {
 
 	const saveInput = () => {
 		exerciseCtx.onAddExercise({
-			id: editId || Math.random(),
 			name: nameState.value,
 			level: enteredLevel,
 			date: dateToJs(enteredDate),

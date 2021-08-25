@@ -4,7 +4,7 @@ import styles from './Select.module.css';
 const Select = ({ id, label, options, onChange, selected, cssClass }) => (
 	<div className={`${styles.container} ${cssClass}`}>
 		<label htmlFor={id}>{label}</label>
-		<select id={id} name={id} onChange={onChange} select={selected}>
+		<select id={id} name={id} onChange={onChange} value={selected}>
 			{options.map((option) => (
 				<option key={option} value={option}>
 					{option}

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
-import { convertListDateToJs } from '../utils/Utils';
+import { convertListDateToJs, getRequestObj } from '../utils/Utils';
 
 const ExercisesContext = React.createContext({
 	editId: null,
@@ -15,7 +15,8 @@ const ExercisesContext = React.createContext({
 	requestError: null,
 });
 
-const URL = 'http://localhost:3000/';
+const URL = 'http://localhost:3000';
+const CONTENT_TYPE = 'application/json';
 const REQUEST_ERROR_MESSAGE = 'An Error occurred while processing your request';
 
 export const ExercisesContextProvider = ({ children }) => {
@@ -33,11 +34,9 @@ export const ExercisesContextProvider = ({ children }) => {
 		setRequestError(null);
 		setIsLoading(false);
 
-		console.log('executing');
-
 		try {
 			setIsLoading(true);
-			const response = await fetch(`${URL}exercises`);
+			const response = await fetch(`${URL}/exercises`);
 
 			// Error occurred
 			if (!response.ok) {
@@ -63,7 +62,7 @@ export const ExercisesContextProvider = ({ children }) => {
 		try {
 			setIsLoading(true);
 
-			const response = await fetch(`${URL}exercises_levels`);
+			const response = await fetch(`${URL}/exercises_levels`);
 			const data = await response.json();
 			/* Extract the levels from JSON */
 			const levels = data.map((currLevel) => currLevel.level);
@@ -82,17 +81,6 @@ export const ExercisesContextProvider = ({ children }) => {
 		fetchExercisesLevels();
 	}, [fetchExercises, fetchExercisesLevels]);
 
-	const updateExercises = (updated) =>
-		exercises.map((e) => {
-			let current = e;
-
-			if (current.id === updated.id) {
-				current = updated;
-			}
-
-			return current;
-		});
-
 	/**
 	 * Set editId to null.
 	 */
@@ -100,23 +88,44 @@ export const ExercisesContextProvider = ({ children }) => {
 		setEditId(null);
 	};
 
-	const handleAddExercise = (data) => {
+	async function handleAddExercise(exercise) {
+		let fetchURL;
+		let req;
+
 		// Edit operation
 		if (editId) {
-			// Reset editId
-			handleResetId(null);
-			return setExercises(updateExercises(data));
+			fetchURL = `${URL}/exercises/${editId}`;
+			req = getRequestObj('PUT', exercise, CONTENT_TYPE);
+		} else {
+			// Insert operation
+			fetchURL = `${URL}/exercises`;
+			req = getRequestObj('POST', exercise, CONTENT_TYPE);
 		}
 
-		// Insert operation
-		return setExercises((previousData) => [data, ...previousData]);
-	};
+		const response = await fetch(fetchURL, req);
+		const data = response.json();
 
-	const deleteExercise = (id) => {
-		setExercises((previousData) =>
-			previousData.filter((exercise) => exercise.id !== id)
+		// Reload Exercises after insertion
+		fetchExercises();
+
+		// Reload editId
+		setEditId(null);
+
+		return data;
+	}
+
+	async function deleteExercise(id) {
+		const response = await fetch(
+			`${URL}/exercises/${id}`,
+			getRequestObj('DELETE', CONTENT_TYPE)
 		);
-	};
+		const data = response.json();
+
+		// Reload Exercises after deletion
+		fetchExercises();
+
+		return data;
+	}
 
 	const handleOperation = (itemId, isDelete) =>
 		isDelete ? deleteExercise(itemId) : setEditId(itemId);

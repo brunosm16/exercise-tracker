@@ -18,9 +18,8 @@ const Exercises = () => {
 		setFilteredLevel(filter);
 	};
 
-
 	/* Content to be rendered */
-	let content = <p className={styles.msg}>No exercises found</p>;
+	let content;
 
 	if (exercisesCtx.isLoading) {
 		content = <p className={styles.msg}>Loading...</p>;
@@ -28,21 +27,31 @@ const Exercises = () => {
 
 	if (exercisesCtx.requestError) {
 		content = (
-			<p className={`${styles.msg} ${styles['error-msg']}`}>{exercisesCtx.requestError}</p>
+			<p className={`${styles.msg} ${styles['error-msg']}`}>
+				{exercisesCtx.requestError}
+			</p>
 		);
 	}
 
-	if (exercisesCtx.exercises.length > 0) {
-		content = <div className={styles.exercises}>
-			<ExercisesFilter
-				onSelectedFilter={handleSelectedFilter}
-				select={filteredLevel}
-			/>
+	if (exercisesCtx.exercises) {
+		let contentList = <p className={styles.msg}>No exercises found</p>;
 
-			<ExercisesChart exercises={itemsByLevel} />
+		if (itemsByLevel.length > 0) {
+			contentList = <ExercisesList exercises={itemsByLevel} />;
+		}
 
-			<ExercisesList exercises={itemsByLevel} />
-		</div>;
+		content = (
+			<div className={styles.exercises}>
+				<ExercisesFilter
+					onSelectedFilter={handleSelectedFilter}
+					select={filteredLevel}
+				/>
+
+				<ExercisesChart exercises={itemsByLevel} />
+
+				{contentList}
+			</div>
+		);
 	}
 
 	return <>{content}</>;

@@ -1,7 +1,7 @@
 .date {
 	display: flex;
 	justify-content: space-between;
-	width: 80%;
+	width: 100%;
 	padding: 0 1rem;
 	font-size: 0.75rem;
 	color: var(--clr-white);
@@ -17,10 +17,3 @@
 	}
 }
 
-/* Tablet */
-@media screen and (min-width: 768px) {
-	.date {
-		width: 100%;
-		font-size: 1.2rem;
-	}
-}

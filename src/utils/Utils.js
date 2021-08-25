@@ -56,3 +56,11 @@ export const findItemById = (id, items) =>
  */
 export const stateIsNull = (state) =>
 	state.isValid === null ? true : state.isValid;
+
+export const getRequestObj = (method, data = {}, contentType) => ({
+		method,
+		body : JSON.stringify(data),
+		headers: {
+			'Content-Type': contentType,
+		}
+	})
