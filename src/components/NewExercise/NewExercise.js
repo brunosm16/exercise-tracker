@@ -34,7 +34,7 @@ const NewExercise = () => {
 			{(isEdit || isEditing) && <ExerciseForm onStopEdit={handleCloseEdit} />}
 
 			{!isEdit && !isEditing && (
-				<Button isSubmit={false} onClick={handleOpenEdit}>
+				<Button isSubmit={false} disabled={exerciseCtx.levels.length === 0} onClick={handleOpenEdit}>
 					Add Exercise
 				</Button>
 			)}

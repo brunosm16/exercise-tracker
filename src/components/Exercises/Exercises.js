@@ -8,9 +8,9 @@ import ExercisesContext from '../../context/exercises-context';
 const Exercises = () => {
 	const [filteredLevel, setFilteredLevel] = useState('Easy');
 
-	const exercisesCtx = useContext(ExercisesContext);
+	const { exercises, isLoading, requestError } = useContext(ExercisesContext);
 
-	const itemsByLevel = exercisesCtx.exercises.filter(
+	const itemsByLevel = exercises.filter(
 		(exercise) => exercise.level === filteredLevel
 	);
 
@@ -19,28 +19,33 @@ const Exercises = () => {
 	};
 
 	/* Content to be rendered */
-	let content;
+	let exercisesList;
 
-	if (exercisesCtx.isLoading) {
-		content = <p className={styles.msg}>Loading...</p>;
+	if (isLoading) {
+		exercisesList = <p className={styles.msg}>Loading...</p>;
 	}
 
-	if (exercisesCtx.requestError) {
-		content = (
+	if (requestError) {
+		console.log(requestError);
+		exercisesList = (
 			<p className={`${styles.msg} ${styles['error-msg']}`}>
-				{exercisesCtx.requestError}
+				An error occurred while trying to load exercises
 			</p>
 		);
 	}
 
-	if (exercisesCtx.exercises) {
-		let contentList = <p className={styles.msg}>No exercises found</p>;
-
-		if (itemsByLevel.length > 0) {
-			contentList = <ExercisesList exercises={itemsByLevel} />;
+	if (exercises && !requestError && !isLoading) {
+		if (itemsByLevel.length === 0) {
+			exercisesList = <p className={styles.msg}>No exercises found</p>;
 		}
 
-		content = (
+		if (itemsByLevel.length > 0) {
+			exercisesList = <ExercisesList exercises={itemsByLevel} />;
+		}
+	}
+
+	return (
+		<>
 			<div className={styles.exercises}>
 				<ExercisesFilter
 					onSelectedFilter={handleSelectedFilter}
@@ -49,12 +54,10 @@ const Exercises = () => {
 
 				<ExercisesChart exercises={itemsByLevel} />
 
-				{contentList}
+				{exercisesList}
 			</div>
-		);
-	}
-
-	return <>{content}</>;
+		</>
+	);
 };
 
 export default Exercises;

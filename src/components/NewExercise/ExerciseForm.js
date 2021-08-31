@@ -32,10 +32,10 @@ const ExerciseForm = ({ onStopEdit }) => {
 	const nameRef = useRef();
 
 	const exerciseCtx = useContext(ExercisesContext);
-	const [editId, exercises, options] = [
+	const [editId, exercises, levels] = [
 		exerciseCtx.editId,
 		exerciseCtx.exercises,
-		exerciseCtx.options,
+		exerciseCtx.levels,
 	];
 	const editExercise = findItemById(editId, exercises);
 
@@ -146,7 +146,7 @@ const ExerciseForm = ({ onStopEdit }) => {
 					<Select
 						id="level"
 						label="level"
-						options={options}
+						levels={levels}
 						onChange={levelChangeHandler}
 						selected={enteredLevel}
 						cssClass={styles['control-select']}

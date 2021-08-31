@@ -7,3 +7,14 @@
 	border: transparent;
 	cursor: pointer;
 }
+
+.button:disabled {
+	background: var(--clr-black);
+	color: var(--clr-white);
+	cursor: not-allowed;
+}
+
+.button:disabled:hover {
+	background: var(--clr-black);
+	color: var(--clr-white);
+}

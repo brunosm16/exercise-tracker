@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import UseHttp from '../hooks/use-http';
 import { convertListDateToJs, getRequestObj } from '../utils/Utils';
 import ExercisesContext from './exercises-context';
 
@@ -8,75 +9,51 @@ import ExercisesContext from './exercises-context';
  */
 const URL = 'http://localhost:3000';
 const CONTENT_TYPE = 'application/json';
-const REQUEST_ERROR_MESSAGE = 'An Error occurred while processing your request';
 
 const ExercisesContextProvider = ({ children }) => {
+	// todo -- fetchExercises with use-http.
+
 	const [exercises, setExercises] = useState([]);
-	const [exercisesLevels, setExercisesLevels] = useState([]);
-	const [requestError, setRequestError] = useState(null);
-	const [isLoading, setIsLoading] = useState(false);
+	const [levels, setLevels] = useState([]);
 
 	// ID of Exercise to be edited,
 	// if NULL, operation is not edit
 	const [editId, setEditId] = useState();
 
-	const fetchExercises = useCallback(async () => {
-		/* Clear any previous errors */
-		setRequestError(null);
-		setIsLoading(false);
+	const transformExercises = (data) => {
+		/* Before set exercises State, convert each data to JS */
+		const convertedExercises = convertListDateToJs(data);
+		setExercises(convertedExercises);
+	};
 
-		try {
-			setIsLoading(true);
-			const response = await fetch(`${URL}/exercises`);
-
-			// Error occurred
-			if (!response.ok) {
-				throw new Error(REQUEST_ERROR_MESSAGE);
-			}
-
-			const data = await response.json();
-
-			/* Before set exercises State, convert each data to JS */
-			const convertedExercises = convertListDateToJs(data);
-			setExercises(convertedExercises);
-		} catch (err) {
-			setRequestError(err.message);
-		}
-		setIsLoading(false);
-	}, []);
-
-	const fetchExercisesLevels = useCallback(async () => {
-		/* Clear any previous errors */
-		setRequestError(null);
-		setIsLoading(false);
-
-		try {
-			setIsLoading(true);
-
-			const response = await fetch(`${URL}/exercises_levels`);
-			const data = await response.json();
-			/* Extract the levels from JSON */
-			const levels = data.map((currLevel) => currLevel.level);
-
-			setExercisesLevels(levels);
-		} catch (err) {
-			setRequestError(err.message);
-		}
-
-		setIsLoading(false);
-	}, []);
+	const {
+		isLoading,
+		requestError,
+		sendRequest: fetchExercises,
+	} = UseHttp(
+		{
+			url: `${URL}/exercises`,
+			headers: {
+				'Content-Types': 'application/json',
+			},
+		},
+		transformExercises
+	);
 
 	/* Fetch data from server on page load */
 	useEffect(() => {
 		fetchExercises();
-		fetchExercisesLevels();
-	}, [fetchExercises, fetchExercisesLevels]);
+	}, [fetchExercises]);
 
 	/**
 	 * Set editId to null.
 	 */
 	const handleResetId = () => {
 		setEditId(null);
+	};
+
+	const handleAddLevel = (data) => {
+		setLevels((previousData) => [...previousData, data]);
 	};
 
 	async function handleAddExercise(exercise) {
@@ -126,8 +103,9 @@ const ExercisesContextProvider = ({ children }) => {
 			value={{
 				editId,
 				exercises,
-				options: exercisesLevels,
+				levels,
 				onAddExercise: handleAddExercise,
+				onAddLevel: handleAddLevel,
 				onSelectOperation: handleOperation,
 				onResetId: handleResetId,
 				isLoading,

@@ -12,6 +12,18 @@
 	color: var(--clr-white);
 }
 
+.msg {
+	width: 85%;
+	padding: 1rem;
+	text-align: center;
+	background: var(--bg-clr-3);
+	color: var(--clr-white);
+}
+
+.error-msg {
+	color: var(--clr-red);
+}
+
 /* iPhone 5/SE */
 @media screen and (min-width: 320px) {
 	.filter-select {
