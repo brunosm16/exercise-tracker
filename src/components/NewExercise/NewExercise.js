@@ -13,7 +13,10 @@ const NewExercise = () => {
 	const [isEditing, setIsEditing] = useState();
 
 	const exerciseCtx = useContext(ExercisesContext);
-	const [editId, onResetId] = [exerciseCtx.editId, exerciseCtx.onResetId];
+	const [editId, onResetEditId] = [
+		exerciseCtx.editId,
+		exerciseCtx.onResetEditId,
+	];
 
 	useEffect(() => {
 		setIsEditing(editId);
@@ -21,7 +24,7 @@ const NewExercise = () => {
 
 	const handleCloseEdit = () => {
 		/* Close form when Editing */
-		onResetId();
+		onResetEditId();
 		setIsEdit(false);
 	};
 

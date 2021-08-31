@@ -1,135 +1,117 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
-import { convertListDateToJs, getRequestObj } from '../utils/Utils';
+import React, { useEffect, useState } from 'react';
+import UseHttp from '../hooks/use-http';
+import { removeListItem, updateListItem } from '../utils/Utils';
 import ExercisesContext from './exercises-context';
-
-/**
- * Constants used
- */
-const URL = 'http://localhost:3000';
-const CONTENT_TYPE = 'application/json';
-const REQUEST_ERROR_MESSAGE = 'An Error occurred while processing your request';
 
 const ExercisesContextProvider = ({ children }) => {
 	const [exercises, setExercises] = useState([]);
-	const [exercisesLevels, setExercisesLevels] = useState([]);
-	const [requestError, setRequestError] = useState(null);
-	const [isLoading, setIsLoading] = useState(false);
+	const [levels, setLevels] = useState([]);
 
 	// ID of Exercise to be edited,
 	// if NULL, operation is not edit
 	const [editId, setEditId] = useState();
 
-	const fetchExercises = useCallback(async () => {
-		/* Clear any previous errors */
-		setRequestError(null);
-		setIsLoading(false);
+	const transformLevels = (data) => {
+		/* Extract the levels from JSON */
+		const convertedLevels = data.map((currLevel) => currLevel.level);
 
-		try {
-			setIsLoading(true);
-			const response = await fetch(`${URL}/exercises`);
+		setLevels(convertedLevels);
+	};
 
-			// Error occurred
-			if (!response.ok) {
-				throw new Error(REQUEST_ERROR_MESSAGE);
-			}
-
-			const data = await response.json();
-
-			/* Before set exercises State, convert each data to JS */
-			const convertedExercises = convertListDateToJs(data);
-			setExercises(convertedExercises);
-		} catch (err) {
-			setRequestError(err.message);
-		}
-		setIsLoading(false);
-	}, []);
-
-	const fetchExercisesLevels = useCallback(async () => {
-		/* Clear any previous errors */
-		setRequestError(null);
-		setIsLoading(false);
-
-		try {
-			setIsLoading(true);
-
-			const response = await fetch(`${URL}/exercises_levels`);
-			const data = await response.json();
-			/* Extract the levels from JSON */
-			const levels = data.map((currLevel) => currLevel.level);
-
-			setExercisesLevels(levels);
-		} catch (err) {
-			setRequestError(err.message);
-		}
-
-		setIsLoading(false);
-	}, []);
+	const {
+		isLoading,
+		requestError,
+		sendRequest: fetchLevels,
+	} = UseHttp(
+		{
+			url: `http://localhost:3000/exercises_levels`,
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		},
+		transformLevels
+	);
 
 	/* Fetch data from server on page load */
 	useEffect(() => {
-		fetchExercises();
-		fetchExercisesLevels();
-	}, [fetchExercises, fetchExercisesLevels]);
+		fetchLevels();
+	}, [fetchLevels]);
 
 	/**
 	 * Set editId to null.
 	 */
-	const handleResetId = () => {
+	const handleResetEditId = () => {
 		setEditId(null);
 	};
 
-	async function handleAddExercise(exercise) {
-		let fetchURL;
-		let req;
+	const handleUpdateExercise = (item) => {
+		setExercises((previousData) => updateListItem(previousData, item));
+	};
 
-		// Edit operation
-		if (editId) {
-			fetchURL = `${URL}/exercises/${editId}`;
-			req = getRequestObj('PUT', exercise, CONTENT_TYPE);
-		} else {
-			// Insert operation
-			fetchURL = `${URL}/exercises`;
-			req = getRequestObj('POST', exercise, CONTENT_TYPE);
-		}
+	const handleAddExercise = (item) => {
+		setExercises((previousData) => [...previousData, item]);
+	};
 
-		const response = await fetch(fetchURL, req);
-		const data = response.json();
+	const handleDeleteExercise = (item) => {
+		setExercises((previousData) => removeListItem(previousData, item));
+	};
 
-		// Reload Exercises after insertion
-		fetchExercises();
+	// async function handleAddExercise(exercise) {
+	// 	let req;
 
-		// Reload editId
-		setEditId(null);
+	// 	if (editId) {
+	// 		req = getRequestObj(
+	// 			`${URL}/exercises/${editId}`,
+	// 			'PUT',
+	// 			exercise,
+	// 			'application/json'
+	// 		);
+	// 	} else {
+	// 		req = getRequestObj(
+	// 			`${URL}/exercises`,
+	// 			'POST',
+	// 			exercise,
+	// 			'application/json'
+	// 		);
+	// 	}
 
-		return data;
-	}
+	// 	const { requestError: insertError, sendRequest: insertExercise } =
+	// 		UseHttp(req);
+	// 	// temporary
+	// 	console.log(insertError);
 
-	async function deleteExercise(id) {
-		const response = await fetch(
-			`${URL}/exercises/${id}`,
-			getRequestObj('DELETE', {}, CONTENT_TYPE)
-		);
-		const data = response.json();
+	// 	insertExercise();
 
-		// Reload Exercises after deletion
-		fetchExercises();
+	// 	// Reload editId
+	// 	setEditId(null);
+	// }
 
-		return data;
-	}
+	// async function deleteExercise(id) {
+	// 	const response = await fetch(
+	// 		`${URL}/exercises/${id}`,
+	// 		getRequestObj('DELETE', {}, 'application/json')
+	// 	);
 
-	const handleOperation = (itemId, isDelete) =>
-		isDelete ? deleteExercise(itemId) : setEditId(itemId);
+	// 	const data = response.json();
+
+	// 	return data;
+	// }
+
+	// const handleOperation = (itemId, isDelete) =>
+	// 	isDelete ? deleteExercise(itemId) : setEditId(itemId);
 
 	return (
 		<ExercisesContext.Provider
 			value={{
 				editId,
 				exercises,
-				options: exercisesLevels,
+				levels,
 				onAddExercise: handleAddExercise,
-				onSelectOperation: handleOperation,
-				onResetId: handleResetId,
+				onUpdateExercise: handleUpdateExercise,
+				onDeleteExercise: handleDeleteExercise,
+				onResetEditId: handleResetEditId,
 				isLoading,
 				requestError,
 			}}

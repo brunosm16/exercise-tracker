@@ -51,19 +51,28 @@ export const findItemById = (id, items) =>
 	items ? items.filter((exercise) => exercise.id === id)[0] : undefined;
 
 /**
+ * Updates item by id.
+ */
+export const updateListItem = (list, updatedItem) =>
+	list.map((item) => {
+		let currItem = item;
+
+		if (currItem.id === updatedItem.id) {
+			currItem = updatedItem;
+		}
+
+		return currItem;
+	});
+
+/**
+ * Remove item by id.
+ */
+export const removeListItem = (list, itemToRemove) =>
+	list.filter((item) => item.id !== itemToRemove.id);
+
+/**
  * State passed as argument needs to have a property isValid.
  * @returns - true if state is NULL, otherwise returns value.isValid
  */
 export const stateIsNull = (state) =>
 	state.isValid === null ? true : state.isValid;
-
-/**
- * Returns a Request Object. 
- */
-export const getRequestObj = (method, data = {}, contentType) => ({
-	method,
-	body: JSON.stringify(data),
-	headers: {
-		'Content-Type': contentType,
-	},
-});

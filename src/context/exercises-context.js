@@ -3,12 +3,10 @@ import React from 'react';
 const ExercisesContext = React.createContext({
 	editId: null,
 	exercises: [],
-	options: [],
-	// eslint-disable-next-line no-unused-vars
-	onSelectOperation: (itemId, isDelete) => {},
+	levels: [],
 	// eslint-disable-next-line no-unused-vars
 	onAddExercise: (data) => {},
-	onResetId: () => {},
+	onResetEditId: () => {},
 	isLoading: false,
 	requestError: null,
 });

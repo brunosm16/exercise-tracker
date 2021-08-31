@@ -32,10 +32,10 @@ const ExerciseForm = ({ onStopEdit }) => {
 	const nameRef = useRef();
 
 	const exerciseCtx = useContext(ExercisesContext);
-	const [editId, exercises, options] = [
+	const [editId, exercises, levels] = [
 		exerciseCtx.editId,
 		exerciseCtx.exercises,
-		exerciseCtx.options,
+		exerciseCtx.levels,
 	];
 	const editExercise = findItemById(editId, exercises);
 
@@ -75,6 +75,20 @@ const ExerciseForm = ({ onStopEdit }) => {
 	}, [nameState]);
 
 	const focusOnName = () => nameRef.current.focus();
+
+	const buttonIsDisabled = () => {
+		if (
+			exerciseCtx.requestError ||
+			exerciseCtx.isLoading ||
+			exerciseCtx.levels.length === 0
+		) {
+
+			return true;
+		}
+
+		return false;
+	};
+
 
 	/**  Reset states used in Form */
 	const resetForm = () => {
@@ -146,7 +160,7 @@ const ExerciseForm = ({ onStopEdit }) => {
 					<Select
 						id="level"
 						label="level"
-						options={options}
+						options={levels}
 						onChange={levelChangeHandler}
 						selected={enteredLevel}
 						cssClass={styles['control-select']}
@@ -173,7 +187,9 @@ const ExerciseForm = ({ onStopEdit }) => {
 					</Button>
 				</div>
 				<div className={styles.action}>
-					<Button isSubmit>Add Exercise</Button>
+					<Button disabled={buttonIsDisabled()} isSubmit>
+						Add Exercise
+					</Button>
 				</div>
 			</div>
 		</form>

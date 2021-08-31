@@ -7,3 +7,9 @@
 	border: transparent;
 	cursor: pointer;
 }
+
+.button:disabled {
+	background: var(--bg-clr-2);
+	color: var(--bg-clr-1);
+	cursor: not-allowed;
+}

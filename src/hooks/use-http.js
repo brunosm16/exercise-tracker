@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const REQUEST_ERROR_MESSAGE = 'An Error occurred while processing your request';
 
-const UseHttp = ({ reqConfigObj, setData }) => {
+const UseHttp = (reqConfigObj, setData) => {
 	const [requestError, setRequestError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
-	async function sendRequest() {
+	const sendRequest = useCallback(async () => {
 		/* Clear any previous states */
 		setRequestError(null);
 		setIsLoading(false);
@@ -30,7 +30,7 @@ const UseHttp = ({ reqConfigObj, setData }) => {
 			setRequestError(err.message);
 		}
 		setIsLoading(false);
-	}
+	}, []);
 
 	return {
 		isLoading,
