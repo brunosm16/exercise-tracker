@@ -19,12 +19,6 @@
       "id": 5
     },
     {
-      "name": "Maverick 2",
-      "level": "Easy",
-      "date": "2021-01-30T03:00:00.000Z",
-      "id": 6
-    },
-    {
       "name": "Feral",
       "level": "Hard",
       "date": "2021-01-30T03:00:00.000Z",
@@ -37,16 +31,16 @@
       "id": 8
     },
     {
-      "name": "Madman",
-      "level": "Easy",
-      "date": "2021-01-23T03:00:00.000Z",
-      "id": 10
-    },
-    {
       "name": "100G",
       "level": "Hard",
       "date": "2021-03-27T03:00:00.000Z",
       "id": 11
+    },
+    {
+      "name": "Teste",
+      "level": "Easy",
+      "date": "2021-01-01T03:00:00.000Z",
+      "id": 12
     }
   ],
   "exercises_levels": [
