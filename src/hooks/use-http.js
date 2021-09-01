@@ -33,11 +33,6 @@ const UseHttp = () => {
 			}
 
 			setIsLoading(false);
-
-			if (setError) {
-				const hasError = isLoading !== null || requestError !== null;
-				setError(hasError);
-			}
 		},
 		[]
 	);

@@ -22,7 +22,7 @@ const ExerciseItem = ({ id, name, level, date }) => {
 
 	const openCloseModal = (hasError) => {
 		setModalIsOpen(hasError);
-	}
+	};
 
 	const { isLoading, requestError, sendRequest: deleteExercise } = UseHttp();
 
@@ -38,6 +38,12 @@ const ExerciseItem = ({ id, name, level, date }) => {
 			transformsExercises,
 			openCloseModal
 		);
+	};
+
+	const handleEdit = () => {
+		if (isMounted.current) {
+			exercisesCtx.onSetId(id);
+		}
 	};
 
 	let modalMessage;
@@ -84,7 +90,7 @@ const ExerciseItem = ({ id, name, level, date }) => {
 							✖
 						</Button>
 
-						<Button isSubmit onClick={() => exercisesCtx.onSetId(id)}>
+						<Button isSubmit onClick={handleEdit}>
 							✎
 						</Button>
 					</div>

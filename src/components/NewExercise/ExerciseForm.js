@@ -6,6 +6,7 @@ import Input from '../UI/Input/Input';
 import Select from '../UI/Select/Select';
 import ExercisesContext from '../../context/exercises-context';
 import nameReducer from '../../context/reducers/reducers';
+import Modal from '../UI/Modal/Modal';
 import {
 	dateToHTML,
 	dateToJs,
@@ -26,6 +27,7 @@ const ExerciseForm = ({ onStopEdit }) => {
 	const [enteredLevel, setEnteredLevel] = useState(initLevel);
 	const [enteredDate, setEnteredDate] = useState(initDate);
 	const [formIsValid, setFormIsValid] = useState(true);
+	const [modalIsOpen, setModalIsOpen] = useState(false);
 
 	/**
 	 * Null is the initial value of name, on first page load,
@@ -52,8 +54,14 @@ const ExerciseForm = ({ onStopEdit }) => {
 		exerciseCtx.onAddExercise(...convertedData);
 	};
 
-	const { sendRequest: putExercise } = UseHttp();
-	const { sendRequest: postExercise } = UseHttp();
+	const openCloseModal = (hasError) => {
+		setModalIsOpen(hasError);
+	};
+
+	const { requestError: putRequestError, sendRequest: putExercise } = UseHttp();
+	const { requestError: postRequestError, sendRequest: postExercise } =
+		UseHttp();
+	let modalMessage;
 
 	/**
 	 * On edit operation, a new value for editExercise is set,
@@ -117,7 +125,8 @@ const ExerciseForm = ({ onStopEdit }) => {
 						'Content-Type': 'application/json',
 					},
 				},
-				updateExercise
+				updateExercise,
+				openCloseModal
 			);
 			// reset editId
 			exerciseCtx.onSetId(null);
@@ -131,7 +140,8 @@ const ExerciseForm = ({ onStopEdit }) => {
 						'Content-Type': 'application/json',
 					},
 				},
-				insertExercise
+				insertExercise,
+				openCloseModal
 			);
 		}
 
@@ -154,6 +164,10 @@ const ExerciseForm = ({ onStopEdit }) => {
 		setEnteredDate(event.target.value);
 	};
 
+	const modalHandler = () => {
+		setModalIsOpen(false);
+	};
+
 	const cancelHandler = () => {
 		onStopEdit();
 	};
@@ -169,58 +183,74 @@ const ExerciseForm = ({ onStopEdit }) => {
 		return formIsValid ? saveInput() : focusOnName();
 	};
 
+	if (putRequestError || postRequestError) {
+		modalMessage = {
+			title: 'An error occurred',
+			message: 'An error occurred while trying to process your request',
+		};
+	}
+
 	return (
-		<form className={styles.form} onSubmit={submitHandler}>
-			<div className={styles.controls}>
-				<div className={styles.control}>
-					<Input
-						id="name"
-						type="text"
-						label="name"
-						isValid={nameIsNull}
-						onChange={nameChangeHandler}
-						onBlur={nameValidateHandler}
-						value={nameState.value}
-						ref={nameRef}
-						cssClass={styles['control-input']}
-					/>
+		<>
+			{modalMessage && modalIsOpen && (
+				<Modal
+					title={modalMessage.title}
+					message={modalMessage.message}
+					onCloseModal={modalHandler}
+				/>
+			)}
+			<form className={styles.form} onSubmit={submitHandler}>
+				<div className={styles.controls}>
+					<div className={styles.control}>
+						<Input
+							id="name"
+							type="text"
+							label="name"
+							isValid={nameIsNull}
+							onChange={nameChangeHandler}
+							onBlur={nameValidateHandler}
+							value={nameState.value}
+							ref={nameRef}
+							cssClass={styles['control-input']}
+						/>
+					</div>
+
+					<div className={styles.control}>
+						<Select
+							id="level"
+							label="level"
+							levels={levels}
+							onChange={levelChangeHandler}
+							selected={enteredLevel}
+							cssClass={styles['control-select']}
+						/>
+					</div>
+
+					<div className={styles.control}>
+						<Input
+							type="date"
+							label="date"
+							value={enteredDate}
+							min="2021-01-01"
+							max="2025-12-12"
+							onChange={dateChangeHandler}
+							cssClass={styles['control-input']}
+						/>
+					</div>
 				</div>
 
-				<div className={styles.control}>
-					<Select
-						id="level"
-						label="level"
-						levels={levels}
-						onChange={levelChangeHandler}
-						selected={enteredLevel}
-						cssClass={styles['control-select']}
-					/>
+				<div className={styles.actions}>
+					<div className={styles.action}>
+						<Button isSubmit={false} onClick={cancelHandler}>
+							Cancel
+						</Button>
+					</div>
+					<div className={styles.action}>
+						<Button isSubmit>Add Exercise</Button>
+					</div>
 				</div>
-
-				<div className={styles.control}>
-					<Input
-						type="date"
-						label="date"
-						value={enteredDate}
-						min="2021-01-01"
-						max="2025-12-12"
-						onChange={dateChangeHandler}
-						cssClass={styles['control-input']}
-					/>
-				</div>
-			</div>
-
-			<div className={styles.actions}>
-				<div className={styles.action}>
-					<Button isSubmit={false} onClick={cancelHandler}>
-						Cancel
-					</Button>
-				</div>
-				<div className={styles.action}>
-					<Button isSubmit>Add Exercise</Button>
-				</div>
-			</div>
-		</form>
+			</form>
+		</>
 	);
 };
 
