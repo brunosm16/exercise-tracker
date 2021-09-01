@@ -4,8 +4,7 @@ import styles from './ExercisesFilter.module.css';
 import Select from '../UI/Select/Select';
 import ExercisesContext from '../../context/exercises-context';
 import UseHttp from '../../hooks/use-http';
-
-const URL = 'http://localhost:3000';
+import { URL_SERVER } from '../../utils/Utils';
 
 const ExercisesFilter = ({ onSelectedFilter, select }) => {
 	const exerciseCtx = useContext(ExercisesContext);
@@ -18,22 +17,18 @@ const ExercisesFilter = ({ onSelectedFilter, select }) => {
 		});
 	};
 
-	const {
-		isLoading,
-		requestError,
-		sendRequest: fetchLevels,
-	} = UseHttp(
-		{
-			url: `${URL}/exercises_levels`,
-			headers: {
-				'Content-Types': 'application/json',
-			},
-		},
-		transformLevels
-	);
+	const { isLoading, requestError, sendRequest: fetchLevels } = UseHttp();
 
 	useEffect(() => {
-		fetchLevels();
+		fetchLevels(
+			{
+				url: `${URL_SERVER}/exercises_levels`,
+				headers: {
+					'Content-Types': 'application/json',
+				},
+			},
+			transformLevels
+		);
 	}, [fetchLevels]);
 
 	const handleDropdownChange = (event) => {

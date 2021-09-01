@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext} from 'react';
 import ExercisesFilter from './ExercisesFilter';
 import ExercisesList from './ExercisesList';
 import ExercisesChart from './ExercisesChart';
@@ -26,7 +26,6 @@ const Exercises = () => {
 	}
 
 	if (requestError) {
-		console.log(requestError);
 		exercisesList = (
 			<p className={`${styles.msg} ${styles['error-msg']}`}>
 				An error occurred while trying to load exercises

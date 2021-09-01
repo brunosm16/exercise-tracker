@@ -7,22 +7,46 @@
       "id": 2
     },
     {
-      "name": "Hero ",
-      "level": "Hard",
-      "date": "2021-08-28T03:00:00.000Z",
-      "id": 3
-    },
-    {
-      "name": "Daily Cardio Dose",
-      "level": "Easy",
-      "date": "2021-02-11T03:00:00.000Z",
+      "name": "Power Cardio",
+      "level": "Normal",
+      "date": "2021-01-01T03:00:00.000Z",
       "id": 4
     },
     {
-      "name": "Wild & Free Version 2",
+      "name": "Wild & Free Version",
       "level": "Advanced",
       "date": "2021-01-29T03:00:00.000Z",
       "id": 5
+    },
+    {
+      "name": "Maverick 2",
+      "level": "Easy",
+      "date": "2021-01-30T03:00:00.000Z",
+      "id": 6
+    },
+    {
+      "name": "Feral",
+      "level": "Hard",
+      "date": "2021-01-30T03:00:00.000Z",
+      "id": 7
+    },
+    {
+      "name": "Aftershock 2",
+      "level": "Hard",
+      "date": "2021-08-28T03:00:00.000Z",
+      "id": 8
+    },
+    {
+      "name": "Madman",
+      "level": "Easy",
+      "date": "2021-01-23T03:00:00.000Z",
+      "id": 10
+    },
+    {
+      "name": "100G",
+      "level": "Hard",
+      "date": "2021-03-27T03:00:00.000Z",
+      "id": 11
     }
   ],
   "exercises_levels": [

@@ -13,7 +13,7 @@ const NewExercise = () => {
 	const [isEditing, setIsEditing] = useState();
 
 	const exerciseCtx = useContext(ExercisesContext);
-	const [editId, onResetId] = [exerciseCtx.editId, exerciseCtx.onResetId];
+	const [editId, onSetId] = [exerciseCtx.editId, exerciseCtx.onSetId];
 
 	useEffect(() => {
 		setIsEditing(editId);
@@ -21,7 +21,7 @@ const NewExercise = () => {
 
 	const handleCloseEdit = () => {
 		/* Close form when Editing */
-		onResetId();
+		onSetId(null);
 		setIsEdit(false);
 	};
 
@@ -34,7 +34,11 @@ const NewExercise = () => {
 			{(isEdit || isEditing) && <ExerciseForm onStopEdit={handleCloseEdit} />}
 
 			{!isEdit && !isEditing && (
-				<Button isSubmit={false} disabled={exerciseCtx.levels.length === 0} onClick={handleOpenEdit}>
+				<Button
+					isSubmit={false}
+					disabled={exerciseCtx.levels.length === 0}
+					onClick={handleOpenEdit}
+				>
 					Add Exercise
 				</Button>
 			)}

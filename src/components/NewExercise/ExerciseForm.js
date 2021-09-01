@@ -13,7 +13,10 @@ import {
 	initLevel,
 	findItemById,
 	stateIsNull,
+	URL_SERVER,
+	convertListDateToJs,
 } from '../../utils/Utils';
+import UseHttp from '../../hooks/use-http';
 
 const ExerciseForm = ({ onStopEdit }) => {
 	const [nameState, dispatchName] = useReducer(nameReducer, {
@@ -38,6 +41,19 @@ const ExerciseForm = ({ onStopEdit }) => {
 		exerciseCtx.levels,
 	];
 	const editExercise = findItemById(editId, exercises);
+
+	const updateExercise = (data) => {
+		const convertedData = convertListDateToJs([data]);
+		exerciseCtx.onUpdateExercise(...convertedData);
+	};
+
+	const insertExercise = (data) => {
+		const convertedData = convertListDateToJs([data]);
+		exerciseCtx.onAddExercise(...convertedData);
+	};
+
+	const { sendRequest: putExercise } = UseHttp();
+	const { sendRequest: postExercise } = UseHttp();
 
 	/**
 	 * On edit operation, a new value for editExercise is set,
@@ -85,11 +101,39 @@ const ExerciseForm = ({ onStopEdit }) => {
 	};
 
 	const saveInput = () => {
-		exerciseCtx.onAddExercise({
+		const obj = {
 			name: nameState.value,
 			level: enteredLevel,
 			date: dateToJs(enteredDate),
-		});
+		};
+
+		if (editId) {
+			putExercise(
+				{
+					url: `${URL_SERVER}/exercises/${editId}`,
+					method: 'PUT',
+					body: obj,
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				},
+				updateExercise
+			);
+			// reset editId
+			exerciseCtx.onSetId(null);
+		} else {
+			postExercise(
+				{
+					url: `${URL_SERVER}/exercises`,
+					method: 'POST',
+					body: obj,
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				},
+				insertExercise
+			);
+		}
 
 		resetForm();
 	};

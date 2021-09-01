@@ -4,9 +4,34 @@ import ExerciseDate from './ExerciseDate';
 import Button from '../UI/Button/Button';
 import styles from './ExerciseItem.module.css';
 import ExercisesContext from '../../context/exercises-context';
+import UseHttp from '../../hooks/use-http';
+import UseIsMounted from '../UtilsComponents/UseIsMounted';
+import { URL_SERVER } from '../../utils/Utils';
 
 const ExerciseItem = ({ id, name, level, date }) => {
 	const exercisesCtx = useContext(ExercisesContext);
+	const isMounted = UseIsMounted();
+
+	const transformsExercises = () => {
+		if (isMounted.current) {
+			exercisesCtx.onDeleteExercise(id);
+		}
+	};
+
+	const { sendRequest: deleteExercise } = UseHttp();
+
+	const handleDelete = () => {
+		deleteExercise(
+			{
+				url: `${URL_SERVER}/exercises/${id}`,
+				method: 'DELETE',
+				headers: {
+					'Content-Types': 'application/json',
+				},
+			},
+			transformsExercises
+		);
+	};
 
 	return (
 		<li className={styles.item}>
@@ -20,17 +45,11 @@ const ExerciseItem = ({ id, name, level, date }) => {
 				<ExerciseDate date={date} />
 
 				<div className={styles.actions}>
-					<Button
-						isSubmit
-						onClick={() => exercisesCtx.onSelectOperation(id, true)}
-					>
+					<Button isSubmit onClick={handleDelete}>
 						✖
 					</Button>
 
-					<Button
-						isSubmit
-						onClick={() => exercisesCtx.onSelectOperation(id, false)}
-					>
+					<Button isSubmit onClick={() => exercisesCtx.onSetId(id)}>
 						✎
 					</Button>
 				</div>

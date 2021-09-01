@@ -5,12 +5,14 @@ const ExercisesContext = React.createContext({
 	exercises: [],
 	levels: [],
 	// eslint-disable-next-line no-unused-vars
-	onSelectOperation: (itemId, isDelete) => {},
-	// eslint-disable-next-line no-unused-vars
 	onAddExercise: (data) => {},
 	// eslint-disable-next-line no-unused-vars
 	onAddLevel: (data) => {},
-	onResetId: () => {},
+	// eslint-disable-next-line no-unused-vars
+	onUpdateExercise: (data) => {},
+	// eslint-disable-next-line no-unused-vars
+	onDeleteExercise: (id) => {},
+	onSetId: () => {},
 	isLoading: false,
 	requestError: null,
 });

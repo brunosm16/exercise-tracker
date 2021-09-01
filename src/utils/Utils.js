@@ -3,6 +3,7 @@
  */
 export const initDate = '2021-01-01';
 export const initLevel = 'Easy';
+export const URL_SERVER = 'http://localhost:3000';
 
 /**
  * Format 'yyyy-mm-dd' to JavaScript Date
@@ -57,13 +58,13 @@ export const findItemById = (id, items) =>
 export const stateIsNull = (state) =>
 	state.isValid === null ? true : state.isValid;
 
-/**
- * Returns a Request Object. 
- */
-export const getRequestObj = (method, data = {}, contentType) => ({
-	method,
-	body: JSON.stringify(data),
-	headers: {
-		'Content-Type': contentType,
-	},
-});
+
+export const updateItemList = (list, updatedItem) => list.map((item) => {
+		let currItem = item;
+
+		if (currItem.id === updatedItem.id) {
+			currItem = updatedItem;
+		}
+
+		return currItem;
+	});

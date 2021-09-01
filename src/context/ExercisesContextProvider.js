@@ -1,18 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import UseHttp from '../hooks/use-http';
-import { convertListDateToJs, getRequestObj } from '../utils/Utils';
+import {
+	convertListDateToJs,
+	updateItemList,
+	URL_SERVER,
+} from '../utils/Utils';
 import ExercisesContext from './exercises-context';
 
-/**
- * Constants used
- */
-const URL = 'http://localhost:3000';
-const CONTENT_TYPE = 'application/json';
-
 const ExercisesContextProvider = ({ children }) => {
-	// todo -- fetchExercises with use-http.
-
 	const [exercises, setExercises] = useState([]);
 	const [levels, setLevels] = useState([]);
 
@@ -26,77 +22,42 @@ const ExercisesContextProvider = ({ children }) => {
 		setExercises(convertedExercises);
 	};
 
-	const {
-		isLoading,
-		requestError,
-		sendRequest: fetchExercises,
-	} = UseHttp(
-		{
-			url: `${URL}/exercises`,
-			headers: {
-				'Content-Types': 'application/json',
-			},
-		},
-		transformExercises
-	);
+	const { isLoading, requestError, sendRequest: fetchExercises } = UseHttp();
 
 	/* Fetch data from server on page load */
 	useEffect(() => {
-		fetchExercises();
+		fetchExercises(
+			{
+				url: `${URL_SERVER}/exercises`,
+				headers: {
+					'Content-Types': 'application/json',
+				},
+			},
+			transformExercises
+		);
 	}, [fetchExercises]);
 
-	/**
-	 * Set editId to null.
-	 */
-	const handleResetId = () => {
-		setEditId(null);
+	const handleSetId = (id) => {
+		setEditId(id);
+	};
+
+	const handleDeleteExercise = (id) => {
+		setExercises((previousData) =>
+			previousData.filter((exercise) => exercise.id !== id)
+		);
+	};
+
+	const handleUpdateExercise = (exercise) => {
+		setExercises((previousData) => updateItemList(previousData, exercise));
 	};
 
 	const handleAddLevel = (data) => {
 		setLevels((previousData) => [...previousData, data]);
 	};
 
-	async function handleAddExercise(exercise) {
-		let fetchURL;
-		let req;
-
-		// Edit operation
-		if (editId) {
-			fetchURL = `${URL}/exercises/${editId}`;
-			req = getRequestObj('PUT', exercise, CONTENT_TYPE);
-		} else {
-			// Insert operation
-			fetchURL = `${URL}/exercises`;
-			req = getRequestObj('POST', exercise, CONTENT_TYPE);
-		}
-
-		const response = await fetch(fetchURL, req);
-		const data = response.json();
-
-		// Reload Exercises after insertion
-		fetchExercises();
-
-		// Reload editId
-		setEditId(null);
-
-		return data;
-	}
-
-	async function deleteExercise(id) {
-		const response = await fetch(
-			`${URL}/exercises/${id}`,
-			getRequestObj('DELETE', {}, CONTENT_TYPE)
-		);
-		const data = response.json();
-
-		// Reload Exercises after deletion
-		fetchExercises();
-
-		return data;
-	}
-
-	const handleOperation = (itemId, isDelete) =>
-		isDelete ? deleteExercise(itemId) : setEditId(itemId);
+	const handleAddExercise = (exercise) => {
+		setExercises((previousData) => [...previousData, exercise]);
+	};
 
 	return (
 		<ExercisesContext.Provider
@@ -105,9 +66,10 @@ const ExercisesContextProvider = ({ children }) => {
 				exercises,
 				levels,
 				onAddExercise: handleAddExercise,
+				onUpdateExercise: handleUpdateExercise,
+				onDeleteExercise: handleDeleteExercise,
 				onAddLevel: handleAddLevel,
-				onSelectOperation: handleOperation,
-				onResetId: handleResetId,
+				onSetId: handleSetId,
 				isLoading,
 				requestError,
 			}}
