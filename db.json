@@ -47,6 +47,12 @@
       "level": "Easy",
       "date": "2021-01-16T03:00:00.000Z",
       "id": 13
+    },
+    {
+      "name": "Teste_3",
+      "level": "Easy",
+      "date": "2021-01-22T03:00:00.000Z",
+      "id": 14
     }
   ],
   "exercises_levels": [

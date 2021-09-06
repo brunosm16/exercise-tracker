@@ -7,7 +7,7 @@ const Input = React.forwardRef(
 		{
 			id,
 			label,
-			isValid,
+			isInvalid,
 			type,
 			minLength,
 			maxLength,
@@ -31,7 +31,7 @@ const Input = React.forwardRef(
 		return (
 			<div
 				className={`${styles.container} ${cssClass} ${
-					!isValid && styles.invalid
+					isInvalid && styles.invalid
 				}`}
 			>
 				<label htmlFor="id">
@@ -55,7 +55,7 @@ const Input = React.forwardRef(
 Input.defaultProps = {
 	id: '',
 	label: '',
-	isValid: true,
+	isInvalid: false,
 	type: '',
 	minLength: 1,
 	maxLength: 256,
@@ -68,7 +68,7 @@ Input.defaultProps = {
 Input.propTypes = {
 	id: PropTypes.string,
 	label: PropTypes.string,
-	isValid: PropTypes.bool,
+	isInvalid: PropTypes.bool,
 	type: PropTypes.string,
 	minLength: PropTypes.number,
 	maxLength: PropTypes.number,

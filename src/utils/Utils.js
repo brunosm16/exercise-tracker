@@ -50,13 +50,6 @@ export const validateName = (name) => name.trim().length >= 4;
 export const findItemById = (id, items) =>
 	items ? items.filter((exercise) => exercise.id === id)[0] : undefined;
 
-/**
- * State passed as argument needs to have a property isValid.
- * @returns - true if state is NULL, otherwise returns value.isValid
- */
-export const stateIsNull = (state) =>
-	state.isValid === null ? true : state.isValid;
-
 export const updateItemList = (list, updatedItem) =>
 	list.map((item) => {
 		let currItem = item;

@@ -35,10 +35,17 @@
 	gap: 0.5rem;
 }
 
+.error-msg {
+	margin:0.125rem 0;
+	color: var(--clr-red);
+	font-weight: bold;
+}
+
 /* Pixel 2 */
 @media screen and (min-width: 411px) {
 	.control .control-input input,
-	.control .control-select select {
+	.control .control-select select,
+	.error-msg {
 		font-size: 1rem;
 		padding: 0.25rem 0.5rem;
 	}
@@ -56,7 +63,9 @@
 /* Tablet */
 @media screen and (min-width: 768px) {
 	.controls {
-		align-items: center;
+		height: 100%;
+		justify-content: space-between;
+		padding: 0.5rem;
 	}
 
 	.control .control-input input,
@@ -65,7 +74,8 @@
 	}
 
 	.control .control-input label,
-	.control .control-select label {
+	.control .control-select label,
+	.error-msg {
 		font-size: 1.2rem;
 	}
 
@@ -89,7 +99,8 @@
 /* Laptop */
 @media screen and (min-width: 1366px) {
 	.control .control-input input,
-	.control .control-select select {
+	.control .control-select select,
+	.error-msg {
 		width: 25rem;
 		font-size: 1.3rem;
 	}

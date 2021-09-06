@@ -1,18 +1,19 @@
 import { useReducer } from 'react';
 import inputReducer from '../context/reducers/reducers';
 
-const defaultInputReducer = {
+const defaultInputState = {
 	value: '',
 	isTouched: false,
 };
 
 const UseInput = (validateInput) => {
-	const [inputState, dispatch] = useReducer(inputReducer, defaultInputReducer);
+	const [inputState, dispatch] = useReducer(inputReducer, defaultInputState);
 
-	const inputHasError = validateInput(inputState.value) && inputState.isTouched;
+	const inputIsValid = validateInput(inputState.value);
+	const inputHasError = !inputIsValid && inputState.isTouched;
 
 	const inputChangeHandler = (event) => {
-		dispatch({ type: 'INPUT_USER', val: event.target.value });
+		dispatch({ type: 'INPUT_USER', value: event.target.value });
 	};
 
 	const inputBlurHandler = () => {
@@ -25,6 +26,7 @@ const UseInput = (validateInput) => {
 
 	return {
 		value: inputState.value,
+        inputIsValid,
 		inputHasError,
 		inputChangeHandler,
 		inputBlurHandler,
