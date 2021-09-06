@@ -3,7 +3,6 @@
  */
 export const initDate = '2021-01-01';
 export const initLevel = 'Easy';
-export const URL_SERVER = 'http://localhost:3000';
 
 /**
  * Format 'yyyy-mm-dd' to JavaScript Date
@@ -58,8 +57,8 @@ export const findItemById = (id, items) =>
 export const stateIsNull = (state) =>
 	state.isValid === null ? true : state.isValid;
 
-
-export const updateItemList = (list, updatedItem) => list.map((item) => {
+export const updateItemList = (list, updatedItem) =>
+	list.map((item) => {
 		let currItem = item;
 
 		if (currItem.id === updatedItem.id) {

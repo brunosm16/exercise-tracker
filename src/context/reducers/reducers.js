@@ -3,11 +3,12 @@ import { validateName } from '../../utils/Utils';
 /**
  * INPUT Action Types constants
  */
-const USER = 'INPUT_USER';
+const INPUT = 'INPUT_USER';
 const BLUR = 'INPUT_BLUR';
+const RESET = 'INPUT_RESET';
 
 const nameReducer = (state, action) => {
-	if (action.type === USER) {
+	if (action.type === INPUT) {
 		return { value: action.val, isValid: validateName(action.val || '') };
 	}
 
@@ -15,7 +16,26 @@ const nameReducer = (state, action) => {
 		return { value: state.value, isValid: validateName(state.value) };
 	}
 
-	return { value: '', isValid: null };
+	if (action.type === RESET) {
+		return { value: '', isValid: null };
+	}
+
+	return nameReducer;
 };
 
-export default nameReducer;
+const inputReducer = (state, action) => {
+	if (action.type === INPUT) {
+		return { value: action.val, isTouched: state.isTouched };
+	}
+
+	if (action.type === RESET) {
+		return { value: '', isTouched: false };
+	}
+
+	if (action.type === BLUR) {
+		return { isTouched: true };
+	}
+	return inputReducer;
+};
+
+export default { nameReducer, inputReducer };

@@ -1,16 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import UseHttp from '../hooks/use-http';
-import {
-	convertListDateToJs,
-	updateItemList,
-	URL_SERVER,
-} from '../utils/Utils';
+import { ENDPOINT } from '../utils/HttpUtils';
+import { convertListDateToJs, updateItemList } from '../utils/Utils';
 import ExercisesContext from './exercises-context';
 
 const ExercisesContextProvider = ({ children }) => {
 	const [exercises, setExercises] = useState([]);
 	const [levels, setLevels] = useState([]);
+	const [modalError, setModalError] = useState(null);
 
 	// ID of Exercise to be edited,
 	// if NULL, operation is not edit
@@ -28,7 +26,7 @@ const ExercisesContextProvider = ({ children }) => {
 	useEffect(() => {
 		fetchExercises(
 			{
-				url: `${URL_SERVER}/exercises`,
+				url: `${ENDPOINT}/exercises`,
 				headers: {
 					'Content-Types': 'application/json',
 				},
@@ -59,6 +57,10 @@ const ExercisesContextProvider = ({ children }) => {
 		setExercises((previousData) => [...previousData, exercise]);
 	};
 
+	const handleOpenCloseModal = (modalObj) => {
+		setModalError(modalObj);
+	};
+
 	return (
 		<ExercisesContext.Provider
 			value={{
@@ -69,7 +71,9 @@ const ExercisesContextProvider = ({ children }) => {
 				onUpdateExercise: handleUpdateExercise,
 				onDeleteExercise: handleDeleteExercise,
 				onAddLevel: handleAddLevel,
+				onOpenCloseModal: handleOpenCloseModal,
 				onSetId: handleSetId,
+				modalError,
 				isLoading,
 				requestError,
 			}}

@@ -14,9 +14,10 @@ import {
 	initLevel,
 	findItemById,
 	stateIsNull,
-	URL_SERVER,
 	convertListDateToJs,
 } from '../../utils/Utils';
+
+import { ENDPOINT, modalRequestError } from '../../utils/HttpUtils';
 import UseHttp from '../../hooks/use-http';
 
 const ExerciseForm = ({ onStopEdit }) => {
@@ -54,13 +55,12 @@ const ExerciseForm = ({ onStopEdit }) => {
 		exerciseCtx.onAddExercise(...convertedData);
 	};
 
-	const openCloseModal = (hasError) => {
-		setModalIsOpen(hasError);
+	const openCloseModal = () => {
+		exerciseCtx.onOpenCloseModal(modalRequestError);
 	};
 
-	const { requestError: putRequestError, sendRequest: putExercise } = UseHttp();
-	const { requestError: postRequestError, sendRequest: postExercise } =
-		UseHttp();
+	const { sendRequest: putExercise } = UseHttp();
+	const { sendRequest: postExercise } = UseHttp();
 	let modalMessage;
 
 	/**
@@ -118,7 +118,7 @@ const ExerciseForm = ({ onStopEdit }) => {
 		if (editId) {
 			putExercise(
 				{
-					url: `${URL_SERVER}/exercises/${editId}`,
+					url: `${ENDPOINT}/exercises/${editId}`,
 					method: 'PUT',
 					body: obj,
 					headers: {
@@ -133,7 +133,7 @@ const ExerciseForm = ({ onStopEdit }) => {
 		} else {
 			postExercise(
 				{
-					url: `${URL_SERVER}/exercises`,
+					url: `${ENDPOINT}/exercises`,
 					method: 'POST',
 					body: obj,
 					headers: {
@@ -182,13 +182,6 @@ const ExerciseForm = ({ onStopEdit }) => {
 
 		return formIsValid ? saveInput() : focusOnName();
 	};
-
-	if (putRequestError || postRequestError) {
-		modalMessage = {
-			title: 'An error occurred',
-			message: 'An error occurred while trying to process your request',
-		};
-	}
 
 	return (
 		<>

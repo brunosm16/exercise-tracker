@@ -4,7 +4,7 @@ import styles from './ExercisesFilter.module.css';
 import Select from '../UI/Select/Select';
 import ExercisesContext from '../../context/exercises-context';
 import UseHttp from '../../hooks/use-http';
-import { URL_SERVER } from '../../utils/Utils';
+import { ENDPOINT } from '../../utils/HttpUtils';
 
 const ExercisesFilter = ({ onSelectedFilter, select }) => {
 	const exerciseCtx = useContext(ExercisesContext);
@@ -22,7 +22,7 @@ const ExercisesFilter = ({ onSelectedFilter, select }) => {
 	useEffect(() => {
 		fetchLevels(
 			{
-				url: `${URL_SERVER}/exercises_levels`,
+				url: `${ENDPOINT}/exercises_levels`,
 				headers: {
 					'Content-Types': 'application/json',
 				},
