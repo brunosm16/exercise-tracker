@@ -24,13 +24,18 @@ const UseInput = (validateInput) => {
 		dispatch({ type: 'INPUT_RESET' });
 	};
 
+	const setInputValue = (value) => {
+		dispatch({ type: 'INPUT_USER', value });
+	};
+
 	return {
 		value: inputState.value,
-        inputIsValid,
+		inputIsValid,
 		inputHasError,
 		inputChangeHandler,
 		inputBlurHandler,
 		inputResetHandler,
+		setInputValue,
 	};
 };
 

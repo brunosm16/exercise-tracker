@@ -27,12 +27,12 @@ const ExerciseForm = ({ onStopEdit }) => {
 		inputChangeHandler: nameChangeHandler,
 		inputBlurHandler: nameBlurHandler,
 		inputResetHandler: nameResetHandler,
+		setInputValue: setNameValue,
 	} = UseInput(validateName);
-
-	const formIsValid = nameIsValid;
-
 	const [enteredLevel, setEnteredLevel] = useState(initLevel);
 	const [enteredDate, setEnteredDate] = useState(initDate);
+
+	const formIsValid = nameIsValid;
 
 	const nameRef = useRef();
 
@@ -64,7 +64,8 @@ const ExerciseForm = ({ onStopEdit }) => {
 	 * and useEffect updates input states with editExercise properties.
 	 */
 	useEffect(
-		() => editExercise && nameChangeHandler(editExercise.name)[editExercise]
+		() => editExercise && setNameValue(editExercise.name),
+		[editExercise]
 	);
 
 	useEffect(
@@ -107,8 +108,6 @@ const ExerciseForm = ({ onStopEdit }) => {
 				updateExercise,
 				openCloseModal
 			);
-			// reset editId
-			exerciseCtx.onSetId(null);
 		} else {
 			postExercise(
 				{

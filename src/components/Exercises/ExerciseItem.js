@@ -39,9 +39,7 @@ const ExerciseItem = ({ id, name, level, date }) => {
 	};
 
 	const handleEdit = () => {
-		if (isMounted.current) {
-			exercisesCtx.onSetId(id);
-		}
+		exercisesCtx.onSetId(id);
 	};
 
 	return (

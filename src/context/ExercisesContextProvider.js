@@ -46,6 +46,7 @@ const ExercisesContextProvider = ({ children }) => {
 	};
 
 	const handleUpdateExercise = (exercise) => {
+		handleSetId(null);
 		setExercises((previousData) => updateItemList(previousData, exercise));
 	};
 
