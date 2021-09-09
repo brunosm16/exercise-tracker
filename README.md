@@ -29,15 +29,11 @@ Projeto utiliza Style Guide do AirBnb e Husky para acionar os GitHooks e evitar 
 
 ## ⚒️ Recursos a serem implementados no projeto
 
- 1. Integração com Banco de Dados.
+ 1. Melhor validação de formulários..
 
- 2. Validação de formulários.
+ 2. Mudar a avaliação dos Exercícios para "Star Rating".
 
- 3. Mudar a avaliação dos Exercícios para "Star Rating".
-
- 4. Utilizar SASS para melhorar a organização do CSS da aplicação. 
-
- 5. Deploy. 
+ 3. Deploy. 
 
  ---
  [](https://emojipedia.org/camera-with-flash/)
