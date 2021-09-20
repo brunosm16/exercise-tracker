@@ -1,5 +1,5 @@
 # 🏋️‍♂️ Exercise Tracker
-![enter image description here](https://s9.gifyu.com/images/Exercise-Tracker-Video-Final.gif)
+![enter image description here](https://gifyu.com/image/PlrE)
 
 ## Overview
 Project that uses React and the Context API to create a record of exercises with a friendly user experience. CSS Modules were used for styling Components and project also uses JSON-Server as back-end. 
