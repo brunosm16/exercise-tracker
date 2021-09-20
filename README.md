@@ -19,5 +19,5 @@ Project that uses React and the Context API to create a record of exercises with
 1. Install needed packages : `npm install`
 2. Start back-end : `json-server --watch db.json` 
 3. Start front-end : `npm start`
-4. Open [localhost:3001](%5Bhttp://localhost:3000%5D) to view it in the browser. 
+4. Open [localhost:3001](%5Bhttp://localhost:3001%5D) to view it in the browser. 
 
