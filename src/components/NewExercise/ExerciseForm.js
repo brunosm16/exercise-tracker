@@ -83,7 +83,6 @@ const ExerciseForm = ({ onStopEdit }) => {
 	/**  Reset states used in Form */
 	const resetForm = () => {
 		nameResetHandler();
-		focusOnName();
 		setEnteredLevel(initLevel);
 		setEnteredDate(initDate);
 	};

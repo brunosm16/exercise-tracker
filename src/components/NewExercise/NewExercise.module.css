@@ -15,7 +15,7 @@
 }
 
 .new-exercise button:hover {
-	background: var(--bg-clr-2);
+	background: var(--clr-white);
 	color: var(--clr-black);
 }
 

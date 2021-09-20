@@ -7,12 +7,6 @@
       "id": 2
     },
     {
-      "name": "Power Cardio",
-      "level": "Normal",
-      "date": "2021-01-01T03:00:00.000Z",
-      "id": 4
-    },
-    {
       "name": "Wild & Free Version",
       "level": "Advanced",
       "date": "2021-01-29T03:00:00.000Z",
@@ -37,28 +31,16 @@
       "id": 11
     },
     {
-      "name": "Test_1",
+      "name": "Power Cardio",
       "level": "Easy",
-      "date": "2021-01-16T03:00:00.000Z",
+      "date": "2021-01-01T03:00:00.000Z",
       "id": 13
     },
     {
-      "name": "Teste_2",
-      "level": "Easy",
-      "date": "2021-01-22T03:00:00.000Z",
+      "name": "Override",
+      "level": "Normal",
+      "date": "2021-01-30T03:00:00.000Z",
       "id": 14
-    },
-    {
-      "name": "Teste_3",
-      "level": "Easy",
-      "date": "2021-01-01T03:00:00.000Z",
-      "id": 15
-    },
-    {
-      "name": "Testte_4",
-      "level": "Easy",
-      "date": "2021-01-01T03:00:00.000Z",
-      "id": 16
     }
   ],
   "exercises_levels": [

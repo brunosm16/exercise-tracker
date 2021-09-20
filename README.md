@@ -1,42 +1,24 @@
+# 🏋️‍♂️ Exercise Tracker
+![enter image description here](https://s9.gifyu.com/images/Exercise-Tracker-Video-Final.gif)
 
+## Overview
+Project that uses React and the Context API to create a record of exercises with a friendly user experience. CSS Modules were used for styling Components and project also uses JSON-Server as back-end. 
 
-# 🏋️‍♂️Exercise Tracker
-Armazena uma lista de exercícios. O usuário pode criar, editar, excluir ou visualizar os exercícios(por categoria).
+**Features**
 
-Projeto utiliza Style Guide do AirBnb e Husky para acionar os GitHooks e evitar que o projeto tenha algum commit com erros.
-  
-## 💻 Tecnologias Utilizadas
- 
-- JavaScript
+- Filter exercises by levels.
+- Chart with the frequency of exercises done each month.
+- Uses Context API for instant visual updates.
+- CRUD operations persists after page reloads. 
+- Responsive Design.
 
-- React
+## Build/Run
+**Requirements**
 
-- HTML
+- Node Js
+- NPM
+1. Install needed packages : `npm install`
+2. Start back-end : `json-server --watch db.json` 
+3. Start front-end : `npm start`
+4. Open [localhost:3001](%5Bhttp://localhost:3000%5D) to view it in the browser. 
 
-- CSS  (CSS modules)
-
-## ▶️ Como executar a aplicação
-
-1. Baixar o projeto ou  clonar o projeto  na máquina.
-
-2. Entrar no diretório exercise-tracker.
-
-3. Instalar as dependências com o comando : `npm install`
-
-4. Inicializar o projeto com o comando : `npm start`
-
-5. Abrir o navegador em **https:/localhost:3000**
-
-## ⚒️ Recursos a serem implementados no projeto
-
- 1. Melhor validação de formulários..
-
- 2. Mudar a avaliação dos Exercícios para "Star Rating".
-
- 3. Deploy. 
-
- ---
- [](https://emojipedia.org/camera-with-flash/)
-
-## 📸 Screenshots
-![enter image description here](https://i.ibb.co/mhsPmgB/Exercise-Tracker.png""")

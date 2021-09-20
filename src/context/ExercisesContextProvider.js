@@ -55,7 +55,7 @@ const ExercisesContextProvider = ({ children }) => {
 	};
 
 	const handleAddExercise = (exercise) => {
-		setExercises((previousData) => [...previousData, exercise]);
+		setExercises((previousData) => [exercise, ...previousData]);
 	};
 
 	const handleOpenCloseModal = (modalObj) => {
