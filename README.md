@@ -2,20 +2,20 @@
 ![enter image description here](https://s9.gifyu.com/images/Exercise-Tracker.gif)
 
 ## Descrição
-Sistema de Registro de Exercicios Físicos. 
+Registro de Exercicios Físicos. 
 
 **Recursos**
 
 - CRUD completo.
-- Gerenciamento de estados com a Context API. 
+- Gerencia estados com a Context API. 
 - JSON-Server como back-end.
-- Chart com a frequência dos exercícios feitos em cada mês. 
+- Gráfico com a frequência dos exercícios feitos em cada mês. 
 - Filtra os exercícios por nível.
-- Firebase como Banco de Dados em tempo real. 
-- Todas as alterações persistem após o reload da página. 
-- Design Responsivo.
+- Alterações persistem após a atualização da página. 
+- Formulário com mensagens informativas em caso de erro na entrada de dados. 
+- Design Responsivo com CSS Modules. 
 
-##  ▶️ Build/Executar
+##  ▶️ Build/Execução
 **Requisitos**
 - Node Js
 - NPM
