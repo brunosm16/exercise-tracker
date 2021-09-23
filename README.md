@@ -4,7 +4,7 @@
 ## Descrição
 Sistema de Registro de Exercicios Físicos. 
 
-**Features**
+**Recursos**
 
 - CRUD completo.
 - Gerenciamento de estados com a Context API. 
