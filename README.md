@@ -1,10 +1,10 @@
 # 🏋️‍♂️ Exercise Tracker
 ![enter image description here](https://s9.gifyu.com/images/Exercise-Tracker.gif)
 
-## Descrição
+## ✍🏻 Descrição
 Registro de Exercicios Físicos. 
 
-**Recursos**
+**➡️ Recursos:**
 
 - CRUD completo.
 - Gerencia estados com a Context API. 
@@ -16,7 +16,9 @@ Registro de Exercicios Físicos.
 - Design Responsivo com CSS Modules. 
 
 ##  ▶️ Build/Execução
-**Requisitos**
+
+**➡️ Requisitos**
+
 - Node Js
 - NPM
 1. Instalar as dependências : `npm install`
