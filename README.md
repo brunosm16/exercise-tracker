@@ -1,23 +1,26 @@
 # 🏋️‍♂️ Exercise Tracker
 ![enter image description here](https://s9.gifyu.com/images/Exercise-Tracker.gif)
 
-## 🔎 Overview
-Project that uses React and the Context API to create a record of exercises with a friendly user experience. CSS Modules were used for styling Components and project also uses JSON-Server as back-end. 
+## Descrição
+Sistema de Registro de Exercicios Físicos. 
 
 **Features**
 
-- Filter exercises by levels.
-- Chart with the frequency of exercises done each month.
-- Uses Context API for instant visual updates.
-- CRUD operations persists after page reloads. 
-- Responsive Design.
+- CRUD completo.
+- Gerenciamento de estados com a Context API. 
+- JSON-Server como back-end.
+- Chart com a frequência dos exercícios feitos em cada mês. 
+- Filtra os exercícios por nível.
+- Firebase como Banco de Dados em tempo real. 
+- Todas as alterações persistem após o reload da página. 
+- Design Responsivo.
 
-##  ▶️ Build/Run
-**Requirements**
+##  ▶️ Build/Executar
+**Requisitos**
 - Node Js
 - NPM
-1. Install needed packages : `npm install`
-2. Start back-end : `json-server --watch db.json` 
-3. Start front-end : `npm start`
-4. Open [localhost:3001](https://localhost:3001) to view it in the browser. 
+1. Instalar as dependências : `npm install`
+2. Inicializar back-end : `json-server --watch db.json` 
+3. Inicializar front-end : `npm start`. 
+4. Abrir browser : [localhost:3001](https://localhost:3001)
 
