@@ -22,5 +22,5 @@ Sistema de Registro de Exercicios Físicos.
 1. Instalar as dependências : `npm install`
 2. Inicializar back-end : `json-server --watch db.json` 
 3. Inicializar front-end : `npm start`. 
-4. Abrir browser : [localhost:3001](https://localhost:3001)
+4. Abrir browser em : [localhost:3001](https://localhost:3001)
 
